@@ -1,41 +1,43 @@
-# Experiment 6 — NeuroGolf 2026: Next Steps
+# Experiment 6: Next Steps — Cost Engineering & Pattern Synthesis
 
-## Current State
+## 1. Analysis: Why the Plateau Occurred (v27 vs. v45)
 
-Left off on version 30. Items 6, 4 and 8 were next to be implemented from this task.
+Version 27 was the "sweet spot" because it balanced aggressive blending with moderate validation. The transition to Version 45 introduced several "safety" and "quality" features that, while architecturally sound for a research paper, penalized the Kaggle score:
 
-## Next Steps
+*   **Over-Restrictive Validation:** v45 added strict checks for dynamic shapes, banned ops, and inference consistency (`INFERENCE_TEST`, `OUTPUT_SHAPE_CHECK`). Many high-scoring public artifacts use "clever" ONNX hacks or slightly non-standard shapes that the v45 DFA rejected.
+*   **The "Quality" Bias:** v45 introduced `BUNDLE_QUALITY` sorting. By prioritizing "controlled" or "manual" bundles, it selected correct but high-cost solvers over cheaper, more "hacky" ones found in the larger automated bundles that v27 accepted greedily.
+*   **Optimization Overhead:** Standard `onnx.optimizer` in v45 often increased the memory footprint by unrolling constants or adding boilerplate nodes. Since the score is `25 - ln(params + memory)`, even a small increase in memory dropped the score significantly.
+*   **Generic Solver Limits:** Both versions relied on `recolor` and `lprop` (Label Propagation). These only solve ~10-15% of ARC tasks. The rest depend entirely on finding a pre-built solver in external datasets.
 
-### 1. Investigate v24 0.10 MB zip size
-Before submitting v24, verify the zip contents. If it's genuinely 0.10 MB, something is wrong in the packaging code (identity swap loop may be over-replacing). Add zip entry count and total uncompressed size to the logging.
+## 2. Recommendations: A New Direction
 
+To break the plateau, the project has shifted from "Pipeline Verification" to **"Cost Engineering and Pattern Synthesis"**:
 
-### 4. Add more ONNX solver types
-Currently only 3 solvers: identity (Conv 1x1), recolor (Slice+Where), lprop (MaxPool). Add:
-- **resize/scale** (nearest-neighbor using ONNX Resize)
-- **flip/rotate** (transpose + slice)
-- **crop** (slice to bounding box)
-- **tile/repeat** (Concat with self)
-- **color mapping** (Conv 1x1 with learned color remap)
-- **gravity** (CumSum-based column shift)
-- **mask extraction/recolor** (Greater + Where on color channels)
+### Completed in Version 46:
+*   **Kronecker/Tiling Template:** Implemented a symbolic solver for Task 001 and similar self-similar expansion tasks ($Input \otimes Input$).
+*   **Reflective Symmetry Template:** Implemented a symbolic solver for Task 112 and quadrant-reflection tasks.
+*   **Full-Graph FP16 Compression:** Upgraded `fp16_surgery` to cast the entire graph (inits, I/O, value_info) to Float16, effectively halving the memory footprint.
+*   **Initial Cost-Greedy Blending:** Refactored the blender to prioritize competition score over qualitative source labels.
 
-These would reduce the 398 identity fallbacks (currently ~88% of tasks are identity).
+### Status of Last Push (v46):
+*   **Public Score:** 5766.19 (a drop from 5793.14).
+*   **Root Cause identified:** The "Strictly Cost-Greedy" logic was incorrectly comparing correct high-cost blended solvers against the **incorrect but cheap** `identity` solver. This led the blender to favor failing identity solvers, resulting in a loss of ~30 points.
 
-### 6. Add inference validation for key tasks
-For tasks 1–3 (where training data is available), run actual ONNX Runtime inference to verify blended models produce correct outputs. This catches runtime errors before submission.
+## 3. Immediate Next Steps (Priority)
 
-### 7. Containerized evaluation harness
-Build a local test that mimics Kaggle's scoring: load each model, run with dummy input `(1, 10, 30, 30)`, verify output shape and non-NaN values. Catches ERROR submissions before pushing.
+### A. Fix Blending Logic (The "Correctness Priority" Rule)
+*   **Update:** Modify the blender to ensure that **any** correct solver is preferred over an `identity` fallback, regardless of cost. Cost-greediness should only apply when choosing between two *correct* solvers.
+*   **Target:** Recover the ~30 points lost in v46 and build upon the v29 baseline.
 
-### 8. Expand dataset sources
-Look for newer Kaggle submission datasets scoring 6000–6500. Currently using 4 datasets; newer public solutions may have better blends.
+### B. Refine Symbolic "Cellular Automata" (CA) Solvers
+*   **Target:** Tasks requiring iterative local rules (spreading, filling, gravity).
+*   **Refactoring:** Replace heavy `lprop` logic (multiple `MaxPool` stages) with unrolled 3x3 `Convolution` layers.
+*   **Goal:** Significant reduction in parameter count compared to the current label propagation logic.
 
-### 9. Package size budget
-Current 1.18 MB leaves 260 KB unused. More expensive but correct models can be blended without exceeding the 1.44 MB limit. The two-pass size-budgeted packaging already handles this optimally.
+### C. Hand-Tuning Advanced Templates
+*   **Task 031 (Crop to Content):** Use `NonZero` + `ReduceMin/Max` to drive a dynamic `Slice`.
+*   **Task 210 (Gravity/Falling):** Use unrolled `MaxPool` or index-sorting to "drop" pixels to the bottom of the grid.
 
-### 10. DFA verifier evolution
-The DFA currently has 28 ops, 13 states, 83 transitions. Consider adding:
-- `INFERENCE_TEST` op for per-model runtime validation
-- `OUTPUT_SHAPE_CHECK` explicit state for shape validation
-- `COST_GRADER_MATCH` verification that cost estimation matches Kaggle's actual cost formula
+## 4. Research & Publication Alignment
+*   **Formal Kronecker Synthesis:** Incorporate formal descriptions of Kronecker product applications from "KromHC: Manifold-Constrained Hyper-Connections" (Zhou et al., 2026) to justify the symbolic template approach in the AAAI 2027 paper.
+*   **Cost-Efficiency Metrics:** Document the memory-params Pareto frontier for these templates in the **Resource-Constrained Multi-Agent Verification** section of the paper.

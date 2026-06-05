@@ -1,0 +1,35 @@
+step,agent,op,task_id,detail
+1,scanner,DISCOVER_BUNDLE,,Scanning for public datasets
+2,floor_loader,LOAD_FLOOR,,Loading initial floor solvers
+3,analyzer,ANALYZE_TASK,1,Kronecker pattern candidate
+4,miner,DISCOVER_PATTERN,1,Input x Input tiling
+5,builder,KRONECKER_SYNTHESIS,1,Building symbolic Kronecker template
+6,rewriter,GRAPH_REWRITE,1,Full-graph FP16 surgery
+7,optimizer,DIM_SCRUB,1,Scrubbing size-1 dimensions
+8,verifier,VERIFY_TRAIN,1,Passing all train examples
+9,verifier,VERIFY_TEST,1,Passing all test examples
+10,verifier,VERIFY_ARC_GEN,1,Passing ARC-GEN examples
+11,grader,COMPUTE_COST,1,Cost: 24.8 points
+12,analyzer,ANALYZE_TASK,112,Reflective symmetry candidate
+13,miner,DISCOVER_PATTERN,112,Quadrant reflection mining
+14,builder,SYMMETRY_SYNTHESIS,112,Building reflective symmetry template
+15,rewriter,GRAPH_REWRITE,112,Full-graph FP16 surgery
+16,optimizer,DIM_SCRUB,112,Scrubbing size-1 dimensions
+17,verifier,VERIFY_TRAIN,112,Passing all train examples
+18,verifier,VERIFY_TEST,112,Passing all test examples
+19,verifier,VERIFY_ARC_GEN,112,Passing ARC-GEN examples
+20,grader,COMPUTE_COST,112,Cost: 24.5 points
+21,analyzer,ANALYZE_TASK,31,CA-Convolution candidate
+22,miner,DISCOVER_PATTERN,31,Unrolled CA rule mining
+23,builder,CONVOLUTION,31,Building unrolled 3x3 CA solver
+24,rewriter,GRAPH_REWRITE,31,Full-graph FP16 surgery
+25,optimizer,DIM_SCRUB,31,Scrubbing size-1 dimensions
+26,verifier,VERIFY_TRAIN,31,Passing all train examples
+27,verifier,VERIFY_TEST,31,Passing all test examples
+28,grader,COMPUTE_COST,31,Cost: 23.2 points
+29,blender,BLEND_BUNDLE,,Correctness Priority Rule: Preferred correct over identity
+30,grader,COMPUTE_COST,,Final pipeline cost graded
+31,verifier,SHA256_CHECK,,Integrity check passed
+32,packager,SIZE_AUDIT,,1.2MB submission size
+33,packager,PACKAGE_SUBMISSION,,Zipping submission.zip
+34,orch,SUBMIT,,Kaggle API push

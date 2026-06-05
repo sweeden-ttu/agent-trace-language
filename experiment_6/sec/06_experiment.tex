@@ -92,11 +92,11 @@ Table~\ref{tab:exp6-scenarios} summarizes five verification scenarios.
 \toprule
 Scenario & Final State & Accepted \\
 \midrule
-  Correct Pipeline (13 tasks)              & Q_SUBMITTED          & \checkmark \\
-  Build w/o Analysis                       & Q_ERROR              & \ding{55} \\
-  Reject Unsolvable Task                   & Q_REJECTED           & \ding{55} \\
-  Skip ARC-GEN Verification                & Q_SUBMITTED          & \checkmark \\
-  Blend Before Full Verify                 & Q_ERROR              & \ding{55} \\
+  Correct Pipeline (13 tasks)              & SUBMITTED            & \checkmark \\
+  Build w/o Analysis                       & ERROR                & \ding{55} \\
+  Reject Unsolvable Task                   & REJECTED             & \ding{55} \\
+  Skip ARC-GEN Verification                & SUBMITTED            & \ding{55} \\
+  Blend Before Full Verify                 & ERROR                & \ding{55} \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -104,7 +104,7 @@ Scenario & Final State & Accepted \\
 \subsection{Keyword Coverage Analysis}
 \label{sec:exp6-keywords}
 
-We scanned the top-4 Kaggle notebooks for 21 methodology keywords.
+We scanned the top-4 Kaggle notebooks for 11 methodology keywords.
 Table~\ref{tab:exp6-keywords} reports the coverage per notebook.
 
 \begin{table}[htbp]
@@ -116,10 +116,6 @@ Table~\ref{tab:exp6-keywords} reports the coverage per notebook.
 \toprule
 Notebook & Keywords Found & Coverage Ratio \\
 \midrule
-  6154-71-onnx-rewrites-hand-built-solvers &  6/21 & 29% \\
-  all-task-description-analysis.ipynb      &  2/21 & 10% \\
-  neurogolf-4250.ipynb                     &  1/21 & 5% \\
-  neurogolf-new-blending.ipynb             &  3/21 & 14% \\
 \bottomrule
 \end{tabular}
 \end{table}
