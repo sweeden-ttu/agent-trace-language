@@ -1,0 +1,10 @@
+action,start,load_data,explore_data,preprocess_data,train_model,evaluate_model,generate_predictions,submit_predictions,halt
+start,0,1,0,0,0,0,0,0,0
+load_data,0,0,1,1,0,0,0,0,0
+explore_data,0,0,0,1,0,0,0,0,0
+preprocess_data,0,0,0,0,1,0,0,0,0
+train_model,0,0,0,0,0,1,0,0,0
+evaluate_model,0,0,0,1,1,0,1,0,0
+generate_predictions,0,0,0,0,0,0,0,1,0
+submit_predictions,0,0,0,0,0,0,0,0,1
+halt,0,0,0,0,0,0,0,0,0

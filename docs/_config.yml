@@ -1,0 +1,9 @@
+title: Trace-Language Theory of Agents
+description: Formal verification runtime architecture, empirical validation suite, and ablation studies.
+markdown: kramdown
+permalink: /:title.html
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor

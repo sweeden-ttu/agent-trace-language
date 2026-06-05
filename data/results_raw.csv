@@ -1,0 +1,91 @@
+group,task,completed,score,steps_proposed,repairs,validation_errors,undetected_errors,tokens_used,runtime_ms
+Control (G),spaceship_titanic,False,0.0,8,0,0,3,0,40
+Treatment A (G + DFA),spaceship_titanic,True,0.67333,15,3,3,0,0,75
+Treatment B (G + LLM),spaceship_titanic,True,0.0,9,1,1,3,10800,13500
+Control (G),spaceship_titanic,False,0.0,8,0,0,5,0,40
+Treatment A (G + DFA),spaceship_titanic,True,0.67333,13,3,3,0,0,65
+Treatment B (G + LLM),spaceship_titanic,True,0.0,15,7,7,4,18000,22500
+Control (G),spaceship_titanic,True,0.6733333333333333,8,0,0,0,0,40
+Treatment A (G + DFA),spaceship_titanic,True,0.67333,9,2,2,0,0,45
+Treatment B (G + LLM),spaceship_titanic,True,0.6733333333333333,9,1,1,0,10800,13500
+Control (G),spaceship_titanic,True,0.6733333333333333,8,0,0,0,0,40
+Treatment A (G + DFA),spaceship_titanic,True,0.67333,7,0,0,0,0,35
+Treatment B (G + LLM),spaceship_titanic,True,0.6733333333333333,8,0,0,0,9600,12000
+Control (G),spaceship_titanic,False,0.0,8,0,0,6,0,40
+Treatment A (G + DFA),spaceship_titanic,True,0.67333,18,3,3,0,0,90
+Treatment B (G + LLM),spaceship_titanic,True,0.0,15,7,7,3,18000,22500
+Control (G),spaceship_titanic,True,0.6733333333333333,8,0,0,0,0,40
+Treatment A (G + DFA),spaceship_titanic,True,0.49333,12,1,1,0,0,60
+Treatment B (G + LLM),spaceship_titanic,True,0.6733333333333333,9,1,1,0,10800,13500
+Control (G),spaceship_titanic,True,0.38620689655172413,8,0,0,0,0,40
+Treatment A (G + DFA),spaceship_titanic,True,0.67333,17,3,3,0,0,85
+Treatment B (G + LLM),spaceship_titanic,True,0.38620689655172413,8,0,0,0,9600,12000
+Control (G),spaceship_titanic,False,0.0,8,0,0,2,0,40
+Treatment A (G + DFA),spaceship_titanic,False,0.0,25,10,10,0,0,125
+Treatment B (G + LLM),spaceship_titanic,True,0.0,13,5,5,3,15600,19500
+Control (G),spaceship_titanic,False,0.0,8,0,0,3,0,40
+Treatment A (G + DFA),spaceship_titanic,True,0.67333,10,2,2,0,0,50
+Treatment B (G + LLM),spaceship_titanic,True,0.0,4,0,0,1,4800,6000
+Control (G),spaceship_titanic,True,0.6733333333333333,8,0,0,0,0,40
+Treatment A (G + DFA),spaceship_titanic,True,0.49333,9,1,1,0,0,45
+Treatment B (G + LLM),spaceship_titanic,True,0.6733333333333333,9,1,1,0,10800,13500
+Control (G),wine_quality,False,0.0,8,0,0,3,0,40
+Treatment A (G + DFA),wine_quality,True,0.38462,15,3,3,0,0,75
+Treatment B (G + LLM),wine_quality,True,0.0,9,1,1,3,10800,13500
+Control (G),wine_quality,False,0.0,8,0,0,5,0,40
+Treatment A (G + DFA),wine_quality,True,0.38462,13,3,3,0,0,65
+Treatment B (G + LLM),wine_quality,True,0.0,15,7,7,4,18000,22500
+Control (G),wine_quality,True,0.38461538461538464,8,0,0,0,0,40
+Treatment A (G + DFA),wine_quality,True,0.38462,9,2,2,0,0,45
+Treatment B (G + LLM),wine_quality,True,0.38461538461538464,9,1,1,0,10800,13500
+Control (G),wine_quality,True,0.38461538461538464,8,0,0,0,0,40
+Treatment A (G + DFA),wine_quality,True,0.38462,7,0,0,0,0,35
+Treatment B (G + LLM),wine_quality,True,0.38461538461538464,8,0,0,0,9600,12000
+Control (G),wine_quality,False,0.0,8,0,0,6,0,40
+Treatment A (G + DFA),wine_quality,True,0.38462,18,3,3,0,0,90
+Treatment B (G + LLM),wine_quality,True,0.0,15,7,7,3,18000,22500
+Control (G),wine_quality,True,0.38461538461538464,8,0,0,0,0,40
+Treatment A (G + DFA),wine_quality,True,0.38462,12,1,1,0,0,60
+Treatment B (G + LLM),wine_quality,True,0.38461538461538464,9,1,1,0,10800,13500
+Control (G),wine_quality,True,0.589041095890411,8,0,0,0,0,40
+Treatment A (G + DFA),wine_quality,True,0.38462,17,3,3,0,0,85
+Treatment B (G + LLM),wine_quality,True,0.589041095890411,8,0,0,0,9600,12000
+Control (G),wine_quality,True,0.38461538461538464,8,0,0,0,0,40
+Treatment A (G + DFA),wine_quality,False,0.0,25,10,10,0,0,125
+Treatment B (G + LLM),wine_quality,True,0.38461538461538464,11,3,3,0,13200,16500
+Control (G),wine_quality,False,0.0,8,0,0,3,0,40
+Treatment A (G + DFA),wine_quality,True,0.38462,10,2,2,0,0,50
+Treatment B (G + LLM),wine_quality,True,0.0,4,0,0,1,4800,6000
+Control (G),wine_quality,True,0.38461538461538464,8,0,0,0,0,40
+Treatment A (G + DFA),wine_quality,True,0.38462,9,1,1,0,0,45
+Treatment B (G + LLM),wine_quality,True,0.38461538461538464,9,1,1,0,10800,13500
+Control (G),synthetic_classification,False,0.0,8,0,0,3,0,40
+Treatment A (G + DFA),synthetic_classification,True,0.91,15,3,3,0,0,75
+Treatment B (G + LLM),synthetic_classification,True,0.0,9,1,1,3,10800,13500
+Control (G),synthetic_classification,False,0.0,8,0,0,5,0,40
+Treatment A (G + DFA),synthetic_classification,True,0.91,13,3,3,0,0,65
+Treatment B (G + LLM),synthetic_classification,True,0.0,15,7,7,4,18000,22500
+Control (G),synthetic_classification,True,0.91,8,0,0,0,0,40
+Treatment A (G + DFA),synthetic_classification,True,0.91,9,2,2,0,0,45
+Treatment B (G + LLM),synthetic_classification,True,0.91,9,1,1,0,10800,13500
+Control (G),synthetic_classification,True,0.91,8,0,0,0,0,40
+Treatment A (G + DFA),synthetic_classification,True,0.91,7,0,0,0,0,35
+Treatment B (G + LLM),synthetic_classification,True,0.91,8,0,0,0,9600,12000
+Control (G),synthetic_classification,False,0.0,8,0,0,6,0,40
+Treatment A (G + DFA),synthetic_classification,True,0.91,18,3,3,0,0,90
+Treatment B (G + LLM),synthetic_classification,True,0.0,15,7,7,3,18000,22500
+Control (G),synthetic_classification,True,0.91,8,0,0,0,0,40
+Treatment A (G + DFA),synthetic_classification,True,0.9,12,1,1,0,0,60
+Treatment B (G + LLM),synthetic_classification,True,0.91,9,1,1,0,10800,13500
+Control (G),synthetic_classification,True,0.42105263157894735,8,0,0,0,0,40
+Treatment A (G + DFA),synthetic_classification,True,0.91,17,3,3,0,0,85
+Treatment B (G + LLM),synthetic_classification,True,0.42105263157894735,8,0,0,0,9600,12000
+Control (G),synthetic_classification,True,0.91,8,0,0,0,0,40
+Treatment A (G + DFA),synthetic_classification,False,0.0,25,10,10,0,0,125
+Treatment B (G + LLM),synthetic_classification,True,0.91,11,3,3,0,13200,16500
+Control (G),synthetic_classification,False,0.0,8,0,0,3,0,40
+Treatment A (G + DFA),synthetic_classification,True,0.91,10,2,2,0,0,50
+Treatment B (G + LLM),synthetic_classification,True,0.0,4,0,0,1,4800,6000
+Control (G),synthetic_classification,True,0.91,8,0,0,0,0,40
+Treatment A (G + DFA),synthetic_classification,True,0.9,9,1,1,0,0,45
+Treatment B (G + LLM),synthetic_classification,True,0.91,9,1,1,0,10800,13500
