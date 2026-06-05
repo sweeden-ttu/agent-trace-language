@@ -1,0 +1,54 @@
+ONNX: 1.21.0
+NumPy: 2.4.6
+Python: 3.12.13 (main, Mar  4 2026, 09:23:07) [GCC 11.4.0]
+Framework loaded: 22 ops, 13 states, 49 transitions, 9 agents
+Accepting: frozenset({'SUBMITTED', 'PACKAGED'})
+Paper: https://github.com/sweeden-ttu/agent-trace-language
+Experiment 6: NeuroGolf 2026 MAS verification
+Solver builders ready
+Types: identity (Conv 1x1), recolor (Slice+Where), lprop (MaxPool label prop)
+Task analyzer detects recolor patterns
+Building solvers for all 400 tasks...
+Types: {'identity': 398, 'recolor': 2}
+Avg cost: 115  Est score: 20.26
+
+DFA verification of build pipeline:
+  [Build Pipeline] state=PACKAGED accepted=True
+
+Error detection demos:
+  [No analysis (SHOULD FAIL)] state=ERROR accepted=False
+    ✗ step 0: b/BUILD_ONNX - No transition from INIT on BUILD_ONNX
+  [Blend before verify (SHOULD FAIL)] state=ERROR accepted=False
+    ✗ step 2: bl/BLEND_BUNDLE - No transition from BUILT on BLEND_BUNDLE
+  [Correct (SHOULD PASS)] state=SUBMITTED accepted=True
+Discovering submission datasets...
+Scanning /kaggle/input/...
+  Top-level: ['datasets', 'competitions']
+  / (2 entries)
+  datasets/ (4 entries)
+    konbu17/ (1 entries)
+      neurogolf-2026-blended-401-v117/ (401 entries)
+        401 task*.onnx files FOUND (flat)
+    jsrdcht/ (1 entries)
+      neurogolf-6029-submission-bundle/ (400 entries)
+        400 task*.onnx files FOUND (flat)
+    octaviograu/ (1 entries)
+      neurogolf-manual-rewrites-v205/ (4 entries)
+        submission/ (400 files) FOUND
+          400 task*.onnx files FOUND (flat)
+    afr1ste/ (1 entries)
+      neurogolf-6335-19-controlled-public-artifact/ (401 entries)
+        401 task*.onnx files FOUND (flat)
+  competitions/ (1 entries)
+    neurogolf-2026/ (401 entries)
+      neurogolf_utils/ (1 entries)
+Found 5 bundles
+  [flatdir] /kaggle/input/datasets/konbu17/neurogolf-2026-blended-401-v117
+  [flatdir] /kaggle/input/datasets/jsrdcht/neurogolf-6029-submission-bundle
+  [subdir] /kaggle/input/datasets/octaviograu/neurogolf-manual-rewrites-v205/submission
+  [flatdir] /kaggle/input/datasets/octaviograu/neurogolf-manual-rewrites-v205/submission
+  [flatdir] /kaggle/input/datasets/afr1ste/neurogolf-6335-19-controlled-public-artifact
+Blending...
+  [Blend Pipeline] state=SUBMITTED accepted=True
+Package: 400 tasks, 0.74 MB (limit 1.44)
+Blended from datasets: 398/400

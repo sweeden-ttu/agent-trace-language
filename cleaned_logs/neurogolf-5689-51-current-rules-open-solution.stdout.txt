@@ -1,0 +1,6 @@
+Wrote /kaggle/working/submission.zip
+Submission SHA256: 21B1D31241AF38A6B118A4C526A81A55509517F0CA6686F6C0F9A0A477842DB5
+Task count: 400
+Manifest task count: 400
+Total zip bytes: 1004846
+Smallest ONNX files:

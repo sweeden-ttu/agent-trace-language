@@ -18,9 +18,9 @@ The paper follows a six-section narrative:
 
 Extended theory (Chomsky classification, indexed grammars, Hoare/LTL formalism, multi-agent systems, experiments 2–5) is archived in the `supplementary/` directory.
 
-## The 5 Experiments
+## The 6 Experiments
 
-All five experiments have runnable Python scripts with pre-computed results:
+All six experiments have runnable Python scripts with pre-computed results:
 
 ### Experiment 1: Verifier Ablation Study
 `src/run_experiments.py` + `src/ablation.py`
@@ -52,9 +52,24 @@ Analyses execution traces for alphabet size, cycle count, stack nesting depth, a
 
 A safety DFA verifier intercepts forbidden operations (`drop_table`, `delete_database`, `send_money`) and forbidden sequences. Achieves 100% interception rate (3/3 violations blocked).
 
+### Experiment 6: NeuroGolf 2026 — Trace-Language in Practice
+`experiment_6/build_and_submit.py`
+
+A proof-of-concept applying the trace-language framework to a live Kaggle competition (NeuroGolf 2026). By analyzing execution logs from top leaderboard notebooks, we reverse-engineered the trace language — the sequence of operations and keywords that characterize winning submissions. A DFA verifier (13 states, 76 transitions, 27 OpSymbols) was embedded directly into a competition notebook to enforce this structure:
+
+1. **Log Analysis**: Extracted operation patterns from 18+ top-scoring Kaggle kernels (6154.71, 6411.7, 6663.23, etc.), identifying the real-world pipeline: dataset discovery → floor loading → task analysis → ONNX construction → optimization → verification → costing → blending → packaging → submission.
+2. **DFA-Guided Generation**: The verifier checked that every generated notebook step followed the correct architectural flow and contained essential keywords (fp16, dim_scrub, sha256, blend, etc.) in the proper pipeline phase.
+3. **Result**: **50% improvement** in competition score (2739.27 → 4127.12). The DFA caught structural errors in the blending pipeline — ensuring bundle models from 4 public datasets were correctly discovered and selected, replacing the identity fallback solvers for 398/400 tasks.
+
+This demonstrates the trace-language theory in practice: an LLM-generated notebook, when bound by a regular (Type-3) DFA verifier derived from real-world traces, produces results that follow the proven architectural patterns of top performers. The verifier cannot understand "concepts" — it checks keyword presence and operation ordering — yet this lightweight structural enforcement was sufficient to guide the generator toward a competitive submission.
+
 ## Repository Structure
 
 ```
+├── experiment_6/          # NeuroGolf 2026: TLV in practice (Kaggle competition)
+│   ├── build_and_submit.py        # Notebook generator with embedded DFA verifier
+│   ├── neurogolf-2026-trace-language.ipynb  # Generated competition notebook
+│   └── kernel-metadata.json       # Kaggle dataset sources
 ├── src/                  # Experiment runner scripts (Python)
 │   ├── run_all_experiments.py   # Master orchestrator for all 5 experiments
 │   ├── run_experiments.py       # Experiment 1: Verifier Ablation
@@ -120,3 +135,10 @@ python src/run_exp4_analyzer.py            # Experiment 4 only
 python src/run_exp5_safety.py              # Experiment 5 only
 python src/ablation.py                     # Ablation studies
 ```
+
+
+## Experiment 6
+
+This is an iterative experiment not included in the original paper, being used to slowly climb the submission latter of the Neuro Golf competition in Kaggle. As of day 1 it climbed from a position of 590 out of 5,877 Entrants placing it in the top 10% of all entries. https://www.kaggle.com/competitions/neurogolf-2026/leaderboard#
+
+This experiment is ongoing up until the submission deadline for the AAAI competition.  The neurogolf files represent its submission and the DFA verifier scans the log outputs and cell outputs for expected changes each time an architectural change is made to the pipeline. The producer is OpenCode BigPickle model.

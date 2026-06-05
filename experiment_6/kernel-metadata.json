@@ -1,0 +1,20 @@
+{
+  "id": "scottweeden/neurogolf-trace-language-dfa-solvers",
+  "title": "NeuroGolf Trace Language DFA Solvers",
+  "code_file": "neurogolf-2026-trace-language.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": false,
+  "enable_gpu": false,
+  "enable_tpu": false,
+  "enable_internet": true,
+  "dataset_sources": [
+    "octaviograu/neurogolf-manual-rewrites-v205",
+    "afr1ste/neurogolf-6335-19-controlled-public-artifact",
+    "jsrdcht/neurogolf-6029-submission-bundle",
+    "konbu17/neurogolf-2026-blended-401-v117"
+  ],
+  "competition_sources": ["neurogolf-2026"],
+  "kernel_sources": [],
+  "model_sources": []
+}

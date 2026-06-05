@@ -1,0 +1,7 @@
+afr1ste source : /kaggle/input/datasets/afr1ste/neurogolf-5689-51-current-rules-open-artifact/submission
+konbu17 source : /kaggle/input/datasets/konbu17/neurogolf-2026-blend-source-v3-6-0
+Wrote /kaggle/working/submission.zip ( 1061011 bytes )
+submission.zip ready for upload to NeuroGolf 2026.
+  ONNX count    : 400
+  konbu17 swaps : [205, 308, 370, 382]
+  afr1ste tasks : 396

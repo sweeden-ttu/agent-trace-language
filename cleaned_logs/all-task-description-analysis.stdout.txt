@@ -1,0 +1,204 @@
+🚀 Processing 1 tasks with Primitive Classification Prompting...
+✅ Classified: ['task001']
+🎉 Processed and saved to /kaggle/working/arc_primitives.json and /kaggle/working/arc_primitives.csv
+📊 CSV PREVIEW (Primitives Dataset):
+
+==================================================
+
+📄 JSON SNIPPET (First 3 entries):
+{
+  "task001": {
+    "Spatial_and_Geometric": [
+      "Tiling"
+    ],
+    "Object_Based": [
+      "Object Detection"
+    ],
+    "Color_and_Logical": [],
+    "Pattern_Recognition": [
+      "Symmetry Completion"
+    ],
+    "Primary_Category": "Spatial_and_Geometric",
+    "Grid_Size_Changed": true,
+    "Estimated_Complexity": 6
+  }
+}
+
+========================= task001 =========================
+PRIMARY CATEGORY : Spatial_and_Geometric
+PRIMITIVES USED  : Tiling | Object Detection | Symmetry Completion
+COMPLEXITY       : 6/10
+GRID RESIZED     : True
+
+
+⚠️ No primitives found for task002. Skipping.
+
+⚠️ No primitives found for task003. Skipping.
+
+⚠️ No primitives found for task004. Skipping.
+
+⚠️ No primitives found for task005. Skipping.
+
+⚠️ No primitives found for task006. Skipping.
+
+⚠️ No primitives found for task007. Skipping.
+
+⚠️ No primitives found for task008. Skipping.
+
+⚠️ No primitives found for task009. Skipping.
+
+⚠️ No primitives found for task010. Skipping.
+Collecting onnx==1.21.0
+  Downloading onnx-1.21.0-cp312-abi3-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (8.5 kB)
+Collecting onnxruntime==1.24.4
+  Downloading onnxruntime-1.24.4-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (5.2 kB)
+Collecting onnx-tool==1.0.1
+  Downloading onnx_tool-1.0.1-py3-none-any.whl.metadata (14 kB)
+Collecting numpy==2.4.4
+  Downloading numpy-2.4.4-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (6.6 kB)
+Requirement already satisfied: protobuf>=4.25.1 in /usr/local/lib/python3.12/dist-packages (from onnx==1.21.0) (5.29.5)
+Requirement already satisfied: typing_extensions>=4.7.1 in /usr/local/lib/python3.12/dist-packages (from onnx==1.21.0) (4.15.0)
+Requirement already satisfied: ml_dtypes>=0.5.0 in /usr/local/lib/python3.12/dist-packages (from onnx==1.21.0) (0.5.4)
+Requirement already satisfied: flatbuffers in /usr/local/lib/python3.12/dist-packages (from onnxruntime==1.24.4) (25.12.19)
+Requirement already satisfied: packaging in /usr/local/lib/python3.12/dist-packages (from onnxruntime==1.24.4) (26.0)
+Requirement already satisfied: sympy in /usr/local/lib/python3.12/dist-packages (from onnxruntime==1.24.4) (1.14.0)
+Requirement already satisfied: tabulate in /usr/local/lib/python3.12/dist-packages (from onnx-tool==1.0.1) (0.9.0)
+Requirement already satisfied: mpmath<1.4,>=1.1.0 in /usr/local/lib/python3.12/dist-packages (from sympy->onnxruntime==1.24.4) (1.3.0)
+Downloading onnx-1.21.0-cp312-abi3-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (17.6 MB)
+[?25hDownloading onnxruntime-1.24.4-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (17.2 MB)
+[?25hDownloading onnx_tool-1.0.1-py3-none-any.whl (56 kB)
+[?25hDownloading numpy-2.4.4-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (16.6 MB)
+[?25hInstalling collected packages: numpy, onnxruntime, onnx, onnx-tool
+  Attempting uninstall: numpy
+    Found existing installation: numpy 2.0.2
+    Uninstalling numpy-2.0.2:
+      Successfully uninstalled numpy-2.0.2
+  Attempting uninstall: onnx
+    Found existing installation: onnx 1.20.1
+    Uninstalling onnx-1.20.1:
+      Successfully uninstalled onnx-1.20.1
+[31mERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+bigframes 2.35.0 requires google-cloud-bigquery-storage<3.0.0,>=2.30.0, which is not installed.
+ydata-profiling 4.18.1 requires numpy<2.4,>=1.22, but you have numpy 2.4.4 which is incompatible.
+google-colab 1.0.0 requires jupyter-server==2.14.0, but you have jupyter-server 2.12.5 which is incompatible.
+google-colab 1.0.0 requires pandas==2.2.2, but you have pandas 2.3.3 which is incompatible.
+dopamine-rl 4.1.2 requires gym<=0.25.2, but you have gym 0.26.2 which is incompatible.
+tensorflow 2.19.0 requires numpy<2.2.0,>=1.26.0, but you have numpy 2.4.4 which is incompatible.
+numba 0.60.0 requires numpy<2.1,>=1.22, but you have numpy 2.4.4 which is incompatible.[0m[31m
+[0mSuccessfully installed numpy-2.4.4 onnx-1.21.0 onnx-tool-1.0.1 onnxruntime-1.24.4
+
+Reading and validating 2 submission(s) …
+
+  submission.zip                                                valid=  72  invalid= 329  (2 MB)
+  submission.zip                                                valid=  75  invalid= 326  (2 MB)
+
+  NEUROGOLF SOLUTION MERGER — RESULTS
+  Submissions loaded           : 2
+  Valid tasks in merged zip    : 75  /  400
+  Tasks from single source     : 3
+  Tasks with conflicts         : 72  (tiebreak = smallest file)
+  Unique invalid tasks skipped : 329
+
+  PER-SUBMISSION BREAKDOWN
+
+  File                                                          Valid   Invalid   Wins  Overlap  Coverage
+  ----------------------------------------------------------------------------------------------------
+  submission.zip                                                   72       329     72        0  ████░░░░░░░░░░░░░░░░░░░░  18.0%
+  submission.zip                                                   75       326     75        0  ████░░░░░░░░░░░░░░░░░░░░  18.8%
+
+  COVERAGE DISTRIBUTION  (how many submissions have each valid task)
+
+  1 submission     █░░░░░░░░░░░░░░░░░░░░░░░░░░░░░     3 tasks  (4.0%)
+  2 submissions    █████████████████████████████░    72 tasks  (96.0%)
+
+  CONFLICTS — 72 tasks in multiple submissions
+
+  Task       Winner (smallest)                                                  Size  Losers
+  ----------------------------------------------------------------------------------------------------
+  task001   submission.zip                                                    18 KB  
+  task011   submission.zip                                                    11 KB  
+  task037   submission.zip                                                    10 KB  
+  task038   submission.zip                                                    46 KB  
+  task052   submission.zip                                                    66 KB  
+  task056   submission.zip                                                    40 KB  
+  task058   submission.zip                                                   163 KB  
+  task061   submission.zip                                                    60 KB  
+  task066   submission.zip                                                    22 KB  
+  task076   submission.zip                                                   281 KB  
+  task079   submission.zip                                                     2 KB  
+  task080   submission.zip                                                    22 KB  
+  task100   submission.zip                                                    93 KB  
+  task101   submission.zip                                                    24 KB  
+  task103   submission.zip                                                    25 KB  
+  task104   submission.zip                                                    38 KB  
+  task108   submission.zip                                                     4 KB  
+  task109   submission.zip                                                     4 KB  
+  task111   submission.zip                                                    19 KB  
+  task113   submission.zip                                                     4 KB  
+  task115   submission.zip                                                     4 KB  
+  task134   submission.zip                                                     8 KB  
+  task143   submission.zip                                                     2 KB  
+  task156   submission.zip                                                     9 KB  
+  task159   submission.zip                                                    20 KB  
+  task163   submission.zip                                                    13 KB  
+  task165   submission.zip                                                     7 KB  
+  task167   submission.zip                                                    30 KB  
+  task171   submission.zip                                                   531 KB  
+  task173   submission.zip                                                     5 KB  
+  task174   submission.zip                                                    54 KB  
+  task176   submission.zip                                                   215 KB  
+  task178   submission.zip                                                    11 KB  
+  task186   submission.zip                                                    37 KB  
+  task188   submission.zip                                                     3 KB  
+  task191   submission.zip                                                     8 KB  
+  task195   submission.zip                                                     6 KB  
+  task200   submission.zip                                                   759 KB  
+  task201   submission.zip                                                    12 KB  
+  task203   submission.zip                                                    19 KB  
+  task211   submission.zip                                                     4 KB  
+  task213   submission.zip                                                    16 KB  
+  task215   submission.zip                                                    32 KB  
+  task217   submission.zip                                                     4 KB  
+  task218   submission.zip                                                    10 KB  
+  task233   submission.zip                                                   369 KB  
+  task238   submission.zip                                                    21 KB  
+  task242   submission.zip                                                    19 KB  
+  task245   submission.zip                                                     4 KB  
+  task248   submission.zip                                                    91 KB  
+  task255   submission.zip                                                    33 KB  
+  task266   submission.zip                                                   142 KB  
+  task275   submission.zip                                                    29 KB  
+  task292   submission.zip                                                   225 KB  
+  task308   submission.zip                                                     4 KB  
+  task313   submission.zip                                                    39 KB  
+  task316   submission.zip                                                    43 KB  
+  task319   submission.zip                                                    11 KB  
+  task322   submission.zip                                                     2 KB  
+  task357   submission.zip                                                    91 KB  
+  task363   submission.zip                                                   300 KB  
+  task366   submission.zip                                                   279 KB  
+  task373   submission.zip                                                   735 KB  
+  task374   submission.zip                                                    20 KB  
+  task375   submission.zip                                                   555 KB  
+  task376   submission.zip                                                   342 KB  
+  task377   submission.zip                                                    17 KB  
+  task382   submission.zip                                                    66 KB  
+  task391   submission.zip                                                     3 KB  
+  task392   submission.zip                                                    13 KB  
+  task394   submission.zip                                                     5 KB  
+  task399   submission.zip                                                    45 KB  
+
+  SKIPPED TASKS — 329 tasks failed validation
+
+  [dynamic shape (dim_param)]  74 tasks
+    tasks: 6, 7, 14, 18, 19, 30, 31, 36, 49, 54, 59, 64, 83, 87, 89, 90, 118, 119, 133, 138, 140, 142, 145, 152, 153, 158, 164, 170, 172, 175, 177, 179, 184, 209, 210, 216, 219, 223, 227, 228, 237, 241, 268, 269, 274, 280, 284, 285, 286, 291, 300, 307, 310, 311, 324, 325, 328, 333, 339, 347, 349, 351, 355, 359, 360, 362, 365, 370, 380, 383, 384, 386, 395, 396
+
+  [missing dim_value]  74 tasks
+    tasks: 4, 15, 16, 21, 23, 47, 48, 50, 53, 55, 71, 73, 74, 81, 88, 92, 96, 98, 99, 107, 117, 120, 122, 127, 129, 132, 135, 139, 147, 151, 157, 160, 180, 181, 182, 183, 185, 187, 198, 199, 202, 205, 207, 231, 239, 244, 253, 257, 258, 262, 272, 276, 282, 293, 294, 296, 305, 309, 312, 320, 329, 331, 332, 334, 336, 337, 344, 352, 367, 379, 385, 387, 389, 397
+
+  [shape inference failed]  181 tasks
+    tasks: 0, 2, 3, 5, 8, 9, 10, 12, 13, 17, 20, 22, 24, 25, 26, 27, 28, 29, 32, 33, 34, 35, 39, 40, 41, 42, 43, 44, 45, 46, 51, 57, 60, 62, 63, 65, 67, 68, 69, 70, 72, 75, 77, 78, 82, 84, 85, 86, 91, 93, 94, 95, 97, 102, 105, 106, 110, 112, 114, 116, 121, 123, 124, 125, 126, 128, 130, 131, 136, 137, 141, 144, 146, 148, 149, 150, 154, 155, 161, 162, 166, 168, 169, 189, 190, 192, 193, 194, 196, 197, 204, 206, 208, 212, 214, 220, 221, 222, 224, 225, 226, 229, 230, 232, 234, 235, 236, 240, 243, 246, 247, 249, 250, 251, 252, 254, 256, 259, 260, 261, 263, 264, 265, 267, 270, 271, 273, 277, 278, 279, 281, 283, 287, 288, 289, 290, 295, 297, 298, 299, 301, 302, 303, 304, 306, 314, 315, 317, 318, 321, 323, 326, 327, 330, 335, 338, 340, 341, 342, 343, 345, 346, 348, 350, 353, 354, 356, 358, 361, 364, 368, 369, 371, 372, 378, 381, 388, 390, 393, 398, 400
+
+
+  Wrote 75 tasks  →  /kaggle/working/merged_submission.zip  (466 KB)
+

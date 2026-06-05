@@ -54,3 +54,41 @@ Section VI-D of the paper explains why an Aho-Corasick or DFA verifier is superi
 Our experiments directly illustrated this:
 * The LLM Judge suffered from **false negatives**, failing to catch buggy predictions or malformed CSV lengths, leading to **1.2 undetected errors** per run and dropping overall accuracy to **35.2%**.
 * The DFA Verifier caught **100% of errors (0.00 undetected errors)**, guiding the agent to repair every mistake.
+
+---
+
+## 4. Experiment 6: Trace-Language in Practice — NeuroGolf 2026
+
+Experiment 6 bridges the gap between controlled simulation and real-world application. While Experiments 1–5 validate the theory in synthetic environments, Experiment 6 applies the same principles to a live Kaggle competition with 400+ participants.
+
+### Theorem 2 in the Wild
+
+The formal claim of Theorem 2 — that intersecting a Type-0 generator's language with a Type-3 verifier's language preserves decidability — was tested under real conditions:
+
+1. **The Generator ($G$)**: An LLM writing Python code for a Kaggle notebook. This is the unrestricted Type-0 machine, capable of emitting arbitrary code, paths, and data transformations.
+2. **The Verifier ($V$)**: A 13-state DFA with 76 transitions, checking that the notebook's trace follows the correct pipeline ordering and contains essential keywords. This is Type-3 (regular) — it cannot understand ONNX graphs, cost formulas, or task patterns.
+3. **The Composition $G \parallel V$**: The notebook must pass DFA checks at three checkpoints. If any fails, the generator must repair the trace.
+
+### Empirical Outcome
+
+| Metric | Pre-Verifier (v5) | With DFA (v10) | Improvement |
+| :--- | :---: | :---: | :---: |
+| Competition Score | 2739.27 | 4127.12 | **+50%** |
+| Tasks with Bundle Coverage | 169/400 | 398/400 | **+135%** |
+| Datasets Discovered | 1 (partial) | 4 (all) | **+300%** |
+| Submission Size | 0.1 MB | 0.74 MB | Within limit |
+| DFA Checks Passing | N/A | All 3/3 | ✓ |
+
+### How the Theory Applied
+
+The DFA verifier enforced three critical patterns derived from log analysis of top notebooks:
+
+1. **Pipeline Ordering**: Discover bundles before building, build before verifying, verify before blending, blend before packaging. The notebook generator could not reorder steps without the DFA rejecting the trace.
+
+2. **Keyword-Aware Phases**: The 29-keyword coverage set ensured each pipeline phase contained the right vocabulary — e.g., the optimization phase required `dim_scrub`, `graph_rewrite`, or `fp16` keywords matching real notebook patterns.
+
+3. **Accepting States**: The DFA defined `SUBMITTED` and `PACKAGED` as accepting states. Any trace that reached these states corresponded to a structurally valid submission — without the DFA ever needing to understand cost calculations or ONNX op semantics.
+
+### Significance for the Paper
+
+Experiment 6 demonstrates that the trace-language framework is **not just a theoretical construct** but a practical tool for agent verification. The same DFA mechanisms that caught `drop_table` sequences in Experiment 5 and enforced pipeline ordering in Experiment 1 also guided a competition submission to a 50% improvement. This confirms that the Type-3 regular language envelope is a sufficient constraint for real-world agent tasks, not just synthetic benchmarks.

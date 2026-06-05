@@ -1,0 +1,9 @@
+Dataset dir: /kaggle/input/datasets/konbu17
+Submission zip: None
+ONNX dir:    /kaggle/input/datasets/konbu17/neurogolf-2026-blended-341
+Re-zipped 396 ONNXs from /kaggle/input/datasets/konbu17/neurogolf-2026-blended-341 -> /kaggle/working/submission.zip
+  size = 1,271,010 bytes
+submission.zip: 396 entries, 396 task ONNXs
+task numbers: 0..400 (count=396)
+scrub_list.json not found in /kaggle/input (skipped)
+t389_cheap.py not found in /kaggle/input (skipped)

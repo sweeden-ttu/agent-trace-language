@@ -1,0 +1,5 @@
+zip:   /kaggle/working/submission.zip
+size:  465866 bytes
+files: 206
+first: ['task001.onnx', 'task002.onnx', 'task003.onnx']
+last:  ['task393.onnx', 'task395.onnx', 'task399.onnx']

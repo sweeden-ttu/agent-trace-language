@@ -1,0 +1,24 @@
+DIR: /kaggle/input (0 files, 2 subdirs)
+DIR: /kaggle/input/competitions (0 files, 1 subdirs)
+DIR: /kaggle/input/competitions/neurogolf-2026 (400 files, 1 subdirs)
+  - task221.json (220,294 bytes)
+  - task189.json (108,030 bytes)
+  - task292.json (8,378 bytes)
+  ... and 397 more
+DIR: /kaggle/input/competitions/neurogolf-2026/neurogolf_utils (1 files, 0 subdirs)
+  - neurogolf_utils.py (18,436 bytes)
+DIR: /kaggle/input/datasets (0 files, 1 subdirs)
+DIR: /kaggle/input/datasets/konbu17 (0 files, 1 subdirs)
+DIR: /kaggle/input/datasets/konbu17/neurogolf-2026-blended-401-v117 (401 files, 0 subdirs)
+  - task273.onnx (4,092 bytes)
+  - task259.onnx (4,189 bytes)
+  - task209.onnx (177,552 bytes)
+  ... and 398 more
+found 401 task*.onnx files via recursive glob
+found 0 submission.zip files: []
+
+Zipped 401 files -> /kaggle/working/submission.zip
+Output size: 1,941,647 bytes (1.85 MB)
+Files in zip: 401
+First 3: ['task000.onnx', 'task001.onnx', 'task002.onnx']
+Last 3: ['task398.onnx', 'task399.onnx', 'task400.onnx']

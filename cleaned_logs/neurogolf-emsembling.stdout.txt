@@ -1,0 +1,49 @@
+Dataset dir: /kaggle/input/datasets/yash9439/neurogolf-submission/submission
+Found 172 ONNX files.
+Total size:  4348.5 KB
+Loaded 172 ONNX graphs (out of 400 tasks).
+Coverage: 43.0%
+Sample task IDs: ['task001.onnx', 'task002.onnx', 'task003.onnx', 'task004.onnx', 'task006.onnx'] ... ['task389.onnx', 'task395.onnx', 'task399.onnx']
+Solved tasks:       172 / 400
+Unsolved (score 1): 228
+Estimated LB total: 2752.98  (sum over 400 tasks)
+
+Cost breakdown over solved tasks:
+       params   bytes      macs      cost
+count     172     172       172       172
+mean     4300   22722   1541192   1568215
+std      7550   32193   6654616   6687668
+min         9      40         0        50
+25%       900    3600         0     13594
+50%      1834   14542      9000     32974
+75%      4578   32792      9000     71939
+max     54442  217768  48960000  49232210
+Unique op types used: 41
+No banned ops present.
+Top 10 cheapest graphs (highest per-task score):
+   task  cost     score  n_nodes
+task016    50 21.087977        2
+task337    50 21.087977        2
+task116    81 20.605551        4
+task053    81 20.605551        3
+task172    81 20.605551        4
+task164    81 20.605551        4
+task380    81 20.605551        4
+task092    91 20.489140       42
+task132    95 20.446123       39
+task140   108 20.317869        4
+
+Top 10 most expensive graphs (room to improve):
+   task     cost    score  n_nodes
+task320 49232210 7.287941        5
+task181 37937810 7.548541        7
+task336 36258290 7.593821        7
+task399 35335910 7.619590        4
+task032 28960370 7.818561        5
+task048 23751910 8.016826        4
+task257 10955050 8.790689        2
+task296  7529810 9.165620        5
+task004  3823090 9.843430        7
+task139  3764930 9.858760        5
+Wrote /kaggle/working/submission.zip  (1242.7 KB, 172 ONNX files)
+All 172 ONNX graphs in the final zip parse cleanly.

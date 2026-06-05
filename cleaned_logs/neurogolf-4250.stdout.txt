@@ -1,0 +1,3 @@
+src: /kaggle/input/neurogolf-onnx-archive9
+files: 366
+submission.zip: 1046.2KB, 366 files

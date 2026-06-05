@@ -1,0 +1,213 @@
+neurogolf_utils loaded OK
+  [aliafzal_tiny] 338 files from submission.zip
+[aliafzal_tiny] 338 models
+  [artem_logic2] not found: /kaggle/input/notebooks/artemnazemtsev/neurogolf-logic-driven-ensembling-part-2
+[artem_logic2] 0 models
+  [artem_logic4] not found: /kaggle/input/notebooks/artemnazemtsev/neurogolf-logic-driven-ensembling-part-4
+[artem_logic4] 0 models
+  [jonathanchan] 401 files from submission.zip
+[jonathanchan] 401 models
+  [needless090] 366 files from submission.zip
+[needless090] 366 models
+  [konbu17_5344] not found: /kaggle/input/notebooks/konbu17/neurogolf-2026-blended-401-tasks-lb-5344
+[konbu17_5344] 0 models
+  [beicicc_6233] 401 files from submission.zip
+[beicicc_6233] 401 models
+[afr1ste_5501] 401 models
+[konbu17_v117] 401 models
+[jonathanchan_v3] 352 models
+  [op37_artifact] 400 files from submission.zip
+[op37_artifact] 400 models
+  [artemn] not found: /kaggle/input/notebooks/artemnazemtsev/neurogolf-acking-multiple-tasks-part-3
+[artemn] 0 models
+  [artem_update] not found: /kaggle/input/notebooks/artemnazemtsev/neurogolf-update-6500-hacking-part-2
+[artem_update] 0 models
+
+Unique tasks across all sources: 401
+Loaded 400 task JSONs
+Selecting cheapest valid floor model per task...
+Floor solutions selected: 401
+Rejections: {'beicicc_6233-static': 240, 'konbu17_v117-static': 239, 'needless090-static': 82, 'afr1ste_5501-static': 131, 'jonathanchan_v3-static': 17, 'aliafzal_tiny-static': 6}
+Floor cost — min: 139, max: 776792, mean: 28893
+ONNX builders loaded.
+V11 primitives loaded.
+New ONNX builders (CHANGE 4) loaded.
+All detectors loaded.
+detect_dilate_3x3 loaded.
+detect_dilate_3x3 + make_dilate_3x3_onnx loaded.
+Gather builders + spatial solvers loaded.
+Learned conv (CHANGE 6 applied) loaded.
+Analysis loaded.
+solve_task (CHANGE 5+6 applied) loaded.
+Found 400 tasks
+
+0/400 solved by our solver, score=0.0 (4s)
+Floor tasks: 401
+
+Floor tasks:     401
+New tasks added: 0
+Tasks improved:  0
+Total in final:  395
+
+nu not available — skipping re-validation (submission may contain invalid models)
+Dim-scrub applied to 46 tasks.
+massimilianoghiotto dir: /kaggle/input/datasets/massimilianoghiotto/neurogolf2026-6254/submission
+Artifact lock: 400/400 tasks loaded
+Graph rewrites: 4 tasks improved
+  task001 Cast accepted  2861->2843 delta +0.006
+  task137 Cast no_gain   72472->72472
+  task153 Cast accepted  21763->21619 delta +0.007
+  task157 Cast accepted  83668->83542 delta +0.002
+  task295 RS  accepted  12226->12190 delta +0.003
+Per-task overrides applied: 0
+Shape filter: all models OK
+Removed zero-cost tasks: []
+
+Estimated score: 6411.7  (baseline: 2127)
+
+=== TOP 40 MOST EXPENSIVE TASKS ===
+  task200.onnx: cost=   776,792  pts=11.437
+  task373.onnx: cost=   753,072  pts=11.468
+  task133.onnx: cost=   693,480  pts=11.551
+  task375.onnx: cost=   567,847  pts=11.750
+  task171.onnx: cost=   543,437  pts=11.794
+  task158.onnx: cost=   485,757  pts=11.907
+  task233.onnx: cost=   378,176  pts=12.157
+  task153.onnx: cost=   377,199  pts=12.159
+  task376.onnx: cost=   349,728  pts=12.235
+  task209.onnx: cost=   320,508  pts=12.322
+  task076.onnx: cost=   287,531  pts=12.431
+  task292.onnx: cost=   230,598  pts=12.652
+  task176.onnx: cost=   220,049  pts=12.698
+  task305.onnx: cost=   183,186  pts=12.882
+  task058.onnx: cost=   167,354  pts=12.972
+  task277.onnx: cost=   146,695  pts=13.104
+  task266.onnx: cost=   145,902  pts=13.109
+  task008.onnx: cost=   117,210  pts=13.328
+  task089.onnx: cost=   110,495  pts=13.387
+  task285.onnx: cost=    98,389  pts=13.503
+  task396.onnx: cost=    95,200  pts=13.536
+  task248.onnx: cost=    93,581  pts=13.553
+  task357.onnx: cost=    93,581  pts=13.553
+  task324.onnx: cost=    92,671  pts=13.563
+  task059.onnx: cost=    75,451  pts=13.769
+  task182.onnx: cost=    71,393  pts=13.824
+  task382.onnx: cost=    67,623  pts=13.878
+  task052.onnx: cost=    67,103  pts=13.886
+  task061.onnx: cost=    61,167  pts=13.979
+  task219.onnx: cost=    59,685  pts=14.003
+  task221.onnx: cost=    58,894  pts=14.017
+  task107.onnx: cost=    58,097  pts=14.030
+  task174.onnx: cost=    55,104  pts=14.083
+  task205.onnx: cost=    53,591  pts=14.111
+  task022.onnx: cost=    51,421  pts=14.152
+  task119.onnx: cost=    49,282  pts=14.195
+  task170.onnx: cost=    47,329  pts=14.235
+  task038.onnx: cost=    46,853  pts=14.245
+  task399.onnx: cost=    46,527  pts=14.252
+  task316.onnx: cost=    44,326  pts=14.301
+  (top-40 contributes 528.0 pts)
+
+=== COST BAND DISTRIBUTION ===
+  cost        0-       100  (> 21.9 pts): 0 tasks
+  cost      100-     1,000  (19.8-21.9 pts): 24 tasks
+  cost    1,000-    10,000  (14.3-18.1 pts): 233 tasks
+  cost   10,000-   100,000  (8.5-14.3 pts): 119 tasks
+  cost  100,000-1,000,000,000  (< 8.5 pts): 19 tasks
+
+=== TOP-10 EXPENSIVE TASKS — ALL SOURCE FILE SIZES ===
+
+task200.onnx  local_onnx_cost=776,792  cur_bytes=3,848
+  op37_artifact            :    2,331 bytes
+  aliafzal_tiny            :    9,890 bytes
+  needless090              :    9,890 bytes
+  jonathanchan_v3          :    9,890 bytes
+  jonathanchan             :   10,466 bytes
+  beicicc_6233             :  776,792 bytes
+  afr1ste_5501             :  776,792 bytes
+  konbu17_v117             :  776,792 bytes
+
+task373.onnx  local_onnx_cost=753,072  cur_bytes=581
+  needless090              :      722 bytes
+  jonathanchan             :      924 bytes
+  op37_artifact            :      960 bytes
+  aliafzal_tiny            :    4,019 bytes
+  jonathanchan_v3          :    4,019 bytes
+  beicicc_6233             :  753,072 bytes
+  afr1ste_5501             :  753,072 bytes
+  konbu17_v117             :  753,072 bytes
+
+task133.onnx  local_onnx_cost=693,480  cur_bytes=10,596
+  op37_artifact            :  193,328 bytes
+  jonathanchan             :  287,675 bytes
+  jonathanchan_v3          :  287,675 bytes
+  needless090              :  693,480 bytes
+  beicicc_6233             :  775,725 bytes
+  afr1ste_5501             :  775,725 bytes
+  konbu17_v117             :  775,725 bytes
+
+task375.onnx  local_onnx_cost=567,847  cur_bytes=2,214
+  jonathanchan             :    1,561 bytes
+  aliafzal_tiny            :    1,916 bytes
+  jonathanchan_v3          :    1,916 bytes
+  op37_artifact            :    2,214 bytes ← CURRENT
+  needless090              :    2,360 bytes
+  beicicc_6233             :  567,847 bytes
+  afr1ste_5501             :  567,847 bytes
+  konbu17_v117             :  567,847 bytes
+
+task171.onnx  local_onnx_cost=543,437  cur_bytes=3,825
+  jonathanchan             :    1,636 bytes
+  aliafzal_tiny            :    2,018 bytes
+  needless090              :    2,018 bytes
+  jonathanchan_v3          :    2,018 bytes
+  op37_artifact            :    3,825 bytes ← CURRENT
+  beicicc_6233             :  543,437 bytes
+  afr1ste_5501             :  543,437 bytes
+  konbu17_v117             :  543,437 bytes
+
+task158.onnx  local_onnx_cost=485,757  cur_bytes=26,673
+  op37_artifact            :   62,208 bytes
+  beicicc_6233             :   76,927 bytes
+  konbu17_v117             :   76,927 bytes
+  jonathanchan             :  159,472 bytes
+  needless090              :  485,757 bytes
+  afr1ste_5501             :  485,757 bytes
+
+task233.onnx  local_onnx_cost=378,176  cur_bytes=321,271
+  jonathanchan             :   39,834 bytes
+  needless090              :  378,176 bytes
+  beicicc_6233             :  378,176 bytes
+  konbu17_v117             :  378,176 bytes
+  afr1ste_5501             :  384,546 bytes
+  op37_artifact            :  967,315 bytes
+
+task153.onnx  local_onnx_cost=377,199  cur_bytes=8,307
+  jonathanchan             :    4,925 bytes
+  op37_artifact            :    6,433 bytes
+  needless090              :  377,199 bytes
+  afr1ste_5501             :  377,199 bytes
+  beicicc_6233             :  377,910 bytes
+  konbu17_v117             :  377,910 bytes
+
+task376.onnx  local_onnx_cost=349,728  cur_bytes=2,664
+  aliafzal_tiny            :    1,567 bytes
+  needless090              :    1,567 bytes
+  jonathanchan_v3          :    1,567 bytes
+  op37_artifact            :    1,737 bytes
+  jonathanchan             :    2,337 bytes
+  beicicc_6233             :  349,728 bytes
+  afr1ste_5501             :  349,728 bytes
+  konbu17_v117             :  349,728 bytes
+
+task209.onnx  local_onnx_cost=320,508  cur_bytes=12,442
+  jonathanchan             :   60,426 bytes
+  beicicc_6233             :  177,552 bytes
+  afr1ste_5501             :  177,552 bytes
+  konbu17_v117             :  177,552 bytes
+  op37_artifact            :  262,470 bytes
+  needless090              :  320,508 bytes
+Expected gain:   +4284.7 pts
+
+Wrote /kaggle/working/submission.zip (0.7 MB, 401 tasks)
+All 401 ONNX files parse cleanly. Ready to submit!

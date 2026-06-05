@@ -1,0 +1,4 @@
+Wrote /kaggle/working/submission.zip for NeuroGolf public score 5571.69
+  ONNX files:      400
+  manifest sha256: a73756e5c47702db480dd14433179e7721a781dedeb2099a5556ac3b9104d0aa
+  size:            1,069,046 bytes

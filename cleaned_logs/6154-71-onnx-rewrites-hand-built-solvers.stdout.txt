@@ -1,0 +1,24 @@
+  v0 | 6042.85 | Original public notebook: 3 per-task hand-built ONNX solvers on top of public artifacts.
+ v37 | 6081.31 | Manual handbuild ladder through tasks 084 025 200 387 285 028 044 158 204 366 245 133 209 153 367 243 319.
+ v76 | 6101.18 | Safe manual rewrites and shrink bundle through finite-fp16 rewrites
+v167 | 6147.85 | Continued task-local hand rewrites and accepted-model structural shrinking.
+v182 | 6151.22 | Additional manual micro-optimizations without public-source blends.
+v187 | 6152.67 | Manual rewrite anchor immediately before final v188-v205 structural shrink pass.
+v205 | 6154.71 | Final clean manual-only anchor: task366 fp16 correlation Conv rewrite plus prior accepted manual rewrites.
+jsrdcht 6029 bundle : /kaggle/input/neurogolf-6029-submission-bundle
+competition data    : /kaggle/input/competitions/neurogolf-2026
+task277 built: 7325 bytes, 56 nodes
+task277: verify 266/266, cost 120462, predicted score 13.301
+task330 built: 7543 bytes, 22 nodes
+task330: verify 266/266, cost 62036, predicted score 13.965
+task364 built: 10890 bytes, 63 nodes
+task364: verify 266/266, cost 153871, predicted score 13.056
+submission built
+  hand-built tasks : [277, 330, 364]
+  total ONNX       : 400
+  zip size (bytes) : 1461548
+wrote /kaggle/working/submission.zip
+onnx files: 400
+zip bytes: 905389
+sha256: 8e3993a701292a890d153456e8c7cebc6a45c216589360828b9bcec60d7a5c48
+expected public LB for this manual-only artifact: 6154.71

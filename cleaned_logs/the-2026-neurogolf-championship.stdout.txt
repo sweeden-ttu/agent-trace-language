@@ -1,0 +1,18 @@
+[?25hResults on ARC-AGI examples: 2 pass, 0 fail
+Results on ARC-GEN examples: 1 pass, 0 fail
+
+Your network IS READY for submission!
+
+Performance stats (memory values reported here are approximate):
+Name    Type    Forward_MACs    FPercent    Memory    MPercent      Params  PPercent    InShape     OutShape
+------  ------  --------------  ----------  --------  ----------  --------  ----------  ----------  ----------
+Conv_0  Conv    810,000         100.00%     39,600    100.00%          900  100.00%     1x10x30x30  1x10x30x30
+Total   _       810,000         100%        39,600    100%             900  100%        _           _
+
+It appears to require 0 bytes + 900 params, yielding 18.198 points.
+
+Next steps:
+ * Click the link below to download task000.onnx onto your local machine.
+ * Create a zip file containing that network along with all others.
+ * Submit that zip file to the Kaggle competition so that it can be officially scored.
+

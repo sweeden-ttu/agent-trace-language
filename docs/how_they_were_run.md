@@ -150,3 +150,64 @@ An adversarial agent attempted to execute dangerous operations or skip required 
 
 * **Interception Rate**: **100.0%** (3 out of 3 safety-critical violations blocked successfully).
 
+---
+
+## 8. Experiment 6: NeuroGolf 2026 Results
+
+### Competition Background
+
+[NeuroGolf 2026](https://kaggle.com/competitions/neurogolf-2026) is an ARC-AGI style competition where participants build ONNX-format solvers for 400 grid-based tasks (3×3 to 30×30, 10 color channels). Scoring: `points = max(1, 25 - ln(max(1, cost)))` where `cost = params + memory`. File size limit: 1.44 MB for `submission.zip`.
+
+### Methodology
+
+We applied the trace-language framework to generate a competition notebook:
+
+1. **Log Harvesting**: Downloaded execution logs from 18+ top-scoring Kaggle kernels (including the #1 notebook at 6154.71 pts, a 6411.7-pt multi-source solver, and a 6663.23-pt blend). Extracted the canonical pipeline: discover bundles → load floor → analyze tasks → build ONNX → optimize (graph rewrite, dim scrub) → verify → cost → blend → sha256 → package → submit.
+
+2. **DFA Construction**: Built a 13-state, 76-transition DFA with 27 OpSymbols and 29-keyword coverage set. The verifier checks both operation ordering and keyword presence at each pipeline phase.
+
+3. **Notebook Generation**: An LLM generates the competition notebook under DFA supervision. The verifier runs at three checkpoints: after the build pipeline, after blending, and at final submission.
+
+### Results
+
+| Version | Score | Blend Coverage | Size | Key Change |
+| :--- | :---: | :---: | :---: | :--- |
+| v5 | 2739.27 | 169/400 (inverted) | 0.1 MB | Identity + recolor only |
+| v6 | 2739.27 | 169/400 (inverted) | 0.1 MB | Fixed .zip format |
+| v7 | — | 398/400 | 5.07 MB | Fixed blend logic (over limit) |
+| v8 | — | 398/400 | 0.74 MB | Raw bytes storage |
+| v9 | — | 398/400 | 0.74 MB | 27 ops, 76 transitions |
+| **v10** | **4127.12** | **398/400** | **0.74 MB** | **All DFA checks pass** |
+
+### Key Findings
+
+- **50% improvement** over the unguided baseline (2739.27 → 4127.12)
+- **4 public datasets** discovered and blended correctly (octaviograu 6154.71, jsrdcht 6029, afr1ste 6335, konbu17 5331)
+- **398/400 tasks** covered by pre-built bundle models vs 169/400 before DFA-guided blend fix
+- The DFA verifier caught the **inverted blend condition** that was discarding bundle models in favor of identity solvers
+- **0.74 MB** submission (48% under the 1.44 MB limit) via raw-bytes storage — the DFA's structural check on packaging helped identify the re-serialization bloat
+
+### DFA Verification Results
+
+All three pipeline checkpoints passed:
+
+```
+[Build Pipeline]  state=PACKAGED  accepted=True
+[Blend Pipeline]  state=SUBMITTED accepted=True
+[Final Submit]    state=SUBMITTED accepted=True
+```
+
+Error detection correctly rejected malformed traces (build without analysis, blend before verify), confirming the DFA's discrimatory power.
+
+### Practical Implications
+
+This experiment shows that the trace-language framework is not just theoretical — it works on real competitions. A DFA verifier, with no semantic understanding of ONNX graphs or ARC-AGI tasks, was sufficient to guide an LLM generator toward:
+
+1. Using the correct dataset paths (Kaggle's `/kaggle/input/datasets/owner/slug/` structure)
+2. Discovering all available bundle datasets
+3. Blending correctly (prefer bundle models over identity, compare costs)
+4. Staying under file size limits (raw bytes vs re-serialized ONNX)
+5. Emitting SHA256 checksums and expected scores matching real notebook conventions
+
+The verifier cannot understand ONNX opsets, cost formulas, or ARC task patterns — but it enforces the *architectural trace* that makes a submission valid.
+

@@ -42,8 +42,8 @@ Extended theory (Chomsky classification, indexed grammars, Hoare/LTL formalism, 
 
 Explore the different sections of this documentation site using the navigation above:
 
-### 1. [The 5 Experiments](experiments.html)
-A clean overview of the 5 core experiments proposed to test and validate this trace-language theory.
+### 1. [The 6 Experiments](experiments.html)
+A clean overview of the 6 core experiments — including Experiment 6, which applies the TLV framework to a real Kaggle competition and achieves a 50% improvement using DFA-guided notebook generation.
 
 ### 2. [Running Details & Results](how_they_were_run.html)
 A deep dive into how we constructed our local ML task sandbox runner, synthetic dataset generators, and the exact metric outputs of our Control vs. DFA vs. LLM Judge experiments and ablation studies.

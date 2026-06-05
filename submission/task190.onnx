@@ -1,0 +1,1724 @@
+
+:äº
+S
+input
+kpos_0sp_0"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+S
+input
+kneg_0sn_0"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+S
+input
+kpos_1sp_1"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+S
+input
+kneg_1sn_1"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+S
+input
+kpos_2sp_2"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+S
+input
+kneg_2sn_2"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+S
+input
+kpos_3sp_3"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+S
+input
+kneg_3sn_3"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+R
+input
+khv_0hv_0"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+R
+input
+khv_1hv_1"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+R
+input
+khv_2hv_2"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+R
+input
+khv_3hv_3"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+!
+
+one_scalar
+hv_0not_hv_0"Sub
+!
+
+one_scalar
+hv_1not_hv_1"Sub
+!
+
+one_scalar
+hv_2not_hv_2"Sub
+!
+
+one_scalar
+hv_3not_hv_3"Sub
+!
+
+one_scalar
+sn_0not_sn_0"Sub
+!
+
+one_scalar
+sn_1not_sn_1"Sub
+!
+
+one_scalar
+sn_2not_sn_2"Sub
+!
+
+one_scalar
+sn_3not_sn_3"Sub
+
+input
+sp_0t_0_a"Mul
+
+t_0_a
+not_sn_0t_0_b"Mul
+
+t_0_b
+not_hv_0t_0_c"Mul
+
+t_0_c
+not_hv_1t_0_d"Mul
+
+t_0_d
+not_hv_2t_0_e"Mul
+!
+t_0_e
+not_hv_3	starter_0"Mul
+
+input
+sp_1t_1_a"Mul
+
+t_1_a
+not_sn_1t_1_b"Mul
+
+t_1_b
+not_hv_0t_1_c"Mul
+
+t_1_c
+not_hv_1t_1_d"Mul
+
+t_1_d
+not_hv_2t_1_e"Mul
+!
+t_1_e
+not_hv_3	starter_1"Mul
+
+input
+sp_2t_2_a"Mul
+
+t_2_a
+not_sn_2t_2_b"Mul
+
+t_2_b
+not_hv_0t_2_c"Mul
+
+t_2_c
+not_hv_1t_2_d"Mul
+
+t_2_d
+not_hv_2t_2_e"Mul
+!
+t_2_e
+not_hv_3	starter_2"Mul
+
+input
+sp_3t_3_a"Mul
+
+t_3_a
+not_sn_3t_3_b"Mul
+
+t_3_b
+not_hv_0t_3_c"Mul
+
+t_3_c
+not_hv_1t_3_d"Mul
+
+t_3_d
+not_hv_2t_3_e"Mul
+!
+t_3_e
+not_hv_3	starter_3"Mul
+[
+	starter_0
+kpos_0p_0_0_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+%
+	starter_0
+p_0_0_sh	p_0_0_max"Max
+[
+	p_0_0_max
+kpos_0p_0_1_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+%
+	p_0_0_max
+p_0_1_sh	p_0_1_max"Max
+[
+	p_0_1_max
+kpos_0p_0_2_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+%
+	p_0_1_max
+p_0_2_sh	p_0_2_max"Max
+[
+	p_0_2_max
+kpos_0p_0_3_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+%
+	p_0_2_max
+p_0_3_sh	p_0_3_max"Max
+[
+	p_0_3_max
+kpos_0p_0_4_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+%
+	p_0_3_max
+p_0_4_sh	p_0_4_max"Max
+[
+	p_0_4_max
+kpos_0p_0_5_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+%
+	p_0_4_max
+p_0_5_sh	p_0_5_max"Max
+[
+	p_0_5_max
+kpos_0p_0_6_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+%
+	p_0_5_max
+p_0_6_sh	p_0_6_max"Max
+[
+	p_0_6_max
+kpos_0p_0_7_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+%
+	p_0_6_max
+p_0_7_sh	p_0_7_max"Max
+[
+	p_0_7_max
+kpos_0p_0_8_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+%
+	p_0_7_max
+p_0_8_sh	p_0_8_max"Max
+[
+	p_0_8_max
+kpos_0p_0_9_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+%
+	p_0_8_max
+p_0_9_sh	p_0_9_max"Max
+\
+	p_0_9_max
+kpos_0	p_0_10_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+'
+	p_0_9_max
+	p_0_10_sh
+p_0_10_max"Max
+]
+
+p_0_10_max
+kpos_0	p_0_11_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+(
+
+p_0_10_max
+	p_0_11_sh
+p_0_11_max"Max
+]
+
+p_0_11_max
+kpos_0	p_0_12_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+(
+
+p_0_11_max
+	p_0_12_sh
+p_0_12_max"Max
+]
+
+p_0_12_max
+kpos_0	p_0_13_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+(
+
+p_0_12_max
+	p_0_13_sh
+p_0_13_max"Max
+]
+
+p_0_13_max
+kpos_0	p_0_14_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+(
+
+p_0_13_max
+	p_0_14_sh
+p_0_14_max"Max
+]
+
+p_0_14_max
+kpos_0	p_0_15_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+(
+
+p_0_14_max
+	p_0_15_sh
+p_0_15_max"Max
+]
+
+p_0_15_max
+kpos_0	p_0_16_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+(
+
+p_0_15_max
+	p_0_16_sh
+p_0_16_max"Max
+]
+
+p_0_16_max
+kpos_0	p_0_17_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+(
+
+p_0_16_max
+	p_0_17_sh
+p_0_17_max"Max
+]
+
+p_0_17_max
+kpos_0	p_0_18_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+(
+
+p_0_17_max
+	p_0_18_sh
+p_0_18_max"Max
+]
+
+p_0_18_max
+kpos_0	p_0_19_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+(
+
+p_0_18_max
+	p_0_19_sh
+p_0_19_max"Max
+]
+
+p_0_19_max
+kpos_0	p_0_20_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+(
+
+p_0_19_max
+	p_0_20_sh
+p_0_20_max"Max
+]
+
+p_0_20_max
+kpos_0	p_0_21_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+(
+
+p_0_20_max
+	p_0_21_sh
+p_0_21_max"Max
+]
+
+p_0_21_max
+kpos_0	p_0_22_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+(
+
+p_0_21_max
+	p_0_22_sh
+p_0_22_max"Max
+]
+
+p_0_22_max
+kpos_0	p_0_23_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+(
+
+p_0_22_max
+	p_0_23_sh
+p_0_23_max"Max
+]
+
+p_0_23_max
+kpos_0	p_0_24_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+(
+
+p_0_23_max
+	p_0_24_sh
+p_0_24_max"Max
+]
+
+p_0_24_max
+kpos_0	p_0_25_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+(
+
+p_0_24_max
+	p_0_25_sh
+p_0_25_max"Max
+]
+
+p_0_25_max
+kpos_0	p_0_26_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+(
+
+p_0_25_max
+	p_0_26_sh
+p_0_26_max"Max
+]
+
+p_0_26_max
+kpos_0	p_0_27_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+(
+
+p_0_26_max
+	p_0_27_sh
+p_0_27_max"Max
+]
+
+p_0_27_max
+kpos_0	p_0_28_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+(
+
+p_0_27_max
+	p_0_28_sh
+p_0_28_max"Max
+]
+
+p_0_28_max
+kpos_0	p_0_29_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+(
+
+p_0_28_max
+	p_0_29_sh
+p_0_29_max"Max
+
+
+p_0_29_maxprop_0"Identity
+[
+	starter_1
+kpos_1p_1_0_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+%
+	starter_1
+p_1_0_sh	p_1_0_max"Max
+[
+	p_1_0_max
+kpos_1p_1_1_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+%
+	p_1_0_max
+p_1_1_sh	p_1_1_max"Max
+[
+	p_1_1_max
+kpos_1p_1_2_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+%
+	p_1_1_max
+p_1_2_sh	p_1_2_max"Max
+[
+	p_1_2_max
+kpos_1p_1_3_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+%
+	p_1_2_max
+p_1_3_sh	p_1_3_max"Max
+[
+	p_1_3_max
+kpos_1p_1_4_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+%
+	p_1_3_max
+p_1_4_sh	p_1_4_max"Max
+[
+	p_1_4_max
+kpos_1p_1_5_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+%
+	p_1_4_max
+p_1_5_sh	p_1_5_max"Max
+[
+	p_1_5_max
+kpos_1p_1_6_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+%
+	p_1_5_max
+p_1_6_sh	p_1_6_max"Max
+[
+	p_1_6_max
+kpos_1p_1_7_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+%
+	p_1_6_max
+p_1_7_sh	p_1_7_max"Max
+[
+	p_1_7_max
+kpos_1p_1_8_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+%
+	p_1_7_max
+p_1_8_sh	p_1_8_max"Max
+[
+	p_1_8_max
+kpos_1p_1_9_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+%
+	p_1_8_max
+p_1_9_sh	p_1_9_max"Max
+\
+	p_1_9_max
+kpos_1	p_1_10_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+'
+	p_1_9_max
+	p_1_10_sh
+p_1_10_max"Max
+]
+
+p_1_10_max
+kpos_1	p_1_11_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+(
+
+p_1_10_max
+	p_1_11_sh
+p_1_11_max"Max
+]
+
+p_1_11_max
+kpos_1	p_1_12_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+(
+
+p_1_11_max
+	p_1_12_sh
+p_1_12_max"Max
+]
+
+p_1_12_max
+kpos_1	p_1_13_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+(
+
+p_1_12_max
+	p_1_13_sh
+p_1_13_max"Max
+]
+
+p_1_13_max
+kpos_1	p_1_14_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+(
+
+p_1_13_max
+	p_1_14_sh
+p_1_14_max"Max
+]
+
+p_1_14_max
+kpos_1	p_1_15_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+(
+
+p_1_14_max
+	p_1_15_sh
+p_1_15_max"Max
+]
+
+p_1_15_max
+kpos_1	p_1_16_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+(
+
+p_1_15_max
+	p_1_16_sh
+p_1_16_max"Max
+]
+
+p_1_16_max
+kpos_1	p_1_17_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+(
+
+p_1_16_max
+	p_1_17_sh
+p_1_17_max"Max
+]
+
+p_1_17_max
+kpos_1	p_1_18_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+(
+
+p_1_17_max
+	p_1_18_sh
+p_1_18_max"Max
+]
+
+p_1_18_max
+kpos_1	p_1_19_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+(
+
+p_1_18_max
+	p_1_19_sh
+p_1_19_max"Max
+]
+
+p_1_19_max
+kpos_1	p_1_20_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+(
+
+p_1_19_max
+	p_1_20_sh
+p_1_20_max"Max
+]
+
+p_1_20_max
+kpos_1	p_1_21_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+(
+
+p_1_20_max
+	p_1_21_sh
+p_1_21_max"Max
+]
+
+p_1_21_max
+kpos_1	p_1_22_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+(
+
+p_1_21_max
+	p_1_22_sh
+p_1_22_max"Max
+]
+
+p_1_22_max
+kpos_1	p_1_23_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+(
+
+p_1_22_max
+	p_1_23_sh
+p_1_23_max"Max
+]
+
+p_1_23_max
+kpos_1	p_1_24_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+(
+
+p_1_23_max
+	p_1_24_sh
+p_1_24_max"Max
+]
+
+p_1_24_max
+kpos_1	p_1_25_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+(
+
+p_1_24_max
+	p_1_25_sh
+p_1_25_max"Max
+]
+
+p_1_25_max
+kpos_1	p_1_26_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+(
+
+p_1_25_max
+	p_1_26_sh
+p_1_26_max"Max
+]
+
+p_1_26_max
+kpos_1	p_1_27_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+(
+
+p_1_26_max
+	p_1_27_sh
+p_1_27_max"Max
+]
+
+p_1_27_max
+kpos_1	p_1_28_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+(
+
+p_1_27_max
+	p_1_28_sh
+p_1_28_max"Max
+]
+
+p_1_28_max
+kpos_1	p_1_29_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+(
+
+p_1_28_max
+	p_1_29_sh
+p_1_29_max"Max
+
+
+p_1_29_maxprop_1"Identity
+[
+	starter_2
+kpos_2p_2_0_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+%
+	starter_2
+p_2_0_sh	p_2_0_max"Max
+[
+	p_2_0_max
+kpos_2p_2_1_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+%
+	p_2_0_max
+p_2_1_sh	p_2_1_max"Max
+[
+	p_2_1_max
+kpos_2p_2_2_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+%
+	p_2_1_max
+p_2_2_sh	p_2_2_max"Max
+[
+	p_2_2_max
+kpos_2p_2_3_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+%
+	p_2_2_max
+p_2_3_sh	p_2_3_max"Max
+[
+	p_2_3_max
+kpos_2p_2_4_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+%
+	p_2_3_max
+p_2_4_sh	p_2_4_max"Max
+[
+	p_2_4_max
+kpos_2p_2_5_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+%
+	p_2_4_max
+p_2_5_sh	p_2_5_max"Max
+[
+	p_2_5_max
+kpos_2p_2_6_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+%
+	p_2_5_max
+p_2_6_sh	p_2_6_max"Max
+[
+	p_2_6_max
+kpos_2p_2_7_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+%
+	p_2_6_max
+p_2_7_sh	p_2_7_max"Max
+[
+	p_2_7_max
+kpos_2p_2_8_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+%
+	p_2_7_max
+p_2_8_sh	p_2_8_max"Max
+[
+	p_2_8_max
+kpos_2p_2_9_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+%
+	p_2_8_max
+p_2_9_sh	p_2_9_max"Max
+\
+	p_2_9_max
+kpos_2	p_2_10_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+'
+	p_2_9_max
+	p_2_10_sh
+p_2_10_max"Max
+]
+
+p_2_10_max
+kpos_2	p_2_11_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+(
+
+p_2_10_max
+	p_2_11_sh
+p_2_11_max"Max
+]
+
+p_2_11_max
+kpos_2	p_2_12_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+(
+
+p_2_11_max
+	p_2_12_sh
+p_2_12_max"Max
+]
+
+p_2_12_max
+kpos_2	p_2_13_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+(
+
+p_2_12_max
+	p_2_13_sh
+p_2_13_max"Max
+]
+
+p_2_13_max
+kpos_2	p_2_14_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+(
+
+p_2_13_max
+	p_2_14_sh
+p_2_14_max"Max
+]
+
+p_2_14_max
+kpos_2	p_2_15_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+(
+
+p_2_14_max
+	p_2_15_sh
+p_2_15_max"Max
+]
+
+p_2_15_max
+kpos_2	p_2_16_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+(
+
+p_2_15_max
+	p_2_16_sh
+p_2_16_max"Max
+]
+
+p_2_16_max
+kpos_2	p_2_17_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+(
+
+p_2_16_max
+	p_2_17_sh
+p_2_17_max"Max
+]
+
+p_2_17_max
+kpos_2	p_2_18_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+(
+
+p_2_17_max
+	p_2_18_sh
+p_2_18_max"Max
+]
+
+p_2_18_max
+kpos_2	p_2_19_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+(
+
+p_2_18_max
+	p_2_19_sh
+p_2_19_max"Max
+]
+
+p_2_19_max
+kpos_2	p_2_20_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+(
+
+p_2_19_max
+	p_2_20_sh
+p_2_20_max"Max
+]
+
+p_2_20_max
+kpos_2	p_2_21_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+(
+
+p_2_20_max
+	p_2_21_sh
+p_2_21_max"Max
+]
+
+p_2_21_max
+kpos_2	p_2_22_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+(
+
+p_2_21_max
+	p_2_22_sh
+p_2_22_max"Max
+]
+
+p_2_22_max
+kpos_2	p_2_23_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+(
+
+p_2_22_max
+	p_2_23_sh
+p_2_23_max"Max
+]
+
+p_2_23_max
+kpos_2	p_2_24_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+(
+
+p_2_23_max
+	p_2_24_sh
+p_2_24_max"Max
+]
+
+p_2_24_max
+kpos_2	p_2_25_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+(
+
+p_2_24_max
+	p_2_25_sh
+p_2_25_max"Max
+]
+
+p_2_25_max
+kpos_2	p_2_26_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+(
+
+p_2_25_max
+	p_2_26_sh
+p_2_26_max"Max
+]
+
+p_2_26_max
+kpos_2	p_2_27_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+(
+
+p_2_26_max
+	p_2_27_sh
+p_2_27_max"Max
+]
+
+p_2_27_max
+kpos_2	p_2_28_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+(
+
+p_2_27_max
+	p_2_28_sh
+p_2_28_max"Max
+]
+
+p_2_28_max
+kpos_2	p_2_29_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+(
+
+p_2_28_max
+	p_2_29_sh
+p_2_29_max"Max
+
+
+p_2_29_maxprop_2"Identity
+[
+	starter_3
+kpos_3p_3_0_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+%
+	starter_3
+p_3_0_sh	p_3_0_max"Max
+[
+	p_3_0_max
+kpos_3p_3_1_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+%
+	p_3_0_max
+p_3_1_sh	p_3_1_max"Max
+[
+	p_3_1_max
+kpos_3p_3_2_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+%
+	p_3_1_max
+p_3_2_sh	p_3_2_max"Max
+[
+	p_3_2_max
+kpos_3p_3_3_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+%
+	p_3_2_max
+p_3_3_sh	p_3_3_max"Max
+[
+	p_3_3_max
+kpos_3p_3_4_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+%
+	p_3_3_max
+p_3_4_sh	p_3_4_max"Max
+[
+	p_3_4_max
+kpos_3p_3_5_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+%
+	p_3_4_max
+p_3_5_sh	p_3_5_max"Max
+[
+	p_3_5_max
+kpos_3p_3_6_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+%
+	p_3_5_max
+p_3_6_sh	p_3_6_max"Max
+[
+	p_3_6_max
+kpos_3p_3_7_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+%
+	p_3_6_max
+p_3_7_sh	p_3_7_max"Max
+[
+	p_3_7_max
+kpos_3p_3_8_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+%
+	p_3_7_max
+p_3_8_sh	p_3_8_max"Max
+[
+	p_3_8_max
+kpos_3p_3_9_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+%
+	p_3_8_max
+p_3_9_sh	p_3_9_max"Max
+\
+	p_3_9_max
+kpos_3	p_3_10_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+'
+	p_3_9_max
+	p_3_10_sh
+p_3_10_max"Max
+]
+
+p_3_10_max
+kpos_3	p_3_11_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+(
+
+p_3_10_max
+	p_3_11_sh
+p_3_11_max"Max
+]
+
+p_3_11_max
+kpos_3	p_3_12_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+(
+
+p_3_11_max
+	p_3_12_sh
+p_3_12_max"Max
+]
+
+p_3_12_max
+kpos_3	p_3_13_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+(
+
+p_3_12_max
+	p_3_13_sh
+p_3_13_max"Max
+]
+
+p_3_13_max
+kpos_3	p_3_14_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+(
+
+p_3_13_max
+	p_3_14_sh
+p_3_14_max"Max
+]
+
+p_3_14_max
+kpos_3	p_3_15_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+(
+
+p_3_14_max
+	p_3_15_sh
+p_3_15_max"Max
+]
+
+p_3_15_max
+kpos_3	p_3_16_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+(
+
+p_3_15_max
+	p_3_16_sh
+p_3_16_max"Max
+]
+
+p_3_16_max
+kpos_3	p_3_17_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+(
+
+p_3_16_max
+	p_3_17_sh
+p_3_17_max"Max
+]
+
+p_3_17_max
+kpos_3	p_3_18_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+(
+
+p_3_17_max
+	p_3_18_sh
+p_3_18_max"Max
+]
+
+p_3_18_max
+kpos_3	p_3_19_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+(
+
+p_3_18_max
+	p_3_19_sh
+p_3_19_max"Max
+]
+
+p_3_19_max
+kpos_3	p_3_20_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+(
+
+p_3_19_max
+	p_3_20_sh
+p_3_20_max"Max
+]
+
+p_3_20_max
+kpos_3	p_3_21_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+(
+
+p_3_20_max
+	p_3_21_sh
+p_3_21_max"Max
+]
+
+p_3_21_max
+kpos_3	p_3_22_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+(
+
+p_3_21_max
+	p_3_22_sh
+p_3_22_max"Max
+]
+
+p_3_22_max
+kpos_3	p_3_23_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+(
+
+p_3_22_max
+	p_3_23_sh
+p_3_23_max"Max
+]
+
+p_3_23_max
+kpos_3	p_3_24_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+(
+
+p_3_23_max
+	p_3_24_sh
+p_3_24_max"Max
+]
+
+p_3_24_max
+kpos_3	p_3_25_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+(
+
+p_3_24_max
+	p_3_25_sh
+p_3_25_max"Max
+]
+
+p_3_25_max
+kpos_3	p_3_26_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+(
+
+p_3_25_max
+	p_3_26_sh
+p_3_26_max"Max
+]
+
+p_3_26_max
+kpos_3	p_3_27_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+(
+
+p_3_26_max
+	p_3_27_sh
+p_3_27_max"Max
+]
+
+p_3_27_max
+kpos_3	p_3_28_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+(
+
+p_3_27_max
+	p_3_28_sh
+p_3_28_max"Max
+]
+
+p_3_28_max
+kpos_3	p_3_29_sh"Conv*
+group
+ *
+kernel_shape@@ *
+pads@@@@ 
+(
+
+p_3_28_max
+	p_3_29_sh
+p_3_29_max"Max
+
+
+p_3_29_maxprop_3"Identity
+
+prop_0
+prop_1m01"Max
+
+prop_2
+prop_3m23"Max
+
+m01
+m23prop_all_raw"Max
+<
+input
+valid_mask"	ReduceSum*
+axes@ *
+keepdims 
+)
+prop_all_raw
+
+valid_maskprop_all"Mul
+
+prop_all
+inputmerged"Max
+I
+merged
+starts_ch19
+	ends_ch19
+	axes_ch19
+
+steps_ch19	merged_19"Slice
+?
+	merged_19	nonbg_sum"	ReduceSum*
+axes@ *
+keepdims 
+;
+	nonbg_sum
+nonbg_mask"Clip*
+max  €? *
+min     
+H
+merged
+
+starts_ch0
+ends_ch0
+	axes_ch19
+
+steps_ch19
+merged_ch0"Slice
+(
+
+one_scalar
+
+nonbg_mask	inv_nonbg"Sub
+'
+
+merged_ch0
+	inv_nonbg	ch0_final"Mul
+3
+	ch0_final
+	merged_19output"Concat*
+axis graph*ý
+Bkpos_0Jè  €?                                  €?                                  €?                                  €?                                  €?                                  €?                                  €?                                  €?                                  €?                                  €?                                *ý
+Bkneg_0Jè                                  €?                                  €?                                  €?                                  €?                                  €?                                  €?                                  €?                                  €?                                  €?                                  €?*ý
+Bkpos_1Jè          €?                                  €?                                  €?                                  €?                                  €?                                  €?                                  €?                                  €?                                  €?                                  €?                        *ý
+Bkneg_1Jè                          €?                                  €?                                  €?                                  €?                                  €?                                  €?                                  €?                                  €?                                  €?                                  €?        *ý
+Bkpos_2Jè                          €?                                  €?                                  €?                                  €?                                  €?                                  €?                                  €?                                  €?                                  €?                                  €?        *ý
+Bkneg_2Jè          €?                                  €?                                  €?                                  €?                                  €?                                  €?                                  €?                                  €?                                  €?                                  €?                        *ý
+Bkpos_3Jè                                  €?                                  €?                                  €?                                  €?                                  €?                                  €?                                  €?                                  €?                                  €?                                  €?*ý
+Bkneg_3Jè  €?                                  €?                                  €?                                  €?                                  €?                                  €?                                  €?                                  €?                                  €?                                  €?                                *ü
+Bkhv_0Jè              €?                                  €?                                  €?                                  €?                                  €?                                  €?                                  €?                                  €?                                  €?                                  €?                    *ü
+Bkhv_1Jè                      €?                                  €?                                  €?                                  €?                                  €?                                  €?                                  €?                                  €?                                  €?                                  €?            *ü
+Bkhv_2Jè      €?                                  €?                                  €?                                  €?                                  €?                                  €?                                  €?                                  €?                                  €?                                  €?                            *ü
+Bkhv_3Jè                              €?                                  €?                                  €?                                  €?                                  €?                                  €?                                  €?                                  €?                                  €?                                  €?    *B
+one_scalarJ  €?*B	axes_ch19J       *Bstarts_ch19J       *B	ends_ch19J
+       *B
+steps_ch19J       *B
+starts_ch0J        *Bends_ch0J       Z
+input
+
+
+
+
+
+b 
+output
+
+
+
+
+
+B
+ 
