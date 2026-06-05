@@ -1,0 +1,30 @@
+% ===== supplementary/multi_agent_formalism.tex =====
+% Archived from sec/04_trace_language.tex (multi-agent system definition).
+% Removed from main paper per rewrite plan item 3.
+
+\section{Multi-Agent Systems}
+\label{sec:multi-archived}
+
+\begin{definition}[Multi-agent system]
+\label{def:multi}
+A \emph{multi-agent system} is a finite tuple $\mathcal{M} =
+(\mathcal{A}_1, \dots, \mathcal{A}_k, R)$ where each
+$\mathcal{A}_i$ is an agent and $R \subseteq \Sigma^*\times\{1,
+\dots,k\}\times\{1,\dots,k\}$ is an \emph{orchestration relation}
+specifying which agent's emission, on which prefix, may be
+consumed by which other agent.
+\end{definition}
+
+The trace language of $\mathcal{M}$ is the set of strings over the
+common alphabet $\Sigma = \bigcup_i \Sigma_{\mathcal{A}_i}$ that
+are obtainable by the orchestrated shuffle: pick an accepting run
+of each $\mathcal{A}_i$, then interleave their traces in any order
+consistent with $R$.  Formally,
+\[
+L(\mathcal{M}) \;=\;
+\bigcup_{(\tau_1, \dots, \tau_k)\,\in\,
+        L(\mathcal{A}_1)\times\cdots\times L(\mathcal{A}_k)}
+\textsf{shuffle}_R(\tau_1, \dots, \tau_k)
+\]
+where $\textsf{shuffle}_R$ is the standard interleaving
+restricted by $R$~\cite{hopcroft2006automata}.

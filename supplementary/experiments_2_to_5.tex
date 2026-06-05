@@ -1,0 +1,96 @@
+% ===== supplementary/experiments_2_to_5.tex =====
+% Archived from sec/13_verification_ablation_study.tex (Experiments 2-5).
+% Only Experiment 1 remains in the main paper.
+
+\section{Chomsky Class Compression (Experiment 2)}
+
+Different internal architectures may collapse to the same projected
+trace language (Definition~\ref{def:traceeq}, Section~\ref{sec:trace}).
+We ran three topologies---\emph{ReAct}, \emph{tree search}, and
+\emph{planner--executor}---on identical sandbox tasks and projected
+traces onto the core alphabet
+$\Sigma_{\mathrm{core}}=\{\textsf{load\_data},
+\textsf{train\_model}, \textsf{submit\_predictions}\}$.
+Pairwise normalized Levenshtein similarity appears in
+Table~\ref{tab:compression}; ReAct and planner--executor traces are
+identical under projection ($1.00$), supporting the claim that
+architectural labels can be quotiented by $\equiv_\tau$.
+
+\begin{table}[ht]
+\centering
+\caption{Projected trace-language similarity (Experiment~2).}
+\label{tab:compression}
+\begin{tabular}{lccc}
+\hline
+ & \textbf{ReAct} & \textbf{Tree} & \textbf{Planner} \\ \hline
+ReAct    & 1.00 & 0.60 & 1.00 \\
+Tree     & 0.60 & 1.00 & 0.60 \\
+Planner  & 1.00 & 0.60 & 1.00 \\
+\hline
+\end{tabular}
+\end{table}
+
+\section{Emergent Sub-Agent Discovery (Experiment 3)}
+
+To test whether named roles can be \emph{derived} rather than designed
+(Theorem~\ref{thm:derived}), we built an operation transition graph from
+100 accepted sandbox traces and applied $k$-means clustering ($k{=}3$) on
+operation embeddings.  Table~\ref{tab:emergence} shows three emergent
+roles---deployer/submitter, data loader, feature engineer---without
+manual column labels.  The phenomenon parallels the emergent
+\texttt{kaggle\_trainer} column in Section~\ref{sec:results}, but here
+the clustering is fully automatic.
+
+\begin{table}[ht]
+\centering
+\caption{Emergent roles from transition-graph clustering (Experiment~3).}
+\label{tab:emergence}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{ll}
+\hline
+\textbf{Operations} & \textbf{Cluster / role} \\ \hline
+\textsf{submit\_predictions} & Cluster~0 (submission) \\
+\textsf{load\_data}, \textsf{explore\_data}, \textsf{train\_model},
+\textsf{evaluate\_model}, \textsf{generate\_predictions}, \textsf{halt}
+& Cluster~1 (data \& training) \\
+\textsf{preprocess\_data} & Cluster~2 (preprocessing) \\
+\hline
+\end{tabular}%
+}
+\end{table}
+
+\section{Trace-Language Verification (TLV) Framework (Experiment 4)}
+
+We release a minimal TLV runtime under \path{framework/}:
+\begin{itemize}
+\item \textbf{Trace recorder} (\path{trace\_recording.py}): serialises
+$(\text{agent}, \text{operation}, t)$ events.
+\item \textbf{Projection engine} (\path{projection.py}): implements
+$\pi_{\Sigma'}$ (Definition~\ref{def:projection}).
+\item \textbf{DFA validator} (\path{dfa\_verifier.py}): $O(n)$
+membership in $L(\mathcal{V})$.
+\item \textbf{Language analyzer} (\path{language\_analysis.py}): estimates
+Chomsky class from cycle count, nesting depth, and alphabet growth.
+\end{itemize}
+On representative traces the analyzer labels ReAct and control runs as
+Type-3 linear ($95\%$ confidence) and tree-search runs as Type-3 with
+loops ($90\%$ confidence); full JSON output is in
+\path{data/exp4\_classifications.json}.  The TLV stack is the
+software counterpart of Algorithm~\ref{alg:enum}: the same binding
+$\mathcal{G}\,\Vert\,\mathcal{V}$ used in theory is executable and
+version-controlled.
+
+\section{Safety-Critical Verification (Experiment 5)}
+
+Finally we compile a safety DFA $\mathcal{V}_{\mathrm{safe}}$ over
+forbidden symbols (\textsf{drop\_table}) and forbidden \emph{sequences}
+(e.g., \textsf{preprocess\_data} $\rightarrow$
+\textsf{submit\_predictions} without training;
+\textsf{train\_model} $\rightarrow$ \textsf{explore\_data}).  An
+adversarial generator proposes twelve steps; the safety verifier blocks
+\textbf{all three} violations ($100\%$ interception;
+\path{data/exp5\_safety.csv}).  Because $L(\mathcal{V}_{\mathrm{safe}})$
+is regular, each check is $O(n)$ in trace length---the operational
+reading of ``$L(\mathcal{G}\,\Vert\,\mathcal{V}_{\mathrm{safe}})\cap
+L_{\mathrm{hazard}}=\emptyset$ is decidable in linear time'' for a
+fixed hazard catalogue.

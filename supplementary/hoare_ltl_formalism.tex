@@ -1,0 +1,42 @@
+% ===== supplementary/hoare_ltl_formalism.tex =====
+% Archived from sec/07_methodology.tex (Hoare-triple and LTL subsections).
+% Removed from main paper per rewrite plan item 7 (Hoare) and 8 (LTL).
+
+\section{Hoare-Triple Obligation per Step}
+\label{sec:hoare-archived}
+
+Each step of Algorithm~\ref{alg:enum} carries a Hoare-triple
+obligation in the sense of
+Hoare~\cite{hoare1969axiomatic} and
+Dijkstra~\cite{dijkstra1975guarded}:
+\[
+\{\,P_t\,\}\quad w_t\quad\{\,P_{t+1}\,\}
+\]
+where $P_t$ is the precondition holding on the state space
+before the $t$-th emitted operation $w_t$, and $P_{t+1}$ is the
+postcondition that the verifier checks via its
+$\delta_\mathcal{V}$ transition.  When the precondition fails,
+the verifier rejects; when the postcondition fails, the verifier
+also rejects; the trace is admitted iff every Hoare triple
+along the emitted path holds.
+
+This is the formal sense in which the architecture is
+\emph{validation-by-construction}: the verifier's DFA is the
+mechanical realisation of a finite Hoare-style proof obligation
+for the Goal-Driven generator's emitted trace.
+
+\section{Temporal-Logic Statement of Correctness}
+
+The correctness property of the binding is captured in
+LTL~\cite{pnueli1977temporal} by the safety-and-liveness pair
+\begin{align*}
+\textsf{Safety:}\quad &
+G\bigl(\,\mathsf{emit}\,\to\,\mathsf{verifier-tracking}\bigr) \\
+\textsf{Liveness:}\quad &
+G\bigl(\,\mathsf{plan}\,\to\,F\,(\mathsf{verified}\,\vee\,
+\mathsf{halt-on-tape-bound})\bigr).
+\end{align*}
+Safety says that every emitted symbol advances the verifier's
+state; liveness says that every plan eventually either succeeds
+verification or hits the tape bound.  Both can be checked on the finite orchestrator control-flow graph
+used in the implementation~\cite{clarke1981ctl,clarke1999modelchecking}.

@@ -23,6 +23,21 @@ By intersecting the complex language of $G$ with the regular language of $V$, **
 
 ---
 
+## Paper Structure (6 Sections)
+
+The paper follows a six-section structure:
+
+1. **Introduction** -- Three claims, contributions, related work
+2. **Trace Language Model** -- Formal definitions, Theorem 2 (closure)
+3. **Generator--Verifier Architecture** -- G\|V binding, Algorithm 1, Aho--Corasick, projected roles
+4. **Experimental Setup** -- Benchmark, probes, reproducibility
+5. **Results** -- Probe outcomes, ablation (Exp 1), class signature
+6. **Discussion** -- Limitations, threats, future work
+
+Extended theory (Chomsky classification, indexed grammars, Hoare/LTL formalism, multi-agent systems, additional experiments) is archived in the [`supplementary/`]({{ site.baseurl }}/supplementary/) directory.
+
+---
+
 ## What is in this Documentation?
 
 Explore the different sections of this documentation site using the navigation above:

@@ -50,11 +50,19 @@ representing a $2$--$5\%$ absolute placement improvement over
 prior published agent baselines.  The Goal-Driven producer had
 no a priori knowledge of the goal label; the Data-Driven
 consumer had no LLM component.  The result was obtained by binding the two principal roles and
-enumerating a finite validated trace for the task instance.  All
-reproducible code, including the start-language CSV, the
-recursively enumerated trace CSV, and the notebooks that produced
-the submission, is published at\\
-\url{https://www.kaggle.com/sweeden-ttu/competitions/spaceship-titanic}.
+enumerating a finite validated trace for the task instance.
+
+Section~\ref{sec:verification_ablation_study} supplies the complementary
+claim: in a controlled suite, $\mathcal{G}\,\Vert\,\mathcal{V}_{\mathrm{DFA}}$
+raises mean sandbox score from $35.2\%$ to $57.8\%$, drives undetected
+errors to zero, and outperforms an LLM judge on accuracy at negligible
+verifier cost.  The TLV runtime (\path{framework/}, \path{src/}) makes the
+verifier, projection engine, and language analyzer executable artifacts,
+not paper-only notation.  All reproducible code, including the
+start-language CSV, the recursively enumerated trace CSV, sandbox CSVs
+under \path{data/}, and the notebooks that produced the submission, is
+published at\\
+\url{https://www.kaggle.com/scottweeden/competitions}.
 
 The realised trace is the empirical witness to the theory.  Its
 thirteenth column, \texttt{kaggle\_trainer}, is the emergent
@@ -67,10 +75,10 @@ that brings the enumeration to a halt.
 
 \subsection{Future work}
 
-Four directions are immediate.  First, the architecture should
-be evaluated on the remaining tasks of \textsc{MLE-bench} to
-test the external-validity claim of
-Section~\ref{sec:discussion}.  Second, the start language should
+Four directions are immediate.  First, the sandbox ablation should
+be repeated on additional live \textsc{MLE-bench} tasks with real API
+judges to test external validity beyond
+Section~\ref{sec:verification_ablation_study}.  Second, the start language should
 be examined as a design object in its own right: which start
 languages produce stable bindings, and which fail to converge?
 Third, the trace-language identity criterion of

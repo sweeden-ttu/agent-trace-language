@@ -1,17 +1,24 @@
 %==========================================================================
 % main.tex
 %
-% A Trace-Language Theory of Agents:
-%   Goal-Driven Type-0 Producers Bounded by Data-Driven Type-3 Consumers
+% A Trace-Language Framework for Agent Verification
 %
 % Authors:
 %   Scott Weeden            (Ms of Computer Applications, TTU)
 %   Akbar Siami Namin       (Dr. of Computer Science, TTU)
 %
-% Build:  pdflatex main && bibtex main && pdflatex main && pdflatex main
+% Build:  make          (or: pdflatex main && bibtex main && pdflatex main && pdflatex main)
+% BibTeX: \bibliography{refs} loads refs.bib in this directory (see Makefile).
+%
+% Camera-ready flag: \camerareadytrue (include acknowledgments) for final
+%                    \camerareadyfalse (omit acknowledgments) for review
 %==========================================================================
 \documentclass[conference]{IEEEtran}
 \IEEEoverridecommandlockouts
+
+% --- camera-ready flag (default false for review) -------------------------
+\newif\ifcameraready
+\camerareadyfalse
 
 % --- packages -------------------------------------------------------------
 \usepackage{cite}
@@ -54,9 +61,8 @@
 \begin{document}
 
 % --- title and authors ----------------------------------------------------
-\title{A Trace-Language Theory of Agents:\\
-       Goal-Driven Type-0 Producers Bounded by\\
-       Data-Driven Type-3 Consumers}
+\title{A Trace-Language Framework for\\
+       Agent Verification}
 
 \author{%
 \IEEEauthorblockN{Scott Weeden}
@@ -83,21 +89,19 @@
 \end{@twocolumnfalse}
 }]
 
-% --- body ----------------------------------------------------------------
+% --- body (six core sections) --------------------------------------------
 \input{sec/01_introduction.tex}
-\input{sec/02_related_work.tex}
-\input{sec/03_preliminaries.tex}
-\input{sec/04_trace_language.tex}
-\input{sec/05_chomsky_classification.tex}
-\input{sec/06_indexed_grammars.tex}
-\input{sec/07_methodology.tex}
-\input{sec/08_experimental_setup.tex}
-\input{sec/09_results.tex}
-\input{sec/10_discussion.tex}
-\input{sec/11_conclusion.tex}
+\input{sec/02_trace_language.tex}
+\input{sec/03_generator_verifier_architecture.tex}
+\input{sec/04_experimental_setup.tex}
+\input{sec/05_results.tex}
+\input{sec/06_implications.tex}
+\input{sec/07_discussion.tex}
 
-% --- acknowledgments -----------------------------------------------------
-\input{sec/12_acknowledgments.tex}
+% --- acknowledgments (review build: omit for double-blind) ----------------
+\ifcameraready
+  \input{sec/12_acknowledgments.tex}
+\fi
 
 % --- bibliography --------------------------------------------------------
 \bibliographystyle{IEEEtran}

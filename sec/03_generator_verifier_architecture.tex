@@ -1,0 +1,158 @@
+% ===== sec/03_generator_verifier_architecture.tex =====
+\section{Generator--Verifier Architecture}
+\label{sec:architecture}
+
+The architecture has two principal agents: a Goal-Driven generator
+$\mathcal{G}$ and a Data-Driven verifier $\mathcal{V}$.
+Theorem~\ref{thm:closure} guarantees their composition preserves the
+generator's class; this section makes the construction concrete.
+
+\subsection{The two principal agents}
+
+$\mathcal{G}$ is modelled by an idealised unrestricted generator,
+realised concretely as a bounded LLM loop.  Its step relation
+$\delta_\mathcal{G}$ samples a continuation from the LLM, parses
+tool-call markup, and emits the corresponding operation string.
+The model used is \texttt{gemini-2.5-pro} for deliberation steps and
+\texttt{gemini-2.5-flash-lite} for housekeeping.
+
+ $\mathcal{G}$ receives at start-up the start-language alphabet
+$\Sigma_0$ (the columns of
+\texttt{trace\_language\allowbreak \_original.csv}), an empty workspace,
+and the Kaggle CLI configuration.  It is \emph{not} given the goal label,
+leaderboard specification, or any prior solution.
+
+$\mathcal{V}$ is the Aho--Corasick DFA $M_K$ over a finite keyword
+set $K$---the union of the \texttt{unit\_test\_runner} and
+\texttt{tools\_index} columns of the start language, plus column-name
+and dtype keywords from the task schema.  $\mathcal{V}$ has no LLM
+component: its decision is
+\[
+h_\mathcal{V}(\tau) \;=\;
+\begin{cases}
+\mathsf{accept} & \text{if every required}\\
+                 & \text{keyword class is matched} \\
+\mathsf{reject} & \text{otherwise.}
+\end{cases}
+\]
+
+\begin{proposition}[Verifier as DFA]
+\label{prop:verifier-dfa}
+$\mathcal{V}$ is realisable as a DFA with $O(\|K\|)$ states.  For
+any $\tau\in\Sigma^*$, the verdict is computed in $O(|\tau|)$ time.
+\end{proposition}
+
+\noindent We choose Aho--Corasick over an LLM judge for three
+reasons: (i) class containment---a DFA is Type-3 and gives $O(n)$
+verifier cost by Corollary~\ref{cor:budget}; (ii) auditability---the
+keyword set $K$ is finite, human-readable, and version-controlled;
+(iii) robustness---a DFA cannot be ``talked into'' accepting a
+malformed trace.
+
+\subsection{The binding}
+
+Algorithm~\ref{alg:enum} realises the binding
+$\mathcal{G}\,\Vert\,\mathcal{V}$.
+
+\begin{figure}[ht]
+\noindent\rule{\columnwidth}{0.4pt}
+\textbf{Algorithm 1.} \textsc{RecursivelyEnumerate}$(\mathcal{G},
+\mathcal{V}, x)$
+\par\noindent\rule{\columnwidth}{0.4pt}
+\begin{algorithmic}[1]
+\REQUIRE $\mathcal{G}$, $\mathcal{V}$, input $x$.
+\ENSURE Verified trace $\tau$. \STATE
+$q\gets q_0^\mathcal{G}$;\quad $\tau\gets\varepsilon$;\quad
+$s\gets q_0^\mathcal{V}$.
+\LOOP
+  \STATE $(q', w) \gets \delta_\mathcal{G}(q, x)$.
+  \STATE $s' \gets \delta_\mathcal{V}^*(s, w)$.
+  \IF{$s'$ is a reject state}
+    \STATE feed witness back to $\mathcal{G}$ as percept.
+  \ELSE
+    \STATE $\tau \gets \tau\cdot w$;\quad $q\gets q'$;\quad
+    $s\gets s'$.
+    \IF{$q\in F_\mathcal{G}$ and $s\in F_\mathcal{V}$}
+      \RETURN $\tau$.
+    \ENDIF
+  \ENDIF
+\ENDLOOP
+\end{algorithmic}
+\rule{\columnwidth}{0.4pt}
+\caption{Recursive enumeration.}
+\label{alg:enum}
+\end{figure}
+
+\subsection{Projected sub-agent views}
+
+Intermediate sub-agent roles are projections of the validated trace
+language, not independently designed machines.
+
+\begin{definition}[Projection]
+\label{def:projection}
+Let $L(\mathcal{A})\subseteq \Sigma_\mathcal{A}^*$ and
+$\Sigma' \subseteq \Sigma_\mathcal{A}$.  The \emph{projection} of
+$L(\mathcal{A})$ onto $\Sigma'$ is
+\[
+\pi_{\Sigma'}(L(\mathcal{A})) \;=\;
+\{\,\pi_{\Sigma'}(\tau) \,:\, \tau\in L(\mathcal{A})\,\}
+\]
+where $\pi_{\Sigma'}$ deletes every symbol not in $\Sigma'$.
+\end{definition}
+
+\begin{theorem}[Derived sub-agents]
+\label{thm:derived}
+For each intermediate role (planner, reviewer, task orchestrator,
+etc.), its projected trace language is no greater than $\mathcal{L}_0$
+because projection cannot raise the generator envelope's class.
+Sharper class labels (Type-2?, indexed?, Type-1?) are modelling
+hypotheses, not consequences of the projection lemma.
+\end{theorem}
+
+\subsection{Chomsky classification}
+
+All non-Type-3 class assignments are modelling hypotheses; only the
+verifier $\mathcal{V}$ has an explicit DFA recogniser.
+Table~\ref{tab:class-signature} summarises the empirical
+class-hypothesis signature.  In the realised system, Type-3 agents
+(\texttt{tools\_index}, \texttt{unit\_test\_runner}) are the
+verifier itself.  Type-2 hypotheses (\texttt{planner\_agent},
+\texttt{reviewer\_agent}) correspond to stack-discipline traces.
+The \texttt{sop\_orchestrator} exhibits a finite-index repair loop
+suggestive of Aho's indexed grammars~\cite{aho1968indexed}.
+Type-1 hypotheses (\texttt{task\_orchestrator},
+\texttt{kernel\_pipeline}) model linear-bounded workspace growth.
+Type-0 hypotheses (\texttt{research\_agent},
+\texttt{developer\_agent}, \texttt{mlebench\_solver},
+\texttt{kaggle\_trainer}) are idealised recursive-enumeration
+envelopes.
+
+\begin{table}[ht]
+\centering
+\caption{Empirical class-hypothesis signature.}
+\label{tab:class-signature}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{l|l|l}
+\hline
+\textbf{Sub-agent} & \textbf{Abstraction} & \textbf{Recogniser} \\ \hline
+$\mathcal{V}$ (verifier)     & Type-3   & DFA \\
+\texttt{planner\_agent}      & Type-2?  & PDA hypothesis \\
+\texttt{reviewer\_agent}     & Type-2?  & PDA hypothesis \\
+\texttt{sop\_orchestrator}   & Indexed? & Indexed-grammar hypothesis \\
+\texttt{task\_orchestrator}  & Type-1?  & LBA hypothesis \\
+\texttt{kernel\_pipeline}    & Type-1?  & LBA hypothesis \\
+$\mathcal{G}$ (generator)    & Type-0?  & TM hypothesis \\
+\hline
+\end{tabular}%
+}
+\end{table}
+
+\subsection{Recursive enumeration outcome}
+
+When Algorithm~\ref{alg:enum} runs on the \textsc{Spaceship Titanic}
+input, $\Sigma_0$ extends to $\Sigma_1$ and a thirteenth column
+appears---the \texttt{kaggle\_trainer}---whose symbols were absent
+from the start language.  Its emergence is forced by the verifier
+rejecting any trace that omits a training step.  The empirical CSV
+is a fixed point of the binding:
+$\Sigma_1 = \Sigma_0 \cup \mathrm{Range}(\delta_\mathcal{G})\big|_{\mathcal{V}\text{-accepting}}$.
