@@ -1,0 +1,104 @@
+% ===== sec/11_conclusion.tex =====
+\section{Conclusion}
+\label{sec:conclusion}
+
+Koohestani et al.~\cite{koohestani2025automata} asked whether
+agents are just automata.  We use that question to motivate a
+narrower operational claim: agents can be analysed through the
+trace languages of the operations they emit, and regular verifier
+languages can validate those traces with explicit complexity
+bounds.  Within this theory:
+\begin{itemize}
+\item Agents are 7-tuples
+$(\Sigma_\mathcal{A},Q_\mathcal{A},q_0^\mathcal{A},X_\mathcal{A},
+\delta_\mathcal{A},F_\mathcal{A},h_\mathcal{A})$ over a fixed
+operation alphabet
+(Section~\ref{sec:trace}, Definition~\ref{def:agent}).
+\item Trace languages classify into the standard
+Chomsky hierarchy (Section~\ref{sec:chomsky}), with the
+indexed-grammar zone of Aho~\cite{aho1968indexed}
+appearing naturally between Type-2 and Type-1.
+\item The producer--consumer construction of
+Dijkstra~\cite{dijkstra1968cooperating}, instantiated as a
+idealised Goal-Driven producer constrained by a Type-3 Data-Driven
+consumer, suffices: their intersection is closed at the
+producer's class and decidable in linear time at the consumer's
+DFA (Theorem~\ref{thm:closure},
+Corollary~\ref{cor:budget}).
+\item The Type-3 consumer is realised as the deterministic
+Aho--Corasick~\cite{aho1975corasick} multi-pattern matcher
+compiled from the unit-test catalogue.
+\item Type-2, indexed-zone, and Type-1 sub-agents are not
+designed; they are projected from the binding
+(Theorem~\ref{thm:derived}).
+\item A Type-3 agent may itself act as a producer,
+backward-inferring constrained changes to the tape, provided the
+inference terminates in a decidable verdict; otherwise the
+halting problem returns and the verifier-side budget collapses
+(Section~\ref{sec:type3-producer}).
+\item The undecidability shadow on the Type-0 envelope is the
+shadow Robinson and the MRDP
+theorem~\cite{robinson1949definability,davis1961decision} cast
+on every recursively enumerable set.
+\end{itemize}
+
+The architecture is not metaphorical.  Instantiated on the
+\textsc{Spaceship Titanic} task drawn from the public
+\textsc{MLE-bench} benchmark, it produced a leaderboard placement
+of $710$ out of $2330$ teams ($\approx\!30.5\%$, top tertile),
+representing a $2$--$5\%$ absolute placement improvement over
+prior published agent baselines.  The Goal-Driven producer had
+no a priori knowledge of the goal label; the Data-Driven
+consumer had no LLM component.  The result was obtained by binding the two principal roles and
+enumerating a finite validated trace for the task instance.  All
+reproducible code, including the start-language CSV, the
+recursively enumerated trace CSV, and the notebooks that produced
+the submission, is published at\\
+\url{https://www.kaggle.com/sweeden-ttu/competitions/spaceship-titanic}.
+
+The realised trace is the empirical witness to the theory.  Its
+thirteenth column, \texttt{kaggle\_trainer}, is the emergent
+agent that the binding forced into existence: the start language
+had twelve sub-agents and no trainer; the realised language has
+thirteen sub-agents and a 36-step training trace.  The expansion
+is the operational form of the Type-0 recursive enumeration; the
+laptop's finite tape is the operational form of the Type-1 bound
+that brings the enumeration to a halt.
+
+\subsection{Future work}
+
+Four directions are immediate.  First, the architecture should
+be evaluated on the remaining tasks of \textsc{MLE-bench} to
+test the external-validity claim of
+Section~\ref{sec:discussion}.  Second, the start language should
+be examined as a design object in its own right: which start
+languages produce stable bindings, and which fail to converge?
+Third, the trace-language identity criterion of
+Definition~\ref{def:traceeq} invites a formal study of agent
+equivalence: when are two agents with different LLM backbones
+trace-equivalent on a given task?  Fourth, suggested by the
+Section~\ref{sec:type3-producer} discussion, is to characterise
+the class of regular keyword-update rules that preserve
+decidability under a Type-3 producer; we conjecture this class
+is exactly the regular extensions of the start-language alphabet.
+
+\subsection{Closing remark}
+
+Turing wrote in 1936 that ``the justification [for the
+definitions] lies in the fact that the human memory is
+necessarily limited''~\cite{turing1936computable}.  Our laptop's
+memory is necessarily limited.  Our agent's tape is necessarily
+limited.  Within those limits, the trace-validation claims are exact;
+outside them, the Type-0 abstraction is an idealisation.
+
+A final note.  This paper began as a question in an email about
+arithmetic grammars and grew under conditions in which other
+deliverables were not available to the first author --- a
+sequence we record honestly in the Acknowledgments.  Papers are
+sometimes written in a straight line and sometimes in a crooked
+one, and the architecture proposed here was, in a real sense,
+shaped by both: the formal narrowness of the theory, and the
+narrow window in which the theory had to be made to do real
+work.  We close with the narrower claim that an agent can be studied
+through its trace language, and that this viewpoint gives useful
+producer--consumer tools for language-constrained trace validation.

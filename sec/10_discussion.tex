@@ -1,0 +1,207 @@
+% ===== sec/10_discussion.tex =====
+\section{Discussion}
+\label{sec:discussion}
+
+We discuss five matters: the meaning of a Type-0 abstraction on a
+bounded laptop, the role of the start language, the producer--consumer
+restatement and the subtlety of a Type-3 producer, threats to
+validity, and the relationship between the trace-language theory
+and the prior literature on agent architectures.
+
+\subsection{Type-0 abstraction versus bounded execution}
+
+The Goal-Driven producer is analysed through an idealised
+recursively enumerable envelope.  In practice, the producer runs on
+a single laptop with a finite tape and a finite execution budget,
+supplemented by the High Performance Computing Center at Texas Tech
+University for the heavier ablation runs.  The realised execution is
+therefore bounded.  Lemma~\ref{lem:bounded-soundness} supports the
+one-way comparison from bounded executions to the idealised envelope;
+it does not prove that the physical artifact realizes a strict
+Type-0 language.
+
+The asymmetry matters.  A lower-bound claim on the producer's
+expressive power would require a separate language-theoretic proof,
+and a single observed trace cannot supply one.  We therefore use the
+Type-0 abstraction as an envelope for recursive enumeration, not as a
+strict empirical classification.  The Type-3 consumer brings the
+narrow conformance-checking problem inside the decidable; it does
+not decide membership in the full producer language.
+
+In Hartmanis--Stearns'
+language~\cite{hartmanis1965computational}, the realised machine
+inhabits a complexity class strictly inside Type-1.  In
+Turing's~\cite{turing1936computable} language, it is a finite
+restriction of a universal machine.  Both views are correct;
+neither is more correct than the other.
+
+\subsection{Why the start language is necessary}
+
+It would be tempting to dispense with the start language and ask
+the Goal-Driven producer to invent its own operation alphabet.
+We attempted this in pilot runs and found, predictably, that the
+producer's enumeration drifts into pathological corners of
+$\Sigma^*$ that the consumer was not designed to cover.  The
+start language $L_0$ serves two formal roles:
+\begin{enumerate}
+\item It fixes the seed alphabet $\Sigma_0$ over which the
+consumer's keyword set $K$ is defined.  Without $\Sigma_0$, the
+Aho--Corasick DFA cannot be constructed.
+\item It provides a finite syntactic skeleton from which the
+Type-0 enumeration can extend in a structured way.  The producer
+treats $L_0$ as a base case for its recursion, not as a fixed
+ceiling.
+\end{enumerate}
+The start language is therefore the inductive hypothesis of the
+recursive enumeration; without it, the recursion has no base.
+The empirical CSV \texttt{trace\_language\_original.csv} is the
+artefact form of the inductive hypothesis.  The realised CSV
+\texttt{trace\_language\_kaggle.csv} is the conclusion of one
+inductive step.  More inductive steps (one per task instance)
+would produce more emergent columns; the architecture
+generalises straightforwardly to the full \textsc{MLE-bench}
+suite.
+
+\subsection{Producer--consumer, and the Type-3 producer subtlety}
+\label{sec:type3-producer}
+
+The Koohestani--Li--Podkopaev--Izadi
+question~\cite{koohestani2025automata} asks \emph{what class is
+this agent?}\ and stops there.  The producer--consumer
+question of Dijkstra~\cite{dijkstra1968cooperating} asks
+\emph{how do classes \textbf{interact}?}\ --- which is the
+question this paper answers.  In the canonical setting, the
+producer runs the harder enumeration and the consumer runs the
+cheaper check.  In our binding, the producer is modelled by an unrestricted
+envelope and the consumer is Type-3; the verifier-side conformance
+budget falls to $O(n)$ per candidate trace by
+Theorem~\ref{thm:closure}.
+
+A natural question follows.  \emph{May a Type-3 agent itself act
+as a producer?}  The answer is yes, with one essential condition.
+Concretely, in our system the verifier may discover a new
+fixture (e.g., a new column-name keyword as the train CSV schema
+is augmented mid-run) and \emph{push} that keyword into the
+keyword set $K$.  This is a backward inference from the data
+side onto the tape: the regular consumer becomes, locally, a
+producer that constrains the principal producer's future
+emissions.
+
+The condition is decidability.  The Type-3 producer's loop must
+terminate in a decidable verdict, otherwise the classical
+halting problem of Turing~\cite{turing1936computable}
+re-asserts itself on the consumer side and the architecture
+loses its verifier-side budget.  Concretely:  if the
+keyword-update rule is itself Type-0 (e.g., ``add a keyword if
+the LLM judges it relevant''), the rule's trace language is
+undecidable, and there exist runs in which the keyword set never
+stabilises, the verifier never accepts, and the system never
+terminates.  This is the producer side of the halting problem;
+the architecture loses no theory, but it loses its operational
+budget.
+
+The escape is to make the keyword-update rule itself Type-3
+--- i.e., a regular grammar over a finite catalogue of
+admissible keyword extensions --- or, where this is infeasible,
+to insert a final \emph{human} verification and validation step
+that closes the loop.  In the realised system, both escapes are
+used.  The \textsf{test\_*} extensions are admitted by a regular
+grammar read off the train CSV schema; the leaderboard
+submission itself is reviewed by the first author before upload.
+The system is therefore an idealised producer constrained by a Type-3 verifier in the
+inner loop, and a human-in-the-loop closure on the outer loop.
+Both are sound; neither, alone, would be.
+
+This is the operational meaning of ``yes, with software
+verification and validation techniques inferred into the
+Data-Driven agent.''  The V\&V techniques are precisely the
+machinery of Hoare~\cite{hoare1969axiomatic},
+Dijkstra~\cite{dijkstra1975guarded},
+Pnueli~\cite{pnueli1977temporal}, and
+Clarke--Emerson~\cite{clarke1981ctl,clarke1999modelchecking}
+applied at the regular level of the Aho--Corasick consumer.
+They are not a metaphor; they are the keyword set $K$, the DFA
+$M_K$, and the LTL formula
+$G(\mathit{plan} \rightarrow F\,\mathit{verified})$.
+
+\subsection{Threats to validity}
+
+\paragraph{Construct validity.}
+The trace-language identity criterion (Section~\ref{sec:trace})
+is a strong claim: an agent is \emph{nothing} but its trace
+language.  The criterion is well-defined --- two agents are
+identified iff $L(\mathcal{A}_1) = L(\mathcal{A}_2)$ --- but it
+does discard information about, e.g., the LLM's chain-of-thought
+or the planner's intermediate JSON.  We accept the discard
+because the discarded objects are not directly verifiable; only
+the trace is, and only the trace is what we admit as evidence.
+
+\paragraph{Internal validity.}
+The Goal-Driven producer's LLM core is non-deterministic.  Two
+re-runs of Algorithm~\ref{alg:enum} on the same input produce
+slightly different traces.  The class signature
+(Table~\ref{tab:class-signature}) is robust across re-runs in
+our pilot experiments, but the leaderboard placement varies by
+$\pm$10--20 ranks across re-runs.  We report a single placement
+($710/2330$) and acknowledge the residual variance.  The
+reproducibility kit at\\
+\url{https://www.kaggle.com/sweeden-ttu/competitions/spaceship-titanic}\\
+allows external re-runs at fixed random seeds.
+
+\paragraph{External validity.}
+The architecture has been instantiated on one task
+(\textsc{Spaceship Titanic}).  We expect the trace-language
+account to generalise to other Kaggle-style tabular tasks
+(\textsc{House Prices}, \textsc{Titanic},
+\textsc{Digit Recognizer}), because the start language and
+consumer are task-agnostic.  We do not claim generalisation
+outside the tabular regime; agents that operate on images, text,
+or open-ended code may require an expanded start language and a
+correspondingly expanded keyword set $K$.
+
+\paragraph{Coverage of the producer--consumer escape.}
+The discussion in Section~\ref{sec:type3-producer} relies on
+either (a) a regular keyword-update rule, or (b) a human in the
+loop.  In our experiments both held; we do not claim a general
+solution when neither holds.  The recursion-without-decidability
+case is exactly where the halting problem returns and the
+architecture provides no warranty.
+
+\subsection{Implications for the field}
+
+Two implications follow.  First, the formal-language framing of
+agents need not be metaphorical.  When done at the level of
+narrowness of this paper, it produces concrete bounds on
+verifier-side conformance cost (Theorem~\ref{thm:closure},
+Corollary~\ref{cor:budget}) and operational architectures (one
+idealised producer, one Type-3 consumer) that are competitive with
+the contemporary state of the art.
+
+Second, the multiplication of agent ``roles'' in contemporary
+literature --- planner, executor, critic, verifier, summariser
+--- is, at least in our case, an emergent phenomenon, not an
+architectural choice.  The architect designs two agents; the
+binding produces five more.  This is consistent with
+McCarthy's~\cite{mccarthy1960lisp} programs-as-data and
+Newell--Simon's~\cite{newell1976physical} symbol-system
+hypothesis: roles are projections, not primitives.  We
+conjecture, but do not here prove, that other contemporary agent
+architectures admit a similar derivation: a small number of
+principal agents binds a verifier, and the named roles are
+projections of the validated trace.
+
+\subsection{What we did not do}
+
+We did not measure the LLM's chain-of-thought.  We did not
+compare backbone families.  Most importantly, we did not yet run the
+ablation that would most directly test the theory: no verifier versus
+Aho--Corasick verifier versus LLM-as-verifier, measured by acceptance
+rate, trace length, runtime, and final leaderboard score.  That
+experiment is the clearest next test of the claim that a Type-3
+verifier meaningfully constrains a more expressive generator.  We
+also did not formally prove that the realised trace is the unique
+fixed point of the binding.  Each is a defensible piece of follow-up
+work; the present claim is narrower: trace languages provide a useful
+specification lens, and a regular verifier gives a linear-time
+conformance check that can guide a contemporary ML-engineering
+workflow.

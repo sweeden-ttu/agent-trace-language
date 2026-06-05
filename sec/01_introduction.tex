@@ -1,0 +1,229 @@
+% ===== sec/01_introduction.tex =====
+\section{Introduction}
+\label{sec:introduction}
+
+\IEEEPARstart{T}{he} contemporary literature on autonomous
+software agents is rich in architectural diagrams and short on
+formal definitions.  An agent is variously described as ``a
+system that perceives and acts'', ``a planner that calls tools'',
+or ``an LLM in a loop'', and each definition is stated at a level
+of abstraction that admits neither a decision procedure nor a
+complexity bound.  The consequence is that two agents with
+radically different computational power are routinely compared
+as if they belonged to a single class, and verification claims
+about agentic systems are correspondingly difficult to falsify.
+
+We are not the first to ask whether the Chomsky hierarchy is the
+right scaffold for thinking about this problem.  In particular,
+Koohestani, Li, Podkopaev, and Izadi pose the question
+\emph{Are agents just automata?}~\cite{koohestani2025automata}
+and answer affirmatively, establishing a memory-based equivalence
+between simple-reflex agents and finite automata, hierarchical
+task-decomposition agents and pushdown automata, and
+unrestricted-memory agents and Turing
+machines~\cite{turing1936computable}.  We accept their answer.
+Their question, however, is the preliminary one.  The question
+that does practical work is operational: \emph{given that agents
+are automata, how can the Chomsky type of one agent be used to
+\textbf{bound} the Chomsky type of another?}  This is the
+producer--consumer problem of
+Dijkstra~\cite{dijkstra1968cooperating} re-stated in the language
+of formal grammars.  The present paper offers a methodology that
+answers it in the affirmative, with software verification and
+validation techniques inferred into the consumer side and the
+idealised theoretical apparatus of automata built into the
+producer side.
+
+\subsection{Why a narrow definition}
+
+We deliberately keep the definition of an agent narrow, taking
+only what is forced upon us by the theory of automata Turing
+introduced in 1936~\cite{turing1936computable} and the language
+hierarchy Chomsky introduced in
+1956--59~\cite{chomsky1956three,chomsky1959certain}.  An agent,
+for us, is an effectful machine that, when started on an
+admissible input, emits a finite string of operation symbols and
+then halts (or fails to halt).  The collection of all such
+strings, taken across the input domain, is the agent's
+\emph{trace language}.  Two agents with the same trace language
+are, by stipulation, the same agent.  Whatever cannot be read off
+from the trace language is, for the purposes of this paper, not
+treated as an agent property.
+
+The motivation for keeping the definition narrow is twofold.
+First, it gives a direct line from the agent to the Chomsky
+hierarchy and to the recognising automata.  An agent whose trace
+language is regular (Type-3) is realisable by a finite-state
+controller and admits decidable verification in linear
+time~\cite{rabin1959finite}.  An agent whose trace language is
+context-free (Type-2) is realisable by a pushdown controller and
+admits $O(n^3)$ membership~\cite{hopcroft2006automata}.  An agent
+whose trace language is recursively enumerable (Type-0) is, in
+the worst case, \emph{undecidable to verify} --- a fact whose
+modern statement we inherit from Robinson's resolution of
+Hilbert's tenth
+problem~\cite{robinson1949definability,davis1961decision}, which
+established that recursively enumerable sets are exactly the
+Diophantine sets and that the membership problem for them admits
+no general algorithm.
+
+Second, the narrow definition gives an empirical handle.  If the
+agent is studied through its traces, then those traces can be
+recorded, stored, projected, and checked against explicit language
+specifications.  A finite experiment produces finite strings, not a
+proof of the full generating language, so we use empirical traces as
+validation artifacts and as evidence for modelling hypotheses.  This
+places agent trace validation near the V\&V of compilers, parsers,
+and protocol implementations~\cite{aho1972theory,hoare1969axiomatic},
+while preserving the distinction between observed executions and
+language-class theorems.
+
+\subsection{The Goal-Driven producer and Data-Driven consumer}
+
+Our central architectural claim is the producer--consumer
+restatement.  There is exactly one \emph{Goal-Driven} producer
+agent, modelled by an idealised recursive-enumeration envelope.  In
+practice it is realised as a large language model wrapped in a
+tool-calling loop, and the loop is permitted to enumerate
+finite-length sequences of tool invocations from the union of the
+sub-agents' alphabets.  The Goal-Driven producer has no a priori
+knowledge of \emph{what} the goal is; it knows only the
+specification of the input domain and the tool catalogue.
+
+There is exactly one \emph{Data-Driven} consumer agent, the
+\emph{verifier}.  Its trace language is Type-3: regular and, by
+Rabin and Scott's construction~\cite{rabin1959finite}, decidable
+in linear time.  The verifier is concretely realised as the
+deterministic finite automaton of an Aho--Corasick keyword
+index~\cite{aho1975corasick} compiled from the competition's
+empirical fixtures: the unit-test corpus, the submission-validity
+tests, the column-name checks, and the integrity tests on the
+\texttt{train.csv}\,/\,\texttt{test.csv}\,/\,\texttt{sample\_submission.csv}
+triple.
+
+The binding is the entirety of our architectural claim:
+\begin{quote}
+\itshape A single idealised Goal-Driven producer, constrained by a
+regular Data-Driven verifier, can yield a validated trace.
+\end{quote}
+Type-2 and Type-1 sub-agents are not designed; they are
+\emph{derived}.  They appear as the canonical projections of the
+recursively enumerated trace onto the parts of the orchestration
+substrate that admit, respectively, a stack discipline (the
+back-edges of the planner\,/\,developer\,/\,reviewer loop, the
+recursive \texttt{retry\_phase\_on\_low\_score}) and a
+linear-bounded workspace (the deterministic Aho--Corasick scanner
+and the LBA-style \texttt{compute\_dependency\_graph} that walks
+the phase-to-phase dependency relation).  We make these
+projections precise in Section~\ref{sec:chomsky}.
+
+A subtlety: nothing in the framework prevents a Type-3 agent from
+itself acting as a producer, in which case it backward-infers
+constrained changes onto the tape (e.g., updates to the keyword
+set $K$ as new task fixtures arrive).  Such a Type-3 producer is
+admissible \emph{provided} the inference terminates in a
+decidable verdict.  When it does not, the classical halting
+problem of Turing~\cite{turing1936computable} re-asserts itself
+on the Type-3 producer's loop and the architecture loses its
+verifier-side budget.  We discuss the engineering consequence in
+Section~\ref{sec:discussion}: in the realised system, decidability
+is enforced by the regular envelope of the verifier and, where
+the data-driven side begins to drift, by a final human
+verification and validation step that closes the loop.
+
+\subsection{The start language and its recursive enumeration}
+
+The system is initialised with a single \emph{start language}
+$L_0$, given concretely in
+\texttt{data/trace\_language\_original.csv}.  The start language
+contains twelve sub-agents and their seed action alphabets ---
+nothing else.  The Goal-Driven producer, constrained by the
+Data-Driven Type-3 verifier, then enumerates a finite trace for the
+\textsc{Spaceship Titanic} task instance.  The result is the
+observed trace artifact $L_1$, recorded in
+\texttt{data/trace\_language\_kaggle.csv}.  $L_1$ contains
+\emph{thirteen} sub-agents.  The thirteenth,
+\texttt{kaggle\_trainer}, is the emergent agent: it does not
+exist in $L_0$ and is materialised \emph{by the act of
+enumeration}, after the verifier first refuses traces that omit
+the training step.
+
+We use this enumeration as the operational analogue of recursive
+enumeration in the agentic setting.  Turing's machines enumerate
+strings; our idealised producer enumerates tool-call strings; and
+the connection between the emitted strings and the empirical Kaggle
+competition is mediated by the Aho--Corasick verifier.
+
+\subsection{Idealisation and physical bounding}
+
+It is worth being clear about the difference between the theory
+and the machine that actually ran the experiment.  The
+Goal-Driven agent is analysed under a \emph{Type-0 abstraction}
+or envelope for recursive enumeration; this is not a claim that the
+finite implementation realizes a strict Type-0 language.
+The actual execution was bounded by the finite tape and finite
+RAM of a single laptop and, for the heavier ablation runs, by
+the High Performance Computing Center at Texas Tech University.
+The realised machine is, formally, a finite physical computation,
+and under an input-tape accounting can be viewed as a very large
+linear-bounded process.  The idealisation is one-way: every trace producible by the realised LBA is also
+producible by the idealised Turing machine, and conformance to the verifier language is, by the DFA
+construction in Theorem~\ref{thm:closure}, checked in linear time.  The \emph{physical} computation is therefore
+far more restricted than the theoretical envelope, and any trace emitted by the bounded machine is contained in the
+idealised envelope used for analysis.  This is the standard
+idealisation of
+Hartmanis and Stearns~\cite{hartmanis1965computational}, and we
+adopt it on those terms.
+
+\subsection{Contributions}
+
+\begin{enumerate}
+\item A formal definition of the trace language $L(\mathcal{A})$
+of an agent $\mathcal{A}$ as the language generated by an
+effectful controller over a finite operation alphabet, together
+with a proof that the resulting object satisfies the Chomsky
+hierarchy verbatim (Section~\ref{sec:trace}).
+\item A producer--consumer answer to the
+Koohestani--Li--Podkopaev--Izadi question:  a single idealised Goal-Driven producer, intersected with a single Data-Driven Type-3
+consumer realised as an Aho--Corasick DFA, suffices to produce a
+validated trace while preserving the producer class and keeping
+verifier-side conformance checking linear (Section~\ref{sec:chomsky},
+Theorem~\ref{thm:closure}).
+\item A demonstration that Type-2-style and Type-1-style roles can be
+modelled as projections of the observed trace onto stack-discipline
+and bounded-workspace substrates respectively
+(Section~\ref{sec:methodology}).
+\item A discussion of how a Type-3 agent may itself act as a
+producer, backward-inferring constrained changes onto the tape,
+under the necessary condition that decidability be preserved
+(Section~\ref{sec:discussion}); failing this condition, the
+halting problem returns and the verifier-side budget collapses.
+\item An empirical instantiation on the \textsc{Spaceship Titanic}
+task from \textsc{MLE-bench} achieving placement $710/2330$
+($\approx\!30.5\%$, top tertile).  The start language
+\texttt{trace\_language\_original.csv}, the recursively
+enumerated trace \texttt{trace\_language\_kaggle.csv}, and the
+notebooks that produced the submission are released at\\
+\url{https://www.kaggle.com/sweeden-ttu/competitions/spaceship-titanic}\\
+(Sections~\ref{sec:expsetup}--\ref{sec:results}).
+\end{enumerate}
+
+\subsection{Roadmap}
+
+Section~\ref{sec:related} surveys related work, opening with
+Koohestani et al.\ and the producer--consumer framing.
+Section~\ref{sec:preliminaries} fixes notation drawn from
+Turing's automata theory and Chomsky's hierarchy.
+Section~\ref{sec:trace} gives the rigorous definition of the
+trace language.  Section~\ref{sec:chomsky} classifies trace
+languages by Chomsky type and proves the closure theorem.
+Section~\ref{sec:indexed} gives the Aho--Corasick verifier and
+records the indexed-grammar interpretation as a future-work
+hypothesis.
+Section~\ref{sec:methodology} describes the Goal-Driven\,/\,
+Data-Driven binding and the recursive enumeration of the start
+language.  Sections~\ref{sec:expsetup}--\ref{sec:results} report
+the experimental study and result on \textsc{Spaceship Titanic}.
+Section~\ref{sec:discussion} discusses idealisation, physical
+bounding, and the Type-3-as-producer subtlety.
+Section~\ref{sec:conclusion} concludes.

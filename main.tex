@@ -1,0 +1,106 @@
+%==========================================================================
+% main.tex
+%
+% A Trace-Language Theory of Agents:
+%   Goal-Driven Type-0 Producers Bounded by Data-Driven Type-3 Consumers
+%
+% Authors:
+%   Scott Weeden            (Ms of Computer Applications, TTU)
+%   Akbar Siami Namin       (Dr. of Computer Science, TTU)
+%
+% Build:  pdflatex main && bibtex main && pdflatex main && pdflatex main
+%==========================================================================
+\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+
+% --- packages -------------------------------------------------------------
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{amsthm}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{array}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{url}
+\usepackage[hidelinks]{hyperref}
+\usepackage{stmaryrd}
+
+% --- IEEE two-column typesetting tolerances ---------------------------------
+\emergencystretch=3em
+\hfuzz=200pt
+\vfuzz=20pt
+\hbadness=10000
+\vbadness=10000
+
+% --- BibTeX logo ----------------------------------------------------------
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+% --- theorem environments (referenced in sec/*.tex) -----------------------
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+
+%==========================================================================
+\begin{document}
+
+% --- title and authors ----------------------------------------------------
+\title{A Trace-Language Theory of Agents:\\
+       Goal-Driven Type-0 Producers Bounded by\\
+       Data-Driven Type-3 Consumers}
+
+\author{%
+\IEEEauthorblockN{Scott Weeden}
+\IEEEauthorblockA{Ms of Computer Applications\\
+                  Texas Tech University\\
+                  Lubbock, Texas, USA\\
+                  \href{mailto:sweeden@ttu.edu}{\texttt{sweeden@ttu.edu}}}
+
+ \and
+ \IEEEauthorblockN{Akbar Siami Namin}
+ \IEEEauthorblockA{Dr of Computer Science\\
+                   Texas Tech University\\
+                   Lubbock, Texas, USA\\
+                   \href{mailto:akbar.namin@ttu.edu}{\texttt{akbar.namin@ttu.edu}}\\
+                   \href{https://www.depts.ttu.edu/cs/faculty/akbar_siami-namin/index.php}{Faculty page}}
+
+}
+
+\twocolumn[{%
+\begin{@twocolumnfalse}
+\maketitle
+\input{sec/00_abstract.tex}
+\vspace{1em}
+\end{@twocolumnfalse}
+}]
+
+% --- body ----------------------------------------------------------------
+\input{sec/01_introduction.tex}
+\input{sec/02_related_work.tex}
+\input{sec/03_preliminaries.tex}
+\input{sec/04_trace_language.tex}
+\input{sec/05_chomsky_classification.tex}
+\input{sec/06_indexed_grammars.tex}
+\input{sec/07_methodology.tex}
+\input{sec/08_experimental_setup.tex}
+\input{sec/09_results.tex}
+\input{sec/10_discussion.tex}
+\input{sec/11_conclusion.tex}
+
+% --- acknowledgments -----------------------------------------------------
+\input{sec/12_acknowledgments.tex}
+
+% --- bibliography --------------------------------------------------------
+\bibliographystyle{IEEEtran}
+\bibliography{refs}
+
+\end{document}

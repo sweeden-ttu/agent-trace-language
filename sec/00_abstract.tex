@@ -1,0 +1,51 @@
+% ===== sec/00_abstract.tex =====
+\begin{abstract}
+Koohestani, Li, Podkopaev, and Izadi recently asked, ``Are agents
+just automata?''~\cite{koohestani2025automata}.  We take that
+question as motivation for a narrower one: \emph{what can be proved
+about agents if they are observed only through the finite traces of
+operations they emit?}  This paper develops a trace-language account
+of agent behaviour and applies it to a producer--consumer
+architecture in which a goal-directed generator proposes traces and a
+data-driven deterministic verifier accepts only traces satisfying a
+regular specification.  The verifier is implemented as an
+Aho--Corasick keyword automaton~\cite{aho1975corasick} compiled from
+unit-test, schema, and submission-validity checks.
+
+The central formal point is deliberately modest.  If an agent's trace
+language is intersected with a regular verifier language, the result
+remains in the original Chomsky class.  Consequently, conformance to
+the verifier specification can be checked in linear time by the DFA,
+even when membership in the generator's full trace language remains
+undecidable.  We therefore distinguish \emph{trace validation} from
+full language membership: the verifier establishes
+$\tau\in L(\mathcal{V})$ for an emitted trace $\tau$, not a complete
+decision procedure for $\tau\in L(\mathcal{G})\cap L(\mathcal{V})$
+when $\mathcal{G}$ is modelled by an unrestricted generator.
+
+We instantiate the framework on the \textsc{Spaceship Titanic} task
+from \textsc{MLE-bench}.  The start artifact
+\texttt{data/trace\_language\_original.csv} specifies twelve seed
+sub-agent alphabets; the run artifact
+\texttt{data/trace\_language\_kaggle.csv} records one accepted trace
+with thirteen columns, including an emergent
+\texttt{kaggle\_trainer} column.  These artifacts are treated as
+empirical traces, not as proofs of exact Chomsky-class membership.
+Where the paper assigns Type-2, indexed, Type-1, or Type-0
+abstractions to practical sub-agents, those assignments are modelling
+hypotheses unless accompanied by an explicit recogniser or grammar.
+
+The resulting system produced a leaderboard placement of $710$ out of
+$2330$ teams ($\approx\!30.5\%$, top tertile).  This experiment shows
+that language-constrained trace validation can guide a practical
+agentic workflow; it does not by itself validate the stronger formal
+classification hypotheses.  Reproducible code is published at\\
+\url{https://www.kaggle.com/sweeden-ttu/competitions/spaceship-titanic}.
+\end{abstract}
+
+\begin{IEEEkeywords}
+Agentic systems, trace language, Chomsky hierarchy, deterministic
+finite automata, Aho--Corasick, recursive enumeration,
+producer--consumer, trace validation, language-constrained
+validation, ML engineering.
+\end{IEEEkeywords}

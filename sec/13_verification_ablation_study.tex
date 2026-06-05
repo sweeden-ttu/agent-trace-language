@@ -1,0 +1,38 @@
+% ===== sec/13_verification_ablation_study.tex =====
+\section{Verification Ablation Study}
+\label{sec:verification_ablation_study}
+
+In this section we conduct an ablation study to evaluate the impact of different verification components on the agent's performance. We compare three configurations:
+
+\begin{enumerate}
+  \item \textbf{Generator only}: The agent generates traces without any verification.
+  \item \textbf{Generator + DFA verifier}: The generated traces are filtered using a deterministic finite automaton (DFA) that encodes the verifier language.
+  \item \textbf{Generator + LLM verifier}: The generated traces are validated by a large language model (LLM) acting as a verifier.
+\end{enumerate}
+
+For each configuration we report the following metrics:
+
+\begin{itemize}
+  \item \textbf{Success rate}: Fraction of generated traces that satisfy the target task.
+  \item \textbf{Invalid trace rate}: Fraction of generated traces rejected by the verifier (or inherently invalid for the generator‑only case).
+  \item \textbf{Runtime}: Wall‑clock time required to produce the set of traces.
+  \item \textbf{Cost}: Approximate API cost (e.g., LLM token usage) associated with verification.
+\end{itemize}
+
+% The empirical results are summarized in Table~\ref{tab:ablation_results}.
+\begin{table}[ht]
+\centering
+\caption{Ablation study results comparing verification configurations.}
+\label{tab:ablation_results}
+\begin{tabular}{lcccc}
+\hline
+Configuration & Success Rate & Invalid Trace Rate & Runtime (s) & Cost (USD) \\
+\hline
+Generator only & TBD & N/A & TBD & N/A \\
+Generator + DFA verifier & TBD & TBD & TBD & N/A \\
+Generator + LLM verifier & TBD & TBD & TBD & TBD \\
+\hline
+\end{tabular}
+\end{table}
+
+We observe that ... (discussion of results will be added after empirical evaluation).
