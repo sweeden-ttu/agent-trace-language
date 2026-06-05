@@ -1,0 +1,9 @@
+Operation,Cluster_ID,Emergent_Role
+submit_predictions,0,Role A (Data Loader & Prep)
+load_data,1,Role B (Model Trainer & Evaluator)
+explore_data,1,Role B (Model Trainer & Evaluator)
+train_model,1,Role B (Model Trainer & Evaluator)
+evaluate_model,1,Role B (Model Trainer & Evaluator)
+generate_predictions,1,Role B (Model Trainer & Evaluator)
+halt,1,Role B (Model Trainer & Evaluator)
+preprocess_data,2,Role C (Deployer & Submitter)

@@ -1,0 +1,4 @@
+Agent,ReAct,Tree Search,Planner-Executor
+ReAct,1.00,0.60,1.00
+Tree Search,0.60,1.00,0.60
+Planner-Executor,1.00,0.60,1.00

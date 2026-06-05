@@ -1,0 +1,29 @@
+{
+    "react_agent_trace": {
+        "trace_length": 9,
+        "alphabet_size": 9,
+        "cycle_count": 0,
+        "max_stack_nesting": 1,
+        "classification": "Type-3 (Regular Linear)",
+        "confidence": 0.95,
+        "reason": "No cycles or nesting detected. Trace follows a flat linear state machine."
+    },
+    "tree_search_trace": {
+        "trace_length": 15,
+        "alphabet_size": 9,
+        "cycle_count": 6,
+        "max_stack_nesting": 1,
+        "classification": "Type-3 (Regular with Loops)",
+        "confidence": 0.9,
+        "reason": "Detected simple repetitive cycles (count=6) with no deep stack nesting."
+    },
+    "buggy_control_trace": {
+        "trace_length": 6,
+        "alphabet_size": 6,
+        "cycle_count": 0,
+        "max_stack_nesting": 0,
+        "classification": "Type-3 (Regular Linear)",
+        "confidence": 0.95,
+        "reason": "No cycles or nesting detected. Trace follows a flat linear state machine."
+    }
+}
