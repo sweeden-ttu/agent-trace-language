@@ -86,3 +86,10 @@ To test the validity of the **Trace-Language Theory of Agents**, we describe six
   * Submission size: 0.74 MB (under 1.44 MB limit, thanks to raw-bytes optimization)
   * All DFA checks passing across build, blend, and final submit pipelines
 * **Significance**: This experiment demonstrates that the trace-language theory works in practice. The DFA verifier — a simple Type-3 automaton with no semantic understanding — was sufficient to guide an LLM generator toward a competitive submission by enforcing the architectural patterns observed in top-performing notebooks.
+* 
+### Results: [Improved Rank from 915 to 609](https://www.kaggle.com/code/scottweeden/neurogolf-trace-language-dfa-solvers)
+Kaggle competitions provide an opportunity to analyze and parse the log files of other notebooks and build a recognizer which matches on the log outputs of blended notebooks in a fashion that ensure proper actions, files, and transformations happen at the appropriate time.  Machine learning pipelines can be especially sensitive to the stage and phase an action is carried out. Leakage can be detected with the trace language automata, by prohibiting the the access of certain files or columns during advanced stages of the training and testing pipeline.
+
+A deterministic finite automata (Class 3) verifier was used to ensure 4 phases of machine learning pipeline are carried out, and that prohibited actions spelled out by the competition in the use of ONNX models. These were just some of the LLM "compliments" given, when bugs and code review failed to catch errors found by the DFA verifier:
+
+
