@@ -11,8 +11,8 @@ guidance through a semester that did not unfold as planned.
 Dr.\ Namin shaped the software verification and validation
 framing of the Data-Driven consumer; Dr.\ Zhang shaped the
 automata-theoretic framing of the Goal-Driven producer and the
-Chomsky-class projection lemmas of Section~\ref{sec:architecture}.
-The narrowness of the architecture --- one idealised producer, one
+Chomsky-class projection lemmas of Section~\ref{sec:chomsky}.
+The narrowness of the architecture --- one Type-0 producer, one
 Type-3 consumer, and the explicit recursive enumeration of
 Algorithm~\ref{alg:enum} --- is a direct consequence of their
 insistence that the theory commit only to what Turing's automata
@@ -80,14 +80,14 @@ recursive-enumeration loop;
 (\texttt{sagnik.singha@ttu.edu}, 157 Drane Hall, 806.834.2156;
 Ph.D., Mechanical Engineering), for assistance with
 multi-disciplinary computational research and the cluster runs
-that exercised the Type-0 abstraction\,/\,Type-3 binding at scale.
+that exercised the Type-0\,/\,Type-3 binding at scale.
 \end{itemize}
 The \textsc{RedRaider} cluster carried the burden when the
 laptop's tape ran out.  The realised machine of
-Section~\ref{sec:architecture} is, accordingly, larger than a
-single laptop in the largest runs; the finite-resource envelope of
+Section~\ref{sec:methodology} is, accordingly, larger than a
+single laptop in the largest ablation runs; the LBA bound of
 Lemma~\ref{lem:bounded-soundness} adjusts upward correspondingly,
-and the one-way soundness argument remains intact.
+and the soundness argument remains intact.
 
 \subsection*{Recognising Julia B.\ Robinson}
 
@@ -100,7 +100,7 @@ subsets of $\mathbb{N}^k$ are exactly the Diophantine subsets
 class and the resolution of Hilbert's tenth
 problem~\cite{robinson1949definability,davis1961decision}.  The
 central undecidability claim that motivates our two-tier
-Type-0 abstraction\,/\,Type-3 architecture is, in its modern form, her
+Type-0\,/\,Type-3 architecture is, in its modern form, her
 result.
 
 Robinson did not receive the ACM A.\,M.\ Turing Award.  We are
@@ -134,7 +134,7 @@ recursively enumerated trace \texttt{trace\_language\_kaggle.csv},
 the \LaTeX{} source of this paper, the bibliography
 \texttt{refs.bib}, and the Kaggle notebooks that produced the
 \textsc{Spaceship Titanic} submission are released at\\
-\url{https://www.kaggle.com/scottweeden/competitions}.\\
+\url{https://www.kaggle.com/sweeden-ttu/competitions/spaceship-titanic}.\\
 Re-runs at fixed random seeds reproduce the binding's class
 signature; placement on the public leaderboard varies by
 $\pm$10--20 ranks across non-deterministic LLM samples, as
