@@ -1,24 +1,17 @@
 %==========================================================================
 % main.tex
 %
-% A Trace-Language Framework for Agent Verification
+% A Trace-Language Theory of Agents:
+%   Goal-Driven Type-0 Producers Bounded by Data-Driven Type-3 Consumers
 %
 % Authors:
 %   Scott Weeden            (Ms of Computer Applications, TTU)
 %   Akbar Siami Namin       (Dr. of Computer Science, TTU)
 %
-% Build:  make          (or: pdflatex main && bibtex main && pdflatex main && pdflatex main)
-% BibTeX: \bibliography{refs} loads refs.bib in this directory (see Makefile).
-%
-% Camera-ready flag: \camerareadytrue (include acknowledgments) for final
-%                    \camerareadyfalse (omit acknowledgments) for review
+% Build:  pdflatex main && bibtex main && pdflatex main && pdflatex main
 %==========================================================================
 \documentclass[conference]{IEEEtran}
 \IEEEoverridecommandlockouts
-
-% --- camera-ready flag (default false for review) -------------------------
-\newif\ifcameraready
-\camerareadyfalse
 
 % --- packages -------------------------------------------------------------
 \usepackage{cite}
@@ -33,13 +26,6 @@
 \usepackage{url}
 \usepackage[hidelinks]{hyperref}
 \usepackage{stmaryrd}
-
-% --- IEEE two-column typesetting tolerances ---------------------------------
-\emergencystretch=3em
-\hfuzz=200pt
-\vfuzz=20pt
-\hbadness=10000
-\vbadness=10000
 
 % --- BibTeX logo ----------------------------------------------------------
 \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
@@ -61,47 +47,46 @@
 \begin{document}
 
 % --- title and authors ----------------------------------------------------
-\title{A Trace-Language Framework for\\
-       Agent Verification}
+\title{A Trace-Language Theory of Agents:\\
+       Goal-Driven Type-0 Producers Bounded by\\
+       Data-Driven Type-3 Consumers}
 
 \author{%
 \IEEEauthorblockN{Scott Weeden}
-\IEEEauthorblockA{Ms of Computer Applications\\
+\IEEEauthorblockA{Department of Computer Science\\
                   Texas Tech University\\
                   Lubbock, Texas, USA\\
                   \href{mailto:sweeden@ttu.edu}{\texttt{sweeden@ttu.edu}}}
 
  \and
  \IEEEauthorblockN{Akbar Siami Namin}
- \IEEEauthorblockA{Dr of Computer Science\\
+ \IEEEauthorblockA{Department of Computer Science\\
                    Texas Tech University\\
                    Lubbock, Texas, USA\\
-                   \href{mailto:akbar.namin@ttu.edu}{\texttt{akbar.namin@ttu.edu}}\\
-                   \href{https://www.depts.ttu.edu/cs/faculty/akbar_siami-namin/index.php}{Faculty page}}
-
+                   \href{mailto:akbar.namin@ttu.edu}{\texttt{akbar.namin@ttu.edu}}}%\\
+                %\href{https://www.depts.ttu.edu/cs/faculty/akbar_siami-namin/index.php}{Faculty page}}
 }
 
-\twocolumn[{%
-\begin{@twocolumnfalse}
 \maketitle
+
+% --- abstract + IEEEkeywords ---------------------------------------------
 \input{sec/00_abstract.tex}
-\vspace{1em}
-\end{@twocolumnfalse}
-}]
 
-% --- body (six core sections) --------------------------------------------
+% --- body ----------------------------------------------------------------
 \input{sec/01_introduction.tex}
-\input{sec/02_trace_language.tex}
-\input{sec/03_generator_verifier_architecture.tex}
-\input{sec/04_experimental_setup.tex}
-\input{sec/05_results.tex}
-\input{sec/06_implications.tex}
-\input{sec/07_discussion.tex}
+\input{sec/02_related_work.tex}
+\input{sec/03_preliminaries.tex}
+\input{sec/04_trace_language.tex}
+\input{sec/05_chomsky_classification.tex}
+\input{sec/06_indexed_grammars.tex}
+\input{sec/07_methodology.tex}
+\input{sec/08_experimental_setup.tex}
+\input{sec/09_results.tex}
+\input{sec/10_discussion.tex}
+\input{sec/11_conclusion.tex}
 
-% --- acknowledgments (review build: omit for double-blind) ----------------
-\ifcameraready
-  \input{sec/12_acknowledgments.tex}
-\fi
+% --- acknowledgments -----------------------------------------------------
+\input{sec/12_acknowledgments.tex}
 
 % --- bibliography --------------------------------------------------------
 \bibliographystyle{IEEEtran}
