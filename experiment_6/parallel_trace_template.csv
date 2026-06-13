@@ -1,0 +1,18 @@
+step,agent,op,task_id,priority,detail
+1,scanner,DISCOVER_BUNDLE,,1,Scanning for public datasets
+2,floor_loader,LOAD_FLOOR,,2,Loading initial floor solvers
+3,analyzer,ANALYZE_TASK,101,3,Inspect task 101 grid
+4,analyzer,ANALYZE_TASK,102,3,Inspect task 102 grid
+5,miner,DISCOVER_PATTERN,101,4,Match pattern 101
+6,miner,DISCOVER_PATTERN,102,4,Match pattern 102
+7,builder,BUILD_ONNX,101,5,Construct graph 101
+8,builder,BUILD_ONNX,102,5,Construct graph 102
+9,optimizer,FP16_SURGERY,101,6,Convert float 101
+10,optimizer,FP16_SURGERY,102,6,Convert float 102
+11,verifier,VERIFY_TRAIN,101,7,Check correctness 101
+12,verifier,VERIFY_TRAIN,102,7,Check correctness 102
+13,grader,COMPUTE_COST,101,8,Score 101
+14,grader,COMPUTE_COST,102,8,Score 102
+15,blender,BLEND_BUNDLE,,9,Blend all valid tasks
+16,packager,PACKAGE,,10,Create tar.gz
+17,orch,SUBMIT,,11,Kaggle submission

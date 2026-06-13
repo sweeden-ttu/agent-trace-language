@@ -36,7 +36,7 @@ To break the plateau, the project has shifted from "Pipeline Verification" to **
 
 ### C. Hand-Tuning Advanced Templates
 *   **Task 031 (Crop to Content):** Use `NonZero` + `ReduceMin/Max` to drive a dynamic `Slice`.
-*   **Task 210 (Gravity/Falling):** Use unrolled `MaxPool` or index-sorting to "drop" pixels to the bottom of the grid.
+*   **Task 210 (Gravity/Falling) [IN PROGRESS]:** Implemented a symbolic solver using unrolled 1D `MaxPool` (kernel=[H, 1]) to shift pixels to the bottom boundary. This replaces complex iterative rules with a single global boundary-attraction pass.
 
 ## 4. Research & Publication Alignment
 *   **Formal Kronecker Synthesis:** Incorporate formal descriptions of Kronecker product applications from "KromHC: Manifold-Constrained Hyper-Connections" (Zhou et al., 2026) to justify the symbolic template approach in the AAAI 2027 paper.

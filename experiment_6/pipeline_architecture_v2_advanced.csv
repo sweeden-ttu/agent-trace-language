@@ -1,0 +1,15 @@
+phase,step,agent,op,description,artifact_produced
+Ingestion,1,scanner,DISCOVER_BUNDLE,Scan public repositories,None
+Ingestion,2,floor_loader,LOAD_FLOOR,Load baseline public solvers,floor_solvers.zip
+Processing,3,analyzer,ANALYZE_TASK,Analyze task constraints,task_analysis.json
+Processing,4,miner,DISCOVER_PATTERN,Mine transformation patterns,pattern.json
+Processing,5,builder,BUILD_ONNX,Build ONNX graph from pattern,task.onnx
+Optimization,6,optimizer,FP16_SURGERY,Convert Float to Float16,task_fp16.onnx
+Optimization,7,optimizer,CAST_COLLAPSE,Collapse adjacent Cast nodes,task_opt.onnx
+Optimization,8,grader,COMPUTE_COST,Evaluate model size/params,cost_report.json
+Verification,9,verifier,VERIFY_TRAIN,Check against train pairs,train_report.json
+Verification,10,verifier,VERIFY_TEST,Check against test pairs,test_report.json
+Checkpoint,11,orch,SAVE_MODEL,Save optimized model,checkpoint_v2.onnx
+Submission,12,blender,BLEND_BUNDLE,Cost-greedy correct-priority blend,submission.zip
+Submission,13,packager,PACKAGE,Create compressed bundle,submission.tar.gz
+Submission,14,orch,SUBMIT,Submit to Kaggle API,score.json
