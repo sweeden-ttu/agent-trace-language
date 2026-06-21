@@ -1,0 +1,21 @@
+{
+  "id": "scottweeden/01_trace_framework",
+  "title": "01_trace_framework",
+  "code_file": "01_trace_framework.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": false,
+  "enable_tpu": false,
+  "enable_internet": true,
+  "dataset_sources": [
+    "scottweeden/neurogolf-2026-agent-trace-framework-v2"
+  ],
+  "competition_sources": [
+    "neurogolf-2026"
+  ],
+  "kernel_sources": [
+    "scottweeden/neurogolf-trace-language-dfa-solvers"
+  ],
+  "model_sources": []
+}

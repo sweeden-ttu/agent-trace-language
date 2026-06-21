@@ -1,0 +1,21 @@
+{
+  "id": "scottweeden/03_optimization_passes",
+  "title": "03_optimization_passes",
+  "code_file": "03_optimization_passes.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": false,
+  "enable_tpu": false,
+  "enable_internet": true,
+  "dataset_sources": [
+    "scottweeden/neurogolf-2026-agent-trace-framework-v2"
+  ],
+  "competition_sources": [
+    "neurogolf-2026"
+  ],
+  "kernel_sources": [
+    "scottweeden/neurogolf-trace-language-dfa-solvers"
+  ],
+  "model_sources": []
+}
