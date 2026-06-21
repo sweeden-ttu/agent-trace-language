@@ -1,0 +1,58 @@
+# Summary
+
+The related work section surveys five strands: agents as automata (Koohestani et al.), the producer-consumer framing (Dijkstra), automata theory and the Chomsky hierarchy, software verification and validation (Hoare, Dijkstra, Pnueli, Clarke-Emerson, Lamport), and the undecidability boundary (Robinson/MRDP). It positions the paper's novelty as extending Koohestani et al.'s classification to a producer-consumer bounding construction.
+
+# Strengths
+
+- The five-strand organization is logical and comprehensive within the paper's chosen scope.
+- It correctly identifies the gap in Koohestani et al. (classification without interaction).
+- The distinction between the paper's V&V approach and FormalLLM's grammar-based constraint (lines 44-51) is well-drawn.
+- The producer-consumer framing as a Chomsky-class question (lines 62-70) is the most original conceptual contribution in the paper.
+
+# Weaknesses
+
+- The section reads as a laundry list of canonical citations rather than a critical engagement with each strand. For example, the V&V section cites Hoare logic, temporal logic, and model checking, but never explains how these are actually used beyond name-dropping (the actual verifier is a DFA keyword matcher, which has no connection to Hoare logic or temporal logic as implemented).
+- Section 2.6 (Complexity, learning, symbolic AI) cites Cook, Karp, Blum, Yao, LeCun, Pearl, McCarthy, and Newell-Simon — but none of these are used substantively in the paper. The "Optuna tuning of LightGBM" being an instance of "constrained combinatorial optimisation" does not require citing Cook's NP-completeness theorem.
+- The LTL formula on line 121 is used as decoration; no LTL model checking is actually performed on the system.
+- The claim of novelty relative to Koohestani et al. (lines 186-193) overstates the contribution. The paper provides no formal interaction theorem; it provides a DFA keyword filter.
+
+# Unsupported Claims
+
+- Lines 110-115: "Hoare triples {P} C {Q} that we apply to each unit-test step" — no Hoare triple is actually constructed in the paper or implementation. The DFA transitions are simple state machines, not Hoare logic.
+- Lines 123-129: Claims to use CTL to "reason about the back-edges of the iterative repair loop" — no CTL model checking is performed.
+
+# Mathematical Issues
+
+- No issues in this section (it is expository).
+
+# Experimental Issues
+
+- N/A (literature survey section).
+
+# References Missing
+
+- The critical work by Vaswani et al. (2017) "Attention Is All You Need" is not cited, despite the paper relying on transformer LLMs.
+- No reference to the extensive RLHF literature that makes LLMs "goal-driven."
+- Missing reference to the DeepMind agent verification work (e.g., Leike et al. 2017, "AI Safety Gridworlds").
+- Koohestani et al. is cited as arXiv:2510.23487. If this paper length is correct, this would be a very recent paper that may not have been peer-reviewed. The authors should verify its claims independently.
+- No reference to Winograd, Terry (the HCI/agent interaction literature).
+
+# Questions For Authors
+
+1. How does the Aho-Corasick DFA verifier relate to Hoare logic, which you claim to "apply to each unit-test step"? The implementation does not compute any pre/post conditions beyond state transitions.
+2. The LTL formula G(plan → F verified) is stated but never model-checked. Was it verified by inspection, by a model checker, or is it aspirational?
+3. If Koohestani et al. (2025) is as recent as the arXiv ID suggests, how did the authors have time to build on it? The paper's claims about Koohestani et al. should be verified independently.
+
+# Required Changes
+
+- Remove or reduce the V&V and temporal logic claims that are not actually implemented. The DFA verifier is a keyword matcher; call it that.
+- Remove citations that are not substantively used (Cook, Karp, Yao, Blum, Pearl, McCarthy, Newell-Simon).
+- Replace the LTL/CTL discussion with an honest description of what the verifier actually does.
+
+# Confidence
+
+5
+
+# Recommendation
+
+Weak Reject

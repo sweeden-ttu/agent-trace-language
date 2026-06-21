@@ -1,0 +1,51 @@
+# Summary
+
+This section fixes notation from Turing, Rabin-Scott, and Hopcroft-Motwani-Ullman: alphabets, strings, languages, grammars, the Chomsky hierarchy, recognising automata (FA, PDA, LBA, TM), recursive enumeration, undecidability, idealised vs. bounded machines, and closure properties.
+
+# Strengths
+
+- The preliminaries are stated correctly and follow standard textbook treatments (Hopcroft et al. 2006).
+- The section is self-contained and useful for a reader unfamiliar with formal language theory.
+- Lemma 1 (Bounded soundness, lines 137-143) is well-stated and technically correct.
+- The closure properties listed (Section 3.6) are standard and accurate.
+
+# Weaknesses
+
+- This section is entirely expository. Despite the paper claiming Theorem 1 as the architectural pivot, all definitions here are standard Chomsky hierarchy material. No original definitions appear.
+- The section is excessively long for a conference paper (180 lines of textbook material). A six-page AAAI paper cannot afford this much space on standard definitions.
+- There is an important asymmetry not discussed: the closure of r.e. under intersection with regular languages produces an r.e. result, which is *not* decidable in general. The decidability comes from the verifier's DFA, not from the closure property. The paper acknowledges this later but the presentation here is misleading.
+
+# Unsupported Claims
+
+- No unsupported claims (this section is standard material).
+
+# Mathematical Issues
+
+- Line 135: "M[b,t] is a finite state machine: its state space is bounded by |Q|·|Γ|^b·b·(t+1)" — this bound mixes tape configuration (|Γ|^b) with position (b) in a way that double-counts. The number of configurations is |Q|·|Γ|^b·b, and (t+1) time steps are not part of the state space but bound the execution length. The formulation is not technically wrong but misleading.
+- The Immerman-Szelepcsényi theorem (line 167) is mentioned but not cited, which is fine for a preliminary section. But the paper should note that LBA membership being PSPACE-complete means the verifier is *not* PSPACE — it's linear-time, Type-3.
+
+# Experimental Issues
+
+- N/A (preliminaries section).
+
+# References Missing
+
+- Sipser's "Introduction to the Theory of Computation" is the standard reference and should be cited alongside Hopcroft et al.
+
+# Questions For Authors
+
+1. The bounded machine M[b,t] — is t the maximum number of steps or the number of time steps used? These are different if the machine can run for fewer steps than the bound.
+2. Are there hidden assumptions about the input distribution when you "fix a tape bound b and a time bound t"?
+
+# Required Changes
+
+- Compress this section significantly. AAAI papers should not devote 180 lines to textbook material.
+- Correct the confusing formulation in line 135.
+
+# Confidence
+
+5
+
+# Recommendation
+
+Borderline (neutral — this section is correct but unnecessary)

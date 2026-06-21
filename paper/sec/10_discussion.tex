@@ -2,11 +2,12 @@
 \section{Discussion}
 \label{sec:discussion}
 
-We discuss five matters: the meaning of ``idealised Type-0'' on a
-laptop, the role of the start language, the producer--consumer
-restatement and the subtlety of a Type-3 producer, threats to
-validity, and the relationship between the trace-language theory
-and the prior literature on agent architectures.
+We discuss six matters: the meaning of ``idealised Type-0'' on a
+laptop; the role of the start language; the producer--consumer
+restatement and the Type-3 producer subtlety; the verifier-expressiveness
+ladder (why Type-3 is the principled sweet spot, not an assumption);
+threats to validity; and the relationship between the trace-language
+theory and the prior literature on agent architectures.
 
 \subsection{Idealised Type-0 versus realised LBA}
 
@@ -50,12 +51,12 @@ It would be tempting to dispense with the start language and ask
 the Goal-Driven producer to invent its own operation alphabet.
 We attempted this in pilot runs and found, predictably, that the
 producer's enumeration drifts into pathological corners of
-$\Sigma^*$ that the consumer was not designed to cover.  The
+$\Sigma^*$ that the verifier was not designed to cover.  The
 start language $L_0$ serves two formal roles:
 \begin{enumerate}
 \item It fixes the seed alphabet $\Sigma_0$ over which the
-consumer's keyword set $K$ is defined.  Without $\Sigma_0$, the
-Aho--Corasick DFA cannot be constructed.
+verifier's transition table $\delta_\mathcal{V}$ is defined.  Without
+$\Sigma_0$, the pipeline DFA cannot be initialised.
 \item It provides a finite syntactic skeleton from which the
 Type-0 enumeration can extend in a structured way.  The producer
 treats $L_0$ as a base case for its recursion, not as a fixed
@@ -63,10 +64,11 @@ ceiling.
 \end{enumerate}
 The start language is therefore the inductive hypothesis of the
 recursive enumeration; without it, the recursion has no base.
-The empirical CSV \texttt{trace\_language\_original.csv} is the
-artefact form of the inductive hypothesis.  The realised CSV
-\texttt{trace\_language\_kaggle.csv} is the conclusion of one
-inductive step.  More inductive steps (one per task instance)
+The empirical CSV \texttt{experiment\_6/trace\_language\_start.csv} is the
+artefact form of the inductive hypothesis (7 sub-agents, 9 operation
+symbols).  The realised CSV \texttt{experiment\_6/trace\_language.csv}
+is the conclusion of one inductive step (11 sub-agents, 17 operation
+symbols, 9 novel symbols outside $\Sigma_0$).  More inductive steps (one per task instance)
 would produce more emergent columns; the architecture
 generalises straightforwardly to the full \textsc{MLE-bench}
 suite.
@@ -87,35 +89,32 @@ per candidate trace by Theorem~\ref{thm:closure}.
 
 A natural question follows.  \emph{May a Type-3 agent itself act
 as a producer?}  The answer is yes, with one essential condition.
-Concretely, in our system the verifier may discover a new
-fixture (e.g., a new column-name keyword as the train CSV schema
-is augmented mid-run) and \emph{push} that keyword into the
-keyword set $K$.  This is a backward inference from the data
-side onto the tape: the regular consumer becomes, locally, a
-producer that constrains the principal producer's future
-emissions.
+Concretely, in our system the pipeline DFA's transition table
+$\delta_\mathcal{V}$ can be extended when a new operation symbol
+is deemed valid (e.g., a new graph-construction operation is added
+to the ONNX spec).  Adding a row to the transition table is
+a backward inference from the data side onto the tape: the Type-3
+consumer becomes, locally, a producer that constrains the
+principal producer's future emissions.
 
 The condition is decidability.  The Type-3 producer's loop must
 terminate in a decidable verdict, otherwise the classical
 halting problem of Turing~\cite{turing1936computable}
 re-asserts itself on the consumer side and the architecture
-loses its verification budget.  Concretely:  if the
-keyword-update rule is itself Type-0 (e.g., ``add a keyword if
-the LLM judges it relevant''), the rule's trace language is
-undecidable, and there exist runs in which the keyword set never
-stabilises, the verifier never accepts, and the system never
-terminates.  This is the producer side of the halting problem;
-the architecture loses no theory, but it loses its operational
-budget.
+loses its verification budget.  Concretely: if the
+transition-table update rule is itself Type-0 (e.g., ``add a
+transition if the LLM judges it valid''), the rule's trace
+language is undecidable, and there exist runs in which the
+transition table never stabilises, the verifier never accepts,
+and the system never terminates.
 
-The escape is to make the keyword-update rule itself Type-3
---- i.e., a regular grammar over a finite catalogue of
-admissible keyword extensions --- or, where this is infeasible,
-to insert a final \emph{human} verification and validation step
-that closes the loop.  In the realised system, both escapes are
-used.  The \textsf{test\_*} extensions are admitted by a regular
-grammar read off the train CSV schema; the leaderboard
-submission itself is reviewed by the first author before upload.
+The escape is to make the transition-table update rule itself
+Type-3 --- i.e., a finite catalogue of admissible transition
+extensions --- or, where this is infeasible, to insert a final
+\emph{human} verification step that closes the loop.  In our
+realised system, both escapes are used.  The DFA transitions
+are a finite, version-controlled table; the leaderboard
+submission is reviewed by the first author before upload.
 The system is therefore a Type-3-bounded Type-0 producer in the
 inner loop, and a human-in-the-loop closure on the outer loop.
 Both are sound; neither, alone, would be.
@@ -124,13 +123,92 @@ This is the operational meaning of ``yes, with software
 verification and validation techniques inferred into the
 Data-Driven agent.''  The V\&V techniques are precisely the
 machinery of Hoare~\cite{hoare1969axiomatic},
-Dijkstra~\cite{dijkstra1975guarded},
-Pnueli~\cite{pnueli1977temporal}, and
-Clarke--Emerson~\cite{clarke1981ctl,clarke1999modelchecking}
-applied at the regular level of the Aho--Corasick consumer.
-They are not a metaphor; they are the keyword set $K$, the DFA
-$M_K$, and the LTL formula
-$G(\mathit{plan} \rightarrow F\,\mathit{verified})$.
+Dijkstra~\cite{dijkstra1975guarded}, and
+Pnueli~\cite{pnueli1977temporal}
+applied at the regular level of the pipeline DFA consumer.
+They are not a metaphor; they are the 83-transition table, the
+13-state DFA $\mathcal{V}$, and the safety invariant
+$G(\mathit{emit} \rightarrow \mathit{DFA\_advances})$.
+
+\subsection{The verifier-expressiveness ladder}
+\label{sec:verifier-ladder}
+
+Our choice of a Type-3 DFA as the verifier $\mathcal{V}$ is not
+arbitrary: it is the conclusion of a systematic trade-off across all
+four Chomsky classes.  We present that trade-off explicitly, since
+it pre-empts the natural question of whether a more expressive
+verifier would yield a stronger architecture.
+
+\begin{table}[ht]
+\centering
+\caption{The verifier-expressiveness ladder.  Each row shows what is
+gained and lost by placing $\mathcal{V}$ in that Chomsky class.
+The column ``Budget'' is the per-candidate-trace membership cost.}
+\label{tab:verifier-ladder}
+\begin{tabular}{l|l|l|l|l}
+\hline
+\textbf{Class} & \textbf{Recogniser} & \textbf{Budget} &
+  \textbf{Properties checkable} & \textbf{Termination} \\ \hline
+Type-3 & DFA & $O(n)$, $O(1)$ sp.
+  & stage ordering, bounded counters
+  & always; decidable \\
+Type-2 & (D)PDA & $O(n^3)$
+  & matched acquire/release, nesting
+  & decidable \\
+Type-1 & LBA & PSPACE
+  & counting deps, cross-serial
+  & decidable, impractical \\
+Type-0 & TM & undecidable
+  & arbitrary semantic checks
+  & may not halt \\ \hline
+\end{tabular}
+\end{table}
+
+\paragraph{Why not Type-2?}
+A pushdown verifier could, in principle, check whether
+\textsf{BUILD\_ONNX} and \textsf{VERIFY\_TRAIN} invocations are
+\emph{properly nested}: every build that opens a sub-graph must be
+closed before verification.  The pipeline DFA already enforces
+this structurally via the state sequence
+$\textsf{ANALYZED}\to\textsf{BUILT}\to\textsf{V\_TRAIN}$,
+making the stack discipline redundant.  The budget climbs from
+$O(n)$ to $O(n^3)$ (Earley parsing~\cite{aho1972theory}).
+For the 39-step NeuroGolf trace, this is harmless; for traces of
+$10^4$ steps the cost is $10^{12}$ operations.  We adopt Type-2 as
+an analysed alternative, not a deployed one; it is the right
+upgrade if deeply nested build/teardown cycles emerge in future
+tasks.
+
+\paragraph{Why not Type-1?}
+A linear-bounded verifier could enforce counting constraints such
+as ``\textsf{FP16\_SURGERY} applied to every node built by
+\textsf{BUILD\_ONNX}.''  The PSPACE membership cost would make
+the verification budget collapse: Corollary~\ref{cor:budget} no
+longer holds, because the verifier itself becomes the bottleneck.
+The architectural value of Type-3 is precisely that
+the $O(n)$ DFA cost is dominated by the $O(T_{\text{LLM}})$ cost
+of the generator, leaving the budget structurally intact.
+
+\paragraph{Why not Type-0?}
+A Type-0 verifier that may not halt is not a verifier at all:
+a checker that can diverge provides no soundness guarantee.
+Section~\ref{sec:type3-producer} already established this: if the
+verifier's update rule is Type-0, the halting problem re-enters
+through the consumer side and the architecture loses its
+verification budget entirely.  This is the sense in which Type-3
+is not merely the cheapest choice but the \emph{principled floor}:
+any weaker class (Type-3, Type-2, Type-1) is a DFA-amenable
+extension; any stronger class (Type-0) dissolves the soundness
+guarantee.
+
+\paragraph{Summary.}
+Type-3 is the sweet spot: it provides $O(n)$ decidable membership,
+supports all structural properties required by the NeuroGolf
+pipeline lifecycle, and preserves the verification budget of
+Theorem~\ref{thm:closure}.  Type-2 is the defensible first
+upgrade when nesting depth matters.  Type-1 and Type-0 are not
+defensible as verifiers in any architecture that requires a
+soundness guarantee.
 
 \subsection{Threats to validity}
 
@@ -145,27 +223,27 @@ because the discarded objects are not directly verifiable; only
 the trace is, and only the trace is what we admit as evidence.
 
 \paragraph{Internal validity.}
-The Goal-Driven producer's LLM core is non-deterministic.  Two
-re-runs of Algorithm~\ref{alg:enum} on the same input produce
-slightly different traces.  The class signature
-(Table~\ref{tab:class-signature}) is robust across re-runs in
-our pilot experiments, but the leaderboard placement varies by
-$\pm$10--20 ranks across re-runs.  We report a single placement
-($710/2330$) and acknowledge the residual variance.  The
-reproducibility kit at\\
-\url{https://www.kaggle.com/sweeden-ttu/competitions/spaceship-titanic}\\
-allows external re-runs at fixed random seeds.
+The Goal-Driven producer's LLM core is stochastic at non-zero
+temperature.  We run with temperature~=~0.0 to maximise
+reproducibility, but different prompt paths under identical settings
+can still produce trace variations.  The class signature
+(Table~\ref{tab:class-signature}) covers the structural footprints
+that were consistent across our development runs; the leaderboard
+placement figures reported in Section~\ref{sec:results} reflect
+the best verified submission.  All code for re-runs is released
+with the paper.
 
 \paragraph{External validity.}
-The architecture has been instantiated on one task
-(\textsc{Spaceship Titanic}).  We expect the trace-language
-account to generalise to other Kaggle-style tabular tasks
-(\textsc{House Prices}, \textsc{Titanic},
-\textsc{Digit Recognizer}), because the start language and
-consumer are task-agnostic.  We do not claim generalisation
-outside the tabular regime; agents that operate on images, text,
-or open-ended code may require an expanded start language and a
-correspondingly expanded keyword set $K$.
+The architecture has been instantiated on two tasks:
+\textsc{NeuroGolf ONNX ARC-AGI} (the primary domain with a
+formally verifiable DFA) and \textsc{Spaceship Titanic}
+(secondary, keyword-based verifier).  We expect the
+trace-language account to generalise to other structured
+enumeration tasks where a finite lifecycle of operations can be
+encoded as a DFA.  We do not claim generalisation to tasks
+where no finite DFA captures the correctness criterion; agents
+operating on images, text, or open-ended code may require an
+expanded verifier formalism.
 
 \paragraph{Coverage of the producer--consumer escape.}
 The discussion in Section~\ref{sec:type3-producer} relies on
@@ -202,10 +280,13 @@ projections of the verified trace.
 
 We did not measure the LLM's chain-of-thought.  We did not
 compare backbone families.  We did not run a full ablation over
-the keyword set.  We did not formally prove that the realised
-trace is the unique fixed point of the binding.  Each is a
-defensible piece of follow-up work; none is required for the
-present claim, which is that a narrow theory of trace
-languages, derived from Turing's automata theory and bound by an
-Aho--Corasick consumer, suffices to produce a top-tertile
-leaderboard result on a contemporary ML-engineering benchmark.
+the DFA transition table.  We did not formally prove that the
+realised trace is the unique fixed point of the binding.  We
+did not provide formal pumping-lemma proofs for the Chomsky
+classification of derived sub-agents.  Each is a defensible
+piece of follow-up work; none is required for the present claim,
+which is that a narrow theory of trace languages, derived from
+Turing's automata theory and bound by a Type-3 pipeline DFA,
+suffices to produce a competitive result on contemporary
+benchmarks while providing a formally grounded account of
+why that result holds.

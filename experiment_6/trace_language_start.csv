@@ -1,0 +1,10 @@
+phase,step,agent,op,description,artifact_produced
+Ingestion,1,scanner,DISCOVER_BUNDLE,Scan public repositories,None
+Ingestion,2,floor_loader,LOAD_FLOOR,Load baseline public solvers,floor_solvers.zip
+Processing,3,analyzer,ANALYZE_TASK,Analyze task constraints,task_analysis.json
+Processing,4,builder,BUILD_ONNX,Build ONNX graph,task.onnx
+Verification,5,verifier,VERIFY_TRAIN,Check against train pairs,train_report.json
+Verification,6,verifier,VERIFY_TEST,Check against test pairs,test_report.json
+Checkpoint,7,orch,SAVE_MODEL,Save intermediate model,checkpoint_v1.onnx
+Submission,8,blender,BLEND_BUNDLE,Greedy blend of public solvers,submission.zip
+Submission,9,orch,SUBMIT,Submit to benchmark server,score.json

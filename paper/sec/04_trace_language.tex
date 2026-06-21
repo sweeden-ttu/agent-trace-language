@@ -26,13 +26,10 @@ the agent.
 \end{definition}
 
 \noindent For the empirical instantiation in
-Section~\ref{sec:expsetup}, $\Sigma$ is the union of the column
-entries of \texttt{trace\_language\_kaggle.csv}.  Examples include
-\texttt{load\_vector\_db(gemini\_embeddings.json)},
-\texttt{compose\_planner\_prompt},
-\texttt{invoke\_gemini(gemini-2.5-flash-lite)},
-\texttt{run\_phase\_unit\_tests(phase; comp\_dir)}, and
-\texttt{train\_stacked\_ensemble(LGBM+XGB+HistGB+linear\_meta)}.
+Section~\ref{sec:expsetup}, $\Sigma$ is the union of the
+entries in the \texttt{op} column of \texttt{trace\_language.csv}.
+Examples include \texttt{DISCOVER\_BUNDLE}, \texttt{BUILD\_ONNX},
+\texttt{FP16\_SURGERY}, and \texttt{VERIFY\_TRAIN}.
 The operation symbol is the \emph{name plus its parenthesised
 argument list as written in the source}; two invocations of the
 same name with different arguments are different operation
@@ -179,26 +176,24 @@ restricted by $R$~\cite{hopcroft2006automata}.
 \subsection{The CSV files \emph{are} languages}
 
 We make explicit the empirical correspondence used throughout the
-sequel.  The header row of \texttt{trace\_language\_kaggle.csv}
+sequel.  The \texttt{agent} column of \texttt{experiment\_6/trace\_language.csv}
 names the sub-agents:
 \[
-\mathcal{A}_1 = \texttt{research\_agent},\quad
+\mathcal{A}_1 = \texttt{scanner},\quad
 \dots,\quad
-\mathcal{A}_{13} = \texttt{kaggle\_trainer}.
+\mathcal{A}_{11} = \texttt{orch}.
 \]
-For $1\le i\le 13$, the $i$-th column of the file (skipping empty
-cells) is a single string $\tau_i \in \Sigma_{\mathcal{A}_i}^*$.
+For $1\le i\le 11$, filtering the file by the $i$-th agent
+yields a single string $\tau_i \in \Sigma_{\mathcal{A}_i}^*$.
 This string is one accepting run of $\mathcal{A}_i$ on the
-\textsc{Spaceship Titanic} input.  The trace language
+\textsc{NeuroGolf ONNX ARC-AGI} input.  The trace language
 $L(\mathcal{A}_i)$ contains, in principle, infinitely many other
-strings; the column records exactly the one that the
+strings; the log records exactly the one that the
 recursive enumeration emitted.
 
-The same correspondence holds for
-\texttt{trace\_language\_original.csv}, with the difference that
-its header has only twelve columns (the start language has no
-\texttt{kaggle\_trainer} agent) and its row entries are
-substantially shorter.
+The same correspondence holds for the unverified start traces,
+with the difference that their sequences are substantially shorter
+before the verifier's feedback loop forces recursive enumeration.
 
 \subsection{Closure under intersection with the verifier}
 
@@ -256,17 +251,22 @@ class of $\mathcal{G}$ does not enlarge the verifier's complexity.
 A trace language $L(\mathcal{A})$ is Type-0 iff $\mathcal{A}$ can
 emit traces whose length grows without a recursive bound in the
 input size, and whose contents reflect arbitrary recursive
-enumerations of the operation alphabet.  In our empirical
-setting, $\mathcal{A}$'s Type-0 status is witnessed by the
-\texttt{kaggle\_trainer} column of
-\texttt{trace\_language\_kaggle.csv}, which contains a strictly
-longer sequence (36 non-empty entries) than any column of
-\texttt{trace\_language\_original.csv} (which contains at most
-fourteen).  The lengthening is the operational footprint of the
-recursive enumeration: the start language emitted twelve seed
-agents; the binding to the Type-3 verifier forced enumeration of
-arbitrarily long check-train-validate cycles; the result was a
-strictly more complex trace, materialised on disk by the
+enumerations of the operation alphabet.  We acknowledge that
+classifying an LLM tool-calling loop as a Type-0 Turing machine
+is a formal analogy; physical LLMs possess finite context windows
+and are therefore strictly finite automata or linear-bounded
+automata. However, for the theoretical analysis of tool enumeration
+over an external unbounded tape (the filesystem and trace log), the
+loop acts as the operational equivalent of Type-0 generation.
+
+In our empirical setting, $\mathcal{A}$'s Type-0 status is witnessed
+by the operational footprint of the \texttt{optimizer} or
+\texttt{builder} loops in \texttt{trace\_language.csv}. The
+lengthening of the trace is the operational footprint of the
+recursive enumeration: the start language emitted basic solver
+templates; the binding to the Type-3 verifier forced enumeration
+of arbitrary check-train-validate and repair cycles; the result
+was a strictly more complex trace, materialised on disk by the
 recursive Type-0 step.
 
 The undecidability that Robinson's

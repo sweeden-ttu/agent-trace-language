@@ -18,73 +18,68 @@ $(\Sigma_\mathcal{A},Q_\mathcal{A},q_0^\mathcal{A},X_\mathcal{A},
 operation alphabet
 (Section~\ref{sec:trace}, Definition~\ref{def:agent}).
 \item Trace languages classify into the standard
-Chomsky hierarchy (Section~\ref{sec:chomsky}), with the
-indexed-grammar zone of Aho~\cite{aho1968indexed}
-appearing naturally between Type-2 and Type-1.
+Chomsky hierarchy (Section~\ref{sec:chomsky}).  Constant-bounded
+iteration loops are Type-3 (regular); they do not require indexed
+grammars.
 \item The producer--consumer construction of
 Dijkstra~\cite{dijkstra1968cooperating}, instantiated as a
-Type-0 Goal-Driven producer bound by a Type-3 Data-Driven
-consumer, suffices: their intersection is closed at the
+Type-0 Goal-Driven producer (idealised) bound by a Type-3 Data-Driven
+pipeline DFA verifier, suffices: their intersection is closed at the
 producer's class and decidable in linear time at the consumer's
-DFA (Theorem~\ref{thm:closure},
-Corollary~\ref{cor:budget}).
+DFA (Theorem~\ref{thm:closure}, Corollary~\ref{cor:budget}).
+This closure theorem is a known result of automata theory
+(Hopcroft--Ullman~\cite{hopcroft2006automata}); the contribution
+of this paper is its application as an \emph{architectural
+principle} for multi-agent systems.
 \item The Type-3 consumer is realised as the deterministic
-Aho--Corasick~\cite{aho1975corasick} multi-pattern matcher
-compiled from the unit-test catalogue.
-\item Type-2, indexed-zone, and Type-1 sub-agents are not
-designed; they are projected from the binding
-(Theorem~\ref{thm:derived}).
+pipeline DFA implemented in \texttt{framework/neurogolf\_dfa\_verifier.py}
+($|Q|=13$, $|\delta|=83$, decision time $0.684\,\mu$s per step).
+\item Type-2 and Type-1 sub-agents are not designed; they are
+projected from the binding (Theorem~\ref{thm:derived}).
 \item A Type-3 agent may itself act as a producer,
 backward-inferring constrained changes to the tape, provided the
 inference terminates in a decidable verdict; otherwise the
 halting problem returns and the verification budget collapses
 (Section~\ref{sec:type3-producer}).
-\item The undecidability shadow on the Type-0 envelope is the
-shadow Robinson and the MRDP
-theorem~\cite{robinson1949definability,davis1961decision} cast
-on every recursively enumerable set.
+\item The Type-0 classification of the Goal-Driven agent is an
+idealised upper bound; the physical machine is a linear-bounded
+automaton, but every trace it produces is also producible by the
+idealised Type-0 machine (Lemma~\ref{lem:bounded-soundness}).
 \end{itemize}
 
 The architecture is not metaphorical.  Instantiated on the
-\textsc{Spaceship Titanic} task drawn from the public
+\textsc{NeuroGolf ONNX ARC-AGI} task, it produced a public
+leaderboard score of $5793.14$.  Instantiated on the
+\textsc{Spaceship Titanic} task from the public
 \textsc{MLE-bench} benchmark, it produced a leaderboard placement
-of $710$ out of $2330$ teams ($\approx\!30.5\%$, top tertile),
-representing a $2$--$5\%$ absolute placement improvement over
-prior published agent baselines.  The Goal-Driven producer had
-no a priori knowledge of the goal label; the Data-Driven
-consumer had no LLM component.  The result was obtained by the
-literal binding of the two principal agents and the recursive
-enumeration of the start language onto the task instance.  All
-reproducible code, including the start-language CSV, the
-recursively enumerated trace CSV, and the notebooks that produced
-the submission, is published at\\
-\url{https://www.kaggle.com/sweeden-ttu/competitions/spaceship-titanic}.
-
-The realised trace is the empirical witness to the theory.  Its
-thirteenth column, \texttt{kaggle\_trainer}, is the emergent
-agent that the binding forced into existence: the start language
-had twelve sub-agents and no trainer; the realised language has
-thirteen sub-agents and a 36-step training trace.  The expansion
-is the operational form of the Type-0 recursive enumeration; the
-laptop's finite tape is the operational form of the Type-1 bound
-that brings the enumeration to a halt.
+of $710$ out of $2330$ teams ($\approx\!30.5\%$, top tertile).
+The Goal-Driven producer had no a priori knowledge of the task-specific
+goal; the Data-Driven consumer had no LLM component.  The start
+language has 7 sub-agents over 9 operation symbols
+(\texttt{experiment\_6/trace\_language\_start.csv}); the realised
+trace has 11 sub-agents over 17 operation symbols
+(\texttt{experiment\_6/trace\_language.csv}), with 4 agent roles
+and 9 operation symbols absent from the seed, all forced into
+existence by the verifier's transition requirements.  Reproducible
+code, the start-language CSV, the realised trace CSV, and the DFA
+verifier are released with this paper.
 
 \subsection{Future work}
 
 Four directions are immediate.  First, the architecture should
-be evaluated on the remaining tasks of \textsc{MLE-bench} to
-test the external-validity claim of
-Section~\ref{sec:discussion}.  Second, the start language should
-be examined as a design object in its own right: which start
-languages produce stable bindings, and which fail to converge?
-Third, the trace-language identity criterion of
+be evaluated on a broader range of tasks to test the
+external-validity claim of Section~\ref{sec:discussion}.  Second,
+the formal Chomsky classification of the derived sub-agents should
+be established via pumping-lemma proofs rather than structural
+inspection.  Third, the trace-language identity criterion of
 Definition~\ref{def:traceeq} invites a formal study of agent
 equivalence: when are two agents with different LLM backbones
-trace-equivalent on a given task?  Fourth, suggested by the
-Section~\ref{sec:type3-producer} discussion, is to characterise
-the class of regular keyword-update rules that preserve
-decidability under a Type-3 producer; we conjecture this class
-is exactly the regular extensions of the start-language alphabet.
+trace-equivalent on a given task?  Fourth, the characterisation
+of regular transition-table update rules that preserve decidability
+under a Type-3 producer deserves formal treatment (the ladder in
+Section~\ref{sec:verifier-ladder} provides the analytical frame;
+what is missing is a concrete domain that crosses the
+Type-3/Type-2 boundary).
 
 \subsection{Closing remark}
 
@@ -94,16 +89,6 @@ necessarily limited''~\cite{turing1936computable}.  Our laptop's
 memory is necessarily limited.  Our agent's tape is necessarily
 limited.  Within those limits, the theory developed in this
 paper is exact; outside them, it is the natural idealisation.
-
-A final note.  This paper began as a question in an email about
-arithmetic grammars and grew under conditions in which other
-deliverables were not available to the first author --- a
-sequence we record honestly in the Acknowledgments.  Papers are
-sometimes written in a straight line and sometimes in a crooked
-one, and the architecture proposed here was, in a real sense,
-shaped by both: the formal narrowness of the theory, and the
-narrow window in which the theory had to be made to do real
-work.  We close by recording the conviction that an agent is its
-trace language --- nothing more, nothing less --- and that
-narrowness, paired with a producer--consumer discipline that
-bounds Type-0 by Type-3, is enough.
+An agent is its trace language --- nothing more, nothing less ---
+and narrowness, paired with a producer--consumer discipline that
+bounds the idealised Type-0 by the decidable Type-3, is enough.

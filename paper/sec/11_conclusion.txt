@@ -1,0 +1,52 @@
+# Summary
+
+Restates the paper's contributions: agents as 7-tuples with trace languages, classification into Chomsky hierarchy, producer-consumer construction with Type-0 (idealised)/Type-3 binding, pipeline DFA verifier (13 states, 83 transitions, 0.684 µs/step), emergent sub-agents (7→11 agents, 9→17 ops), and the undecidability shadow. Lists four future work directions grounded in now-released artefacts.
+
+# Strengths
+
+- The conclusion now correctly describes the pipeline DFA verifier (not Aho-Corasick) as the Type-3 realisation.
+- Type-0 is now consistently qualified as an idealised upper bound, with Lemma 1 as the formal warrant.
+- The empirical numbers are precise and reproducible: 7 start agents / 9 ops → 11 realised agents / 17 ops; 4 emergent agent roles; 9 new op symbols.
+- The verifier-expressiveness ladder (§10.4) is now referenced in the contributions bullet, converting the Type-3 assumption into a derived architectural conclusion.
+- The "architecture is not metaphorical" claim is now backed by two concrete domain results: NeuroGolf score 5793.14 and Spaceship Titanic 710/2330.
+- CSV artefacts are now all named and released: `trace_language_start.csv`, `trace_language.csv`, `neurogolf_dfa_verifier.py`.
+
+# Weaknesses
+
+- The conclusion still contains a potential scope overclaim: "the trace-language account to generalise to other structured enumeration tasks." This is a reasonable conjecture but is presented as a confident expectation.
+- The four future-work directions are now better grounded (artefacts exist), but direction 2 (pumping-lemma proofs for derived sub-agents) should be noted as requiring task-specific structural analysis, not just running existing tools.
+
+# Addressed Since Last Review
+
+- ✅ Removed "thirteenth column / kaggle_trainer" — replaced with factual 7→11 agent expansion.
+- ✅ Removed "2–5% improvement" claim entirely.
+- ✅ Added NeuroGolf score as primary empirical result.
+- ✅ Type-0 qualified as idealised throughout conclusion.
+- ✅ Artefact names corrected to match actual files.
+- ✅ Acknowledged that closure theorem is known; contribution is its architectural application.
+
+# Future-Work Note (New)
+
+The new §11 conclusion lists four directions. A fifth direction, now enabled by the verifier-expressiveness ladder, should be added in future work:
+
+> **Direction 5 (Verifier upgrade path).** Characterise the class of agent task domains for which a Type-2 (PDA) verifier is necessary and sufficient — i.e., tasks where deeply nested build/teardown cycles arise that the Type-3 DFA cannot capture without exponential state-space blowup. The ladder in §10.4 provides the analytical frame; what is missing is a concrete domain example that crosses the Type-3/Type-2 boundary.
+
+This direction is intentionally omitted from the current conclusion because no such domain is in scope; but the reviewer recommends the authors acknowledge it as an open problem if space allows.
+
+# Remaining Issues
+
+- "generalise to other structured enumeration tasks" — qualify with "we conjecture" rather than "we expect."
+- The closing remark's reference to "a question in an email about arithmetic grammars" is preserved from §12 Acknowledgments. If this appears in the conclusion it should be removed; it does not appear in the rewritten conclusion, which is correct.
+
+# Questions For Authors
+
+1. Future-work direction 2 (formal pumping-lemma proofs): do you have a strategy for these, or is this genuinely open? It would strengthen the paper to name the specific lemma technique you'd apply to `analyzer` (likely a Dyck-language pumping argument).
+2. Does the word "expect" in "we expect the trace-language account to generalise" have any evidential basis beyond the two instantiations?
+
+# Confidence
+
+3
+
+# Recommendation
+
+Weak Accept (conditional on scope qualifier on generalisation claim)

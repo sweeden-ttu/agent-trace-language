@@ -1,0 +1,164 @@
+[
+    {
+        "unit": "Artificial intelligence",
+        "course_title": "Introduction to Large Language Models",
+        "course_description": "In this module, you’ll explore the capabilities of large language models and their business applications. You’ll learn about the different types of IBM Granite models and the unique features that make them ideal for enterprise use. You’ll also discover how to craft effective prompts to guide these models and overcome common challenges in their use.",
+        "course_link": "https://skills.yourlearning.ibm.com/activity/MDL-568?ngo-id=0302"
+    },
+    {
+        "unit": "Artificial intelligence",
+        "course_title": "Build Your First Chatbot Using IBM watsonx™",
+        "course_description": "In this course, you will learn the steps to create conversational chatbots that can understand and respond to natural language. You will also understand the fundamentals of Natural Language Processing (NLP) and learn how to apply them to real-world scenarios. Through a hands-on simulation using IBM watsonx, you’ll gain the skills needed to create a simple chatbot.",
+        "course_link": "https://skills.yourlearning.ibm.com/activity/MDL-510?ngo-id=0302"
+    },
+    {
+        "unit": "Artificial intelligence",
+        "course_title": "Classifying Data Using IBM Granite",
+        "course_description": "In this module, you’ll explore the role of generative artificial intelligence in simplifying tasks involving classifying data. You’ll identify methods for selecting an IBM Granite model for classifying text-based data and examine various prompts to use within these models.",
+        "course_link": "https://skills.yourlearning.ibm.com/activity/MDL-563?ngo-id=0302"
+    },
+    {
+        "unit": "Artificial intelligence",
+        "course_title": "Explore Text to Speech Using IBM watson®",
+        "course_description": "This module introduces the fundamentals of text-to-speech (TTS) technology and the role of generative AI in developing these systems. Through a hands-on simulation using IBM watsonx, you’ll gain the skills needed to create and refine your own AI-powered voice synthesis model.",
+        "course_link": "https://skills.yourlearning.ibm.com/activity/MDL-507?ngo-id=0302"
+    },
+    {
+        "unit": "Artificial intelligence",
+        "course_title": "IBM Granite Models for Software Development",
+        "course_description": "In this module, you’ll discover how generative artificial intelligence is rewriting the rules of code creation. You’ll learn about IBM Granite models and discover their different types and the benefits they bring to your coding journey. You’ll also learn how to use IBM Granite models to troubleshoot code, allowing you to identify and fix issues faster. You’ll discover the value of Granite models for software developers and be able to explain how to use them.",
+        "course_link": "https://skills.yourlearning.ibm.com/activity/MDL-567?ngo-id=0302"
+    },
+    {
+        "unit": "Artificial intelligence",
+        "course_title": "Summarizing Data Using IBM Granite",
+        "course_description": "In this module, you’ll explore the role of generative AI in text-based data summarization. Next, you’ll learn about various IBM Granite models for text summarization and how you can choose the right model for your needs. Finally, you’ll explore how to prompt IBM Granite models to summarize text.",
+        "course_link": "https://skills.yourlearning.ibm.com/activity/MDL-564?ngo-id=0302"
+    },
+    {
+        "unit": "Artificial intelligence",
+        "course_title": "Use Generative AI for Software Development Using IBM watsonx™",
+        "course_description": "In this course, you’ll learn how AI can help you write new code, switch code between programming languages, and fix common coding issues. You’ll get a chance to practice using IBM watsonx in a simulation to generate code with the help of simple prompts.",
+        "course_link": "https://skills.yourlearning.ibm.com/activity/MDL-504?ngo-id=0302"
+    },
+    {
+        "unit": "Artificial intelligence",
+        "course_title": "Getting Started with Artificial Intelligence",
+        "course_description": "This credential earner demonstrates a foundational understanding of Artificial Intelligence concepts and processes, including common applications of AI, and generative AI. The individual has worked with generative AI tools to refine and create prompts.",
+        "course_link": "https://skillsbuild.org/college-students/course-catalog/getting-started-with-artificial-intelligence"
+    },
+    {
+        "unit": "Artificial intelligence",
+        "course_title": "Artificial Intelligence Fundamentals",
+        "course_description": "This credential earner demonstrates knowledge of artificial intelligence (AI) concepts, such as natural language processing, computer vision, machine learning, deep learning, chatbots, and neural networks; AI ethics; and the applications of AI. The individual has a conceptual understanding of how to run an AI model using IBM Watson Studio. The earner is aware of the job outlook in fields that use AI and is familiar with the skills required for success in various roles in the domain.",
+        "course_link": "https://skillsbuild.org/college-students/course-catalog/artificial-intelligence-fundamentals"
+    },
+    {
+        "unit": "Artificial intelligence",
+        "course_title": "Building AI Solutions Using Advanced Algorithms and Open Source Frameworks",
+        "course_description": "This badge earner demonstrates knowledge and understanding in technical and scientific concepts related to building AI solutions with open-source frameworks (such as TensorFlow and Keras) to make model predictions using regression, classification, and clustering algorithms such as Naive Bayes, Logistic regression, K-nearest neighbors, Polynomial Linear Regression, SVM (Kernel), Decision tree, and Ensemble learning, K means and DBSCAN for anomaly detection and computer vision.",
+        "course_link": "https://skillsbuild.org/frequently-asked-questions"
+    },
+    {
+        "unit": "Artificial intelligence",
+        "course_title": "Building Trustworthy AI Enterprise Solutions",
+        "course_description": "This badge earner has completed all the learning activities included in this online learning experience, including hands-on experience, concepts, methods, and tools related to exploring the ethical adoption of AI technologies in the enterprise. The individual has demonstrated skills and understanding of the use of AI technologies for business, including: AI industry adoption trends, AI ethical considerations, Natural Language Processing, and Virtual Agents.",
+        "course_link": "https://skillsbuild.org/frequently-asked-questions"
+    },
+    {
+        "unit": "Artificial intelligence",
+        "course_title": "Code Generation and Optimization Using IBM Granite",
+        "course_description": "In this module, you’ll explore how to use IBM Granite models to address a variety of programming challenges. You’ll learn how to generate efficient, reliable, and adaptable code tailored to your project’s needs and optimize the code to improve its performance.",
+        "course_link": "https://skillsbuild.org/college-students/course-catalog/code-generation-and-optimization-using-ibm-granite"
+    },
+    {
+        "unit": "Artificial intelligence",
+        "course_title": "Data Classification and  Summarization Using IBM Granite",
+        "course_description": "In this module, you’ll explore how to construct, judge, and improve prompts for classifying and summarizing data. You’ll practice prompting an IBM Granite model to classify and summarize data, and discover how to adjust model parameters for enhanced output quality, model outputs, and use evaluation insights to adjust prompts and parameters. Finally, you’ll practice adjusting the model parameters to refine the output.",
+        "course_link": "https://skillsbuild.org/college-students/course-catalog/data-classification-and-summarization-using-ibm-granite"
+    },
+    {
+        "unit": "Artificial intelligence",
+        "course_title": "Generative AI in Action",
+        "course_description": "This credential earner has applied technical knowledge of principles of generative AI, prompt engineering techniques, and Python libraries. The individual has demonstrated general knowledge of the methods, applications, and ethical considerations of using GenAI models. The earner has practiced essential workplace skills and explored generative AI career pathways.",
+        "course_link": "https://skillsbuild.org/college-students/course-catalog/generative-ai-in-action"
+    },
+    {
+        "unit": "Cybersecurity",
+        "course_title": "Getting Started with Cybersecurity",
+        "course_description": "This credential earner demonstrates a foundational understanding of cybersecurity key elements and the threats it addresses, including concepts of data privacy, and how to evaluate data security using the CIA triad model. The earner is aware of the job outlook in cybersecurity and is familiar with the skills required for success in various roles. The individual understands how a cybersecurity tool works.",
+        "course_link": "https://skillsbuild.org/college-students/course-catalog/getting-started-with-cybersecurity"
+    },
+    {
+        "unit": "Cybersecurity",
+        "course_title": "Cybersecurity Fundamentals",
+        "course_description": "This badge earner demonstrates a foundational understanding of cybersecurity concepts, objectives, and practices. This includes cyber threat groups, types of attacks, social engineering, case studies, overall cyber security risk management strategies, cryptography, and common approaches that organizations take to prevent, detect, and respond to cyber attacks. This also includes an awareness of the job market. Badge earners can use this knowledge to pursue further education for a variety of roles in cybersecurity.",
+        "course_link": "https://skillsbuild.org/college-students/course-catalog/cybersecurity-fundamentals"
+    },
+    {
+        "unit": "Cybersecurity",
+        "course_title": "Enterprise Security in Practice",
+        "course_description": "This badge earner has completed all the learning activities included in this online learning experience, including hands-on experience, concepts, methods and tools related to the enterprise security domain. The individual has demonstrated skills and understanding in the approaches to elevate an organization’s overall security posture, by adopting practices, methods and tools that increase enterprise cyber resilience.",
+        "course_link": "https://skillsbuild.org/frequently-asked-questions"
+    },
+    {
+        "unit": "Cybersecurity",
+        "course_title": "Getting Started with Threat Intelligence and Hunting",
+        "course_description": "This badge earner has completed all the learning activities included in this online learning experience, including hands-on experience, concepts, methods and tools related to the threat intelligence and hunting domain. The individual has demonstrated domain knowledge and understanding in adopting practices, methods and tools that relates to the activities performed in cyber threat hunting.",
+        "course_link": "https://skillsbuild.org/frequently-asked-questions"
+    },
+    {
+        "unit": "Cybersecurity",
+        "course_title": "Security Operations Center in Practice",
+        "course_description": "This badge earner has completed all the learning activities included in this online learning experience, including hands-on experience, concepts, methods and tools related to the Security Operations Center’s domain. The individual has developed skills around techniques, technologies, roles and scenarios needed to establish the foundations of a Security Operations Center (SOC) within an organization.",
+        "course_link": "https://skillsbuild.org/frequently-asked-questions"
+    },
+    {
+        "unit": "Data science",
+        "course_title": "Getting Started with Data",
+        "course_description": "This credential earner demonstrates a foundational understanding of data concepts, such as types of data, big data, the data analytics process, data visualization, and the data science landscape. The individual has worked with data analytics tool to import, analyze and visualize data.",
+        "course_link": "https://skillsbuild.org/college-students/course-catalog/getting-started-with-data"
+    },
+    {
+        "unit": "Data science",
+        "course_title": "Data Fundamentals",
+        "course_description": "This credential earner demonstrates knowledge of data analytics concepts, methodologies and applications of data science, and the tools and programming languages used in the data ecosystem. The individual has a conceptual understanding of how to clean, refine, and visualize data using IBM Watson Studio. The earner is aware of the job outlook in data and is familiar with the skills required for success in various roles in the domain.",
+        "course_link": "https://skillsbuild.org/college-students/course-catalog/data-fundamentals"
+    },
+    {
+        "unit": "Data science",
+        "course_title": "Enterprise Data Science in Practice",
+        "course_description": "This badge earner has completed all the learning activities included in this online learning experience including hands-on labs, concepts, methods, and tools related to the data science methodology. They demonstrate skills and understanding of the Data Science methodology by engaging in real-wold scenarios and role-playing the process/tools used by a data science team to address real-world enterprise challenges in the insurance industry leveraging cutting-edge fraud analytics approaches and technologies.",
+        "course_link": "https://skillsbuild.org/frequently-asked-questions"
+    },
+    {
+        "unit": "Data science",
+        "course_title": "Machine Learning for Data Science Projects",
+        "course_description": "This earner completed all learning activities included in this online learning experience related to advanced topics core to the data science profession including: Data Modeling techniques; Machine Learning; Deep Learning algorithms; Data Science Automation; demonstration of advanced skills application in the field of Data Science by role-playing critical roles in a data science team using latest AI tools for analytics/automation to address real problems.",
+        "course_link": "https://skillsbuild.org/frequently-asked-questions"
+    },
+    {
+        "unit": "Cloud",
+        "course_title": "Cloud Computing Fundamentals",
+        "course_description": "This credential earner demonstrates knowledge of cloud computing, including cloud services, deployment models, virtualization, orchestration, and cloud security. The individual is aware of cloud benefits for users and businesses. The individual has a conceptual understanding of how to create a container, deploy a web app to the cloud, and analyze security in a simulated environment. The earner is aware of the job outlook in cloud computing and the skills required for success in various roles.",
+        "course_link": "https://skillsbuild.org/college-students/course-catalog/cloud-computing-fundamentals"
+    },
+    {
+        "unit": "Cloud",
+        "course_title": "Journey to Cloud: Envisioning Your Solution",
+        "course_description": "This credential earner demonstrates knowledge and understanding of the digital transformation drivers made possible by cloud technologies and services. This includes: how cloud works, its capabilities, types, and delivery models (IaaS, SaaS, and PaaS); digital transformation strategies such as Agile practices, the IBM Garage Method, and Enterprise Design Thinking to help organizations get started on their transformation journey; and deploying a test pilot cloud application using IBM Code Engine.",
+        "course_link": "https://skillsbuild.org/frequently-asked-questions"
+    },
+    {
+        "unit": "Cloud",
+        "course_title": "Journey to Cloud: Orchestrating Your Solution",
+        "course_description": "This credential earner demonstrates knowledge and understanding in the intricate relationship between the enterprises embracing the journey to Cloud adoption and the cloud service providers. The credential earner acquired advanced skills on cloud computing adoption concepts such as compliance, data management, data protection, cloud security, service management and operations, ITIL, incident, problem and change management, site reliability engineering, AIOps, and governance.",
+        "course_link": "https://skillsbuild.org/frequently-asked-questions"
+    },
+    {
+        "unit": "Cloud",
+        "course_title": "Journey to Cloud: Transforming Your Culture",
+        "course_description": "This credential earner demonstrates knowledge and understanding in cloud adoption concepts such as cloud culture, modern cloud practices, and the corresponding roles, with a focus on cloud development practices such as DevOps & Agile. The credential earner explores technical concepts such as cloud-native architecture, microservices, containerization, and APIs and understands what organizational changes may be required when an organization decides to migrate its workloads to the cloud.",
+        "course_link": "https://skillsbuild.org/frequently-asked-questions"
+    }
+]

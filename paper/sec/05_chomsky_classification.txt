@@ -1,0 +1,49 @@
+# Summary
+
+Classifies the empirical sub-agents from `experiment_6/trace_language.csv` by Chomsky type: Type-3 (scanner, floor_loader, grader, packager, verifier), Type-2 (analyzer, miner), Type-1 (optimizer), Type-0/idealised (builder, blender). States the formal binding G‖V and the minimality claim. Now references the verifier-expressiveness ladder in §10.4 and explicitly qualifies Type-0 as an idealised upper bound.
+
+# Strengths
+
+- The summary table (Table 1) is clear and covers all 11 sub-agents in the actual CSV (not the obsolete 13-agent description).
+- The preamble now correctly names the NeuroGolf ONNX ARC-AGI domain and cites `experiment_6/trace_language.csv`.
+- Type-0 is now qualified as an idealised upper bound via Lemma 1 (bounded soundness), removing the strongest version of the Type-0 overclaim.
+- The forward reference to §10.4 (verifier-expressiveness ladder) converts the Type-3 verifier from an unjustified assumption into a derived conclusion.
+- The minimality slogan is now grounded: the ladder in §10.4 shows Type-3 is the principled floor, not an arbitrary choice.
+- The preamble explicitly states classifications are by structural inspection, not pumping-lemma proofs.
+
+# Weaknesses
+
+- **The classification is still post-hoc and structural.** No pumping-lemma or Myhill-Nerode argument is provided for any sub-agent. The preamble now admits this, but the claims in the body text still read as assertions.
+- The Type-2 claim for `analyzer` and `miner` relies on "nested graph-building structures that naturally map to context-free productions." This analogy is adequate for a conference paper but would not survive journal review.
+- The Type-1 claim for `optimizer` (LBA hallmark: trace bounded by constant multiple of input graph size) is the strongest individual claim. It could be strengthened by measuring actual trace-length growth against input graph size in a scaling experiment.
+- Table 1 includes `orch` as Type-3 (FA), which is plausible but never argued.
+
+# Addressed Since Last Review
+
+- ✅ Replaced "Spaceship Titanic" with NeuroGolf ONNX in the section preamble.
+- ✅ Added reference to Lemma 1 (bounded soundness) to qualify Type-0.
+- ✅ Added forward reference to §10.4 verifier-expressiveness ladder.
+- ✅ Preamble now explicitly states structural inspection, not formal proof.
+- ✅ Table now covers 11 actual agents (not 13 obsolete ones).
+
+# Type-3 Justification Critique (New)
+
+The inclusion of the verifier-expressiveness ladder (§10.4) provides a solid theoretical foundation for the Type-3 verifier choice. By framing Type-3 as the "principled floor" that guarantees $O(n)$ decidability and preserves the verification budget, the paper avoids treating it as an arbitrary constraint. This directly answers the previous critique regarding the justification of the Type-3 bounding.
+
+# Remaining Issues
+
+- Classification proofs deferred to future work — acceptable for a conference paper if clearly stated (it is).
+- `orch` Type-3 claim could use one sentence of justification.
+
+# Questions For Authors
+
+1. For the Type-2 claim on `analyzer`: can you sketch the context-free grammar (even informally) that generates `ANALYZE_TASK → DISCOVER_PATTERN → ANALYZE_TASK` recursive patterns?
+2. For the Type-1 claim on `optimizer`: can you show that optimizer trace length scales linearly with the ONNX graph node count?
+
+# Confidence
+
+3
+
+# Recommendation
+
+Weak Accept (conditional on pumping-lemma caveat staying explicit in text)

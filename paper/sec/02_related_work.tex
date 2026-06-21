@@ -102,8 +102,13 @@ sub-agent (Type-2) and the linear-bounded sub-agent (Type-1).
 The Aho--Corasick paper~\cite{aho1975corasick} compiles a finite
 keyword set into a deterministic finite automaton that recognises
 the union of the keywords in linear time and constant space.  In
-our framework Aho--Corasick is \emph{the} canonical realisation
-of the Data-Driven Type-3 consumer.
+our framework Aho--Corasick is the canonical example of a
+Type-3 construction for keyword-based matching.  The realised
+Data-Driven verifier in this paper is instead a pipeline lifecycle
+DFA compiled from the 13-state transition table of
+\texttt{neurogolf\_dfa\_verifier.py}; it plays the same
+architectural role as Aho--Corasick but constrains pipeline-stage
+ordering rather than keyword occurrence.
 
 \subsection{Software verification and validation}
 
@@ -187,7 +192,12 @@ Koohestani et al.~\cite{koohestani2025automata} is the
 producer--consumer construction: where they classify, we bound;
 where they say which class an agent inhabits, we say which class
 \emph{must} consume an agent of class $i$ in order for the system
-as a whole to remain decidable.  The empirical instantiation in
-Sections~\ref{sec:expsetup}--\ref{sec:results} is reported as
-data, not as theory, and stands or falls on its own
-reproducibility artefacts.
+as a whole to remain decidable.  The empirical instantiation
+(Sections~\ref{sec:expsetup}--\ref{sec:results}) demonstrates the
+trace-language account on two tasks with a Type-3 pipeline DFA
+as the verifier.  The verifier-expressiveness ladder
+(Section~\ref{sec:verifier-ladder}) establishes that Type-3 is the
+principled floor: lower than Type-0 (which dissolves soundness)
+and more budget-preserving than Type-1 or Type-2.  The empirical
+instantiation is reported as data, not as theory, and stands or
+falls on its own reproducibility artefacts.

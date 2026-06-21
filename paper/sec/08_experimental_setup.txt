@@ -1,0 +1,64 @@
+# Summary
+
+Describes the experimental setup: the Spaceship Titanic benchmark, hardware/software environment (single laptop + HPCC), the start language L0 (constructed from MLE-bench stubs), the verifier keyword set K (~54 keywords, ~1200 chars, ~10^3 DFA states), four pre-registered probes (P1-P4), and reproducibility artefacts.
+
+# Strengths
+
+- The four pre-registered probes (P1-P4) are well-structured and each has a clear refutation condition.
+- The hardware/software environment documentation is adequate for reproducibility.
+- The start language construction process is described (hand-crafted from MLE-bench stubs, task-agnostic).
+- The selection of Spaceship Titanic for its "non-trivial feature engineering" and "clearly defined submission validity criterion" is reasonable.
+
+# Weaknesses
+
+- **The start language L0 is described as "constructed by hand from the open-source MLE-bench agent stubs" (lines 60-62). This contradicts the claim in the introduction that the system "has no a priori knowledge of the goal label or the test set."** Hand-constructing a start language from MLE-bench stubs that encode knowledge about Kaggle competition structure is a significant inductive bias.
+- The verifier keyword set K (lines 70-93) includes Spaceship Titanic column names (HomePlanet, CryoSleep, Cabin, Destination, etc.). The paper claims the start language was "task-agnostic" but the keyword set includes task-specific schema information. The authors acknowledge this as "adjoining the column-name and dtype keywords mechanically extracted from the train.csv schema" (lines 83-89), but this means the verifier contains task-specific knowledge.
+- **The paper claims L0 "contains twelve sub-agents and their seed action alphabets — nothing else" and that L0 contains "approximately 90" operation symbols. But trace_language_original.csv does not exist in the repository, so none of these claims can be verified.**
+- The probes are pre-registered only in the sense that they are written in the paper before the results section. There is no evidence of pre-registration (no timestamped document, no arXiv version history showing pre-experiment registration).
+
+# Unsupported Claims
+
+- Lines 60-68: "The start language was constructed by hand from the open-source MLE-bench agent stubs and from the standard Kaggle CLI documentation. No competition-specific knowledge entered L0: the start language is task-agnostic." This cannot be verified because L0's CSV is missing.
+- Lines 91-93: "The full K is enumerated in Appendix A" — Appendix A does not exist in the paper source.
+
+# Mathematical Issues
+
+- The Aho-Corasick DFA having "on the order of 10^3 states" (line 93) for ~54 keywords with total length ~1200 characters is plausible but cannot be verified without the actual Aho-Corasick implementation.
+- Probe P4's refutation condition ("placement strictly worse than 777/2330") is stated but the statistical significance of 777 as a threshold is not justified. Why 777 and not some other number?
+
+# Experimental Issues
+
+- **Fatal: trace_language_original.csv does not exist in the repository.** This CSV is the entire empirical foundation of the paper's claims about the start language, the number of sub-agents, the seed alphabets, and the verifier keyword set.
+- **Similarly, trace_language_kaggle.csv does not exist.**
+- The claim that L0 has ~90 operation symbols (line 58) cannot be verified.
+- The reproducibility artefacts URL (https://www.kaggle.com/sweeden-ttu/competitions/spaceship-titanic) points to a Kaggle user page, not a specific submission or competition entry that can be independently verified.
+- The experiments were run on a single laptop (plus HPCC for ablation), but the specific laptop specifications (RAM, CPU, GPU, disk space) are not provided beyond "macOS development machine."
+- The LLM backbone is Google Gemini, but no specific model versions or API parameters are locked (temperature, top_p, max_tokens, etc.) that would enable reproduction.
+
+# References Missing
+
+- Reference to the specific MLE-bench version or commit used.
+- Reference to the Kaggle Spaceship Titanic competition rules and metric.
+- Reference to the Gemini API documentation for the specific model versions used.
+
+# Questions For Authors
+
+1. Where are trace_language_original.csv and trace_language_kaggle.csv? These are the only empirical artefacts that support the claims about the start language, the sub-agents, and the bound. Without them, the experimental section is vacuous.
+2. How was the start language confirmed to be "task-agnostic" while containing Spaceship Titanic column names in the verifier's keyword set?
+3. What is the specific MLE-bench commit used to construct L0?
+4. What was the total cost (in API calls, tokens, and dollars) of running Algorithm 1 on Spaceship Titanic?
+
+# Required Changes
+
+- Provide trace_language_original.csv and trace_language_kaggle.csv, or remove all claims that depend on them.
+- Clearly distinguish between task-agnostic components (the start language's operation alphabet) and task-specific components (the verifier's keyword set K).
+- Provide hardware specifications (CPU, RAM, GPU) and LLM API configuration (temperature, max_tokens, model version).
+- Create Appendix A with the keyword set K, or reference the code location.
+
+# Confidence
+
+5
+
+# Recommendation
+
+Strong Reject

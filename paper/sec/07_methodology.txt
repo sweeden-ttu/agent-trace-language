@@ -1,0 +1,55 @@
+# Summary
+
+Describes the Goal-Driven/Data-Driven architecture operationally: the two principal agents (G and V), the binding loop, derivation of Type-2/Type-1 sub-agents via projection, Algorithm 1 (recursive enumeration), Hoare-triple obligation per step, and temporal-logic correctness properties. Now includes a forward reference to §10.4 (verifier-expressiveness ladder) explicitly justifying the Type-3 verifier choice as the principled floor.
+
+# Strengths
+
+- Algorithm 1 (RecursivelyEnumerate) is clear and well-structured.
+- The forward reference to §10.4 in the binding subsection now makes the Type-3 choice a derived conclusion rather than an assumption.
+- The Hoare-triple/LTL content (§7.5–7.6) correctly frames the architecture as "verification-by-construction."
+- The trace_language_start.csv and trace_language.csv references are now consistent with actual artefacts.
+
+# Weaknesses
+
+- **Algorithm 1 still does not specify what happens when the LLM produces a malformed continuation.** The recovery path (feed failure back as percept) is described at one line; a concrete encoding of the failure percept is missing.
+- **The Hoare-triple claim (§7.5) is not directly implemented.** The DFA verifier checks symbol-sequence membership, not formal pre/post-conditions on a typed state space. The claim is that the DFA transition acts as a mechanical Hoare-triple checker — this is philosophically correct but technically imprecise. No concrete triple is exhibited.
+- **The LTL safety/liveness formulas are stated but not model-checked.** The paper says they are "decided by inspection of the model-checker on the orchestrator's CFG" — but no Kripke structure is provided and no model checker was run.
+- The projection theorem (Theorem 2) is mathematically trivial; the paper correctly notes this in the proof sketch but the surrounding prose still uses "emerge" language that overstates the novelty.
+
+# Addressed Since Last Review (Alternative-Verifier-Class Critique)
+
+- ✅ §7 now contains the forward reference: "The choice of Type-3 as V's class is not a free parameter: it is the principled floor of the verifier-expressiveness trade-off established in §10.4."
+- ✅ The new §10.4 table systematically shows why Type-2, Type-1, and Type-0 verifiers are inferior for this architecture's goals.
+- ✅ The "Why not Type-2?" paragraph explains why a PDA verifier is redundant given the DFA's stage-ordering enforcement.
+- ✅ The "Why not Type-0?" paragraph explains why a TM verifier dissolves the soundness guarantee.
+
+# Remaining Issues
+
+- **Hoare/LTL gap:** Either remove the Hoare-triple and LTL subsections or replace with a single concrete example that is actually verifiable. Current text makes it appear the paper verified LTL properties it did not verify.
+- **Algorithm 1 error handling:** Add one sentence specifying the failure-percept encoding (e.g., "the DFA's current error state name is appended to the LLM's next prompt").
+
+# Alternative-Verifier-Class Critique (New)
+
+The new §10.4 (verifier-expressiveness ladder) directly addresses the critique that Type-3 was unjustified:
+
+| Response | Addressed? |
+|---|---|
+| Type-2 PDA would check nesting | ✅ — shown redundant by DFA stage ordering |
+| Type-1 LBA costs PSPACE | ✅ — budget collapses argument made |
+| Type-0 TM may not halt | ✅ — dissolves soundness guarantee |
+| Type-3 DFA is principled floor | ✅ — explicit conclusion in summary paragraph |
+
+The ladder is analytically sound. The only gap is the absence of a scaling experiment showing what the `O(n³)` PDA cost would actually be on longer traces — the paper gives the `10⁴`-step example analytically but does not measure it.
+
+# Questions For Authors
+
+1. The Hoare-triple §7.5: give one concrete triple `{P_t} w_t {P_{t+1}}` that the DFA transition table actually checks, showing P_t is the DFA's current state and P_{t+1} is the next state.
+2. The LTL formulas §7.6: state explicitly that these are *intended* properties not *verified* properties, or run a model-checker on a finite abstraction.
+
+# Confidence
+
+3
+
+# Recommendation
+
+Weak Accept (conditional on Hoare/LTL qualification and Algorithm 1 error-path clarification)

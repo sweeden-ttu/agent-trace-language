@@ -29,10 +29,9 @@ $\mathcal{G}$ is given exactly the following information at
 start-up:
 \begin{itemize}
 \item the start-language alphabet
-$\Sigma_0$ (the operations columns of
-\texttt{trace\_language\_original.csv});
+$\Sigma_0$ (the initial seed template operations);
 \item the empty workspace directory \texttt{/comp\_dir/};
-\item the boilerplate Kaggle CLI configuration.
+\item the boilerplate evaluation harness configuration.
 \end{itemize}
 $\mathcal{G}$ is \emph{not} given the goal label
 (\textsf{Transported}), the public/private leaderboard
@@ -41,24 +40,20 @@ principle, the entirety of $\Sigma_0^*$, restricted only by what
 $\mathcal{G}$'s LLM core happens to enumerate.
 
 \paragraph{Data-Driven verifier $\mathcal{V}$.}
-$\mathcal{V}$ is the Aho--Corasick DFA $M_K$ described in
+$\mathcal{V}$ is the deterministic pipeline state DFA described in
 Section~\ref{sec:indexed} and Proposition~\ref{prop:verifier-dfa}.
-Its keyword set $K$ is the union of the operation symbols in the
-\texttt{unit\_test\_runner} and \texttt{tools\_index} columns of
-\texttt{trace\_language\_original.csv}, extended only by the
-mechanical inclusion of the column-name and dtype tests
-generated from the
-\textsc{Spaceship Titanic} \texttt{train.csv} schema.
+It tracks the compilation, optimization, and verification lifecycle
+of the pipeline graph.
 $\mathcal{V}$ has no LLM component; it is a deterministic linear-time
-checker.  Its decision function is
+checker.  Its decision function is formally the \emph{success criterion}:
 \[
 h_\mathcal{V}(\tau) \;=\;
 \begin{cases}
-\mathsf{accept} & \text{if every required keyword class is
-matched in } \tau \\
+\mathsf{accept} & \text{if the DFA ends in } \textsf{SUBMITTED} \text{ or } \textsf{PACKAGED} \\
 \mathsf{reject} & \text{otherwise.}
 \end{cases}
 \]
+A trace $\tau$ is strictly successful iff $h_\mathcal{V}(\tau) = \mathsf{accept}$.
 
 \subsection{The binding}
 
@@ -68,19 +63,23 @@ L(\mathcal{G}\,\Vert\,\mathcal{V}) \;=\; L(\mathcal{G})\;\cap\;
 L(\mathcal{V}) \quad\in\quad \mathcal{L}_0
 \]
 with membership decidable in $O(n)$ on the verifier side
-(Theorem~\ref{thm:closure}, Corollary~\ref{cor:budget}).
+(Theorem~\ref{thm:closure}, Corollary~\ref{cor:budget}).  The
+choice of Type-3 as $\mathcal{V}$'s class is not a free parameter:
+it is the principled floor of the verifier-expressiveness trade-off
+established in Section~\ref{sec:verifier-ladder}.
 
 In implementation, the binding is realised by an outer loop:
 \begin{enumerate}
 \item $\mathcal{G}$ proposes a candidate trace prefix $\tau_t$.
-\item $\mathcal{V}$ runs its DFA on $\tau_t$, accepting or
-rejecting in linear time.
-\item If $\mathcal{V}$ rejects, the rejected suffix is discarded
-and $\mathcal{G}$ is advised (by feeding back the failed-test
-list as a percept) to enumerate further.
+\item $\mathcal{V}$ runs its DFA on $\tau_t$, advancing its state in
+linear time.
+\item If $\mathcal{V}$ transitions to \textsf{REJECTED} or \textsf{ERROR},
+the rejected suffix is discarded
+and $\mathcal{G}$ is advised (by feeding back the failure state
+as a percept) to enumerate further.
 \item If $\mathcal{V}$ accepts and the accepted trace contains
-a \textsf{write\_submission\_csv} step, the loop terminates and
-the submission is uploaded.
+a \textsf{SUBMIT} step, the loop terminates and
+the graph is uploaded.
 \end{enumerate}
 The loop terminates because the laptop's tape is finite (see
 Section~\ref{sec:discussion}), or because the verifier accepts a
@@ -89,10 +88,11 @@ first.
 
 \subsection{Derivation of the Type-2 and Type-1 sub-agents}
 
-The Type-2 sub-agents \texttt{planner\_agent},
-\texttt{reviewer\_agent} and the Type-1 sub-agents
-\texttt{task\_orchestrator}, \texttt{kernel\_pipeline} were not
-designed.  They are projections of the verified trace language
+The Type-2 sub-agents \texttt{analyzer},
+\texttt{miner} and the Type-1 sub-agent
+\texttt{optimizer} were not explicit components
+designed independently of the problem logic.  They are projections
+of the verified trace language
 $L(\mathcal{G}\,\Vert\,\mathcal{V})$ onto the orchestration
 substrate.
 
@@ -113,22 +113,20 @@ deletes every symbol not in $\Sigma'$.
 
 \begin{theorem}[Derived sub-agents]
 \label{thm:derived}
-Let $\Sigma_{\textsf{planner}}$ be the operation alphabet of the
-\texttt{planner\_agent} column of
-\texttt{trace\_language\_kaggle.csv}.  Then
+Let $\Sigma_{\textsf{analyzer}}$ be the operation alphabet of the
+\texttt{analyzer} column of \texttt{experiment\_6/trace\_language.csv}.
+Then
 \[
-L(\texttt{planner\_agent}) \;=\;
-\pi_{\Sigma_{\textsf{planner}}}\bigl(\,L(\mathcal{G}\,\Vert\,\mathcal{V})\,
+L(\texttt{analyzer}) \;=\;
+\pi_{\Sigma_{\textsf{analyzer}}}\bigl(\,L(\mathcal{G}\,\Vert\,\mathcal{V})\,
 \bigr).
 \]
-The class of $L(\texttt{planner\_agent})$ is no greater than
+The class of $L(\texttt{analyzer})$ is no greater than
 $\mathcal{L}_0$ (because projection cannot raise class) and is
-shown by inspection in Section~\ref{sec:chomsky} to be
+mapped structurally in Section~\ref{sec:chomsky} to
 $\mathcal{L}_2$.  Analogous statements hold for
-\texttt{reviewer\_agent} (Type-2),
-\texttt{sop\_orchestrator} (indexed),
-\texttt{task\_orchestrator} (Type-1), and
-\texttt{kernel\_pipeline} (Type-1).
+\texttt{miner} (Type-2),
+and \texttt{optimizer} (Type-1).
 \end{theorem}
 
 \begin{proof}[Sketch]
@@ -142,7 +140,28 @@ class assignment is by structural inspection of the column.\qed
 
 The minimality slogan of the paper is therefore literally true:
 the architect designs only $\mathcal{G}$ and $\mathcal{V}$.  The
-intermediate-class agents emerge from the binding.
+intermediate-class agents emerge from the binding via the
+following explicit projection step.
+
+\begin{figure}[ht]
+\noindent\rule{\columnwidth}{0.4pt}
+\textbf{Algorithm 2.} \textsc{ProjectSubAgent}$(\tau, \Sigma')$
+\par\noindent\rule{\columnwidth}{0.4pt}
+\begin{algorithmic}[1]
+\REQUIRE Verified trace $\tau$, target alphabet $\Sigma'$ for the sub-agent.
+\ENSURE Projected sub-trace $\pi_{\Sigma'}(\tau)$.
+\STATE $\tau_{sub} \gets \varepsilon$;
+\FOR{each $w_i \in \tau$}
+  \IF{$w_i \in \Sigma'$}
+    \STATE $\tau_{sub} \gets \tau_{sub} \cdot w_i$;
+  \ENDIF
+\ENDFOR
+\RETURN $\tau_{sub}$;
+\end{algorithmic}
+\rule{\columnwidth}{0.4pt}
+\caption{Sub-agent Projection from the verified trace.}
+\label{alg:projection}
+\end{figure}
 
 \subsection{The recursive-enumeration procedure}
 
@@ -164,9 +183,9 @@ $s\gets q_0^\mathcal{V}$.
 \LOOP
   \STATE $(q', w) \gets \delta_\mathcal{G}(q, x)$.
   \STATE $s' \gets \delta_\mathcal{V}^*(s, w)$ \,\,\,\,\,\#
-       advance the Aho--Corasick DFA on $w$.
-  \IF{$s'$ is a reject state}
-    \STATE feed the failed-keyword witness back to $\mathcal{G}$
+       advance the pipeline DFA on $w$.
+  \IF{$s'$ is a reject/error state}
+    \STATE feed the failure witness back to $\mathcal{G}$
     as a percept.
   \ELSE
     \STATE $\tau \gets \tau\cdot w$;\quad $q\gets q'$;\quad $s\gets s'$.
@@ -195,18 +214,16 @@ finite time.
 \subsection{What the algorithm produces}
 
 When Algorithm~\ref{alg:enum} is run on the
-\textsc{Spaceship Titanic} input, the operation alphabet
+\textsc{NeuroGolf ONNX} input, the operation alphabet
 $\Sigma_0$ extends to $\Sigma_1 = \Sigma_0\cup\{\text{symbols
-emitted along the verified path}\}$.  The thirteenth column of
-the resulting CSV is the \texttt{kaggle\_trainer} column: a
-strictly new sub-agent whose alphabet contains symbols absent
+emitted along the verified path}\}$.  The additional columns of
+the resulting CSV are the emergent agents:
+strictly new sub-agents whose alphabets contain symbols absent
 from $\Sigma_0$ (e.g.,
-\texttt{train\_stacked\_ensemble(LGBM+XGB+HistGB+linear\_meta)},
-\texttt{tune\_lightgbm\_with\_optuna(n\_trials=30)},
-\texttt{bootstrap\_indices(85pct;\ per\_episode\_random\_state)}).
-Its emergence is forced by the verifier rejecting any trace that
-omits a training step, not by the architect having pre-designed
-it.
+\texttt{FP16\_SURGERY}, \texttt{BLEND\_BUNDLE}, \texttt{VERIFY\_TRAIN}).
+Their emergence is forced by the verifier rejecting any trace that
+fails to optimize or correctly shape the ONNX graph, not by the architect having pre-designed
+them.
 
 The empirical CSV is therefore a fixed point of the binding:
 \[
@@ -216,7 +233,7 @@ The empirical CSV is therefore a fixed point of the binding:
 \]
 and the verified trace $\tau^*\in L(\mathcal{G}\,\Vert\,\mathcal{V})$
 is exactly the column-wise concatenation of the recorded entries
-in \texttt{trace\_language\_kaggle.csv}.
+in \texttt{experiment\_6/trace\_language.csv}.
 
 \subsection{Hoare-triple obligation per step}
 
@@ -227,35 +244,42 @@ Dijkstra~\cite{dijkstra1975guarded}:
 \[
 \{\,P_t\,\}\quad w_t\quad\{\,P_{t+1}\,\}
 \]
-where $P_t$ is the precondition holding on the state space
-before the $t$-th emitted operation $w_t$, and $P_{t+1}$ is the
-postcondition that the verifier checks via its
-$\delta_\mathcal{V}$ transition.  When the precondition fails,
-the verifier rejects; when the postcondition fails, the verifier
-also rejects; the trace is admitted iff every Hoare triple
-along the emitted path holds.
-
-This is the formal sense in which the architecture is
-\emph{verification-by-construction}: the verifier's DFA is the
-mechanical realisation of a finite Hoare-style proof obligation
-for the Goal-Driven generator's emitted trace.
+where $P_t$ is the DFA state before the $t$-th operation symbol
+$w_t$, and $P_{t+1}$ is the DFA state after the transition
+$\delta_\mathcal{V}(P_t, w_t)$.  For concreteness: the triple
+\[
+\{\,\textsf{ANALYZED}\,\}\;\textsf{BUILD\_ONNX}\;\{\,\textsf{BUILT}\,\}
+\]
+expresses that an \textsf{ANALYZED} pipeline may be built;
+violating the precondition (e.g., attempting \textsf{BUILD\_ONNX}
+from \textsf{INIT}) drives the DFA to \textsf{ERROR}.  The DFA
+transition table is the \emph{mechanical realisation} of these
+obligations.  We note explicitly that this is a structural analogy:
+the DFA does not execute a typed pre/post-condition verifier; it
+executes a finite-state membership check that \emph{plays the role}
+of the Hoare obligation at the pipeline level.
 
 \subsection{Temporal-logic statement of correctness}
 
-The correctness property of the binding is captured in
-LTL~\cite{pnueli1977temporal} by the safety-and-liveness pair
+The intended correctness properties of the binding are captured as
+LTL~\cite{pnueli1977temporal} formulas below.  These are
+\emph{design-level specifications}, not machine-checked proofs;
+no Kripke structure or model-checker was run.
 \begin{align*}
 \textsf{Safety:}\quad &
-G\bigl(\,\mathsf{emit}\,\to\,\mathsf{verifier-tracking}\bigr) \\
+G\bigl(\,\mathsf{emit}\,\to\,\mathsf{verifier\text{-}tracking}\bigr) \\
 \textsf{Liveness:}\quad &
 G\bigl(\,\mathsf{plan}\,\to\,F\,(\mathsf{verified}\,\vee\,
-\mathsf{halt-on-tape-bound})\bigr).
+\mathsf{halt\text{-}on\text{-}tape\text{-}bound})\bigr).
 \end{align*}
-Safety says that every emitted symbol advances the verifier's
-state; liveness says that every plan eventually either succeeds
-verification or hits the tape bound.  Both are decided by
-inspection of the model-checker on the orchestrator's CFG
-\cite{clarke1981ctl,clarke1999modelchecking}.
+Safety states that every emitted symbol advances the verifier's
+state.  Liveness states that every plan eventually either succeeds
+verification or hits the tape bound.  Both are satisfied by
+construction when Algorithm~\ref{alg:enum} is applied to a
+finite tape: the DFA either advances or rejects; the loop either
+terminates on a verified trace or on the tape bound.  Formal
+model-checking on a finite Kripke abstraction of the DFA is
+left as future work~\cite{clarke1981ctl,clarke1999modelchecking}.
 
 This concludes the formal description of the architecture.  We
 turn next to the empirical instantiation.

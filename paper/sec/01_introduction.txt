@@ -1,0 +1,61 @@
+# Summary
+
+The introduction sets up the problem: contemporary agent literature lacks formal definitions, Koohestani et al. established agents-as-automata equivalence, and this paper extends that to a producer-consumer binding. It introduces the key concepts: trace language, Goal-Driven Type-0 producer, Data-Driven Type-3 consumer, start language L0 with recursive enumeration, idealisation vs. physical bounding, and lists five contributions.
+
+# Strengths
+
+- The narrow definition of an agent (Section 1.1) is refreshingly precise compared to typical agent literature.
+- The motivation for using the Chomsky hierarchy (decidable verification for Type-3, undecidable for Type-0) is pedagogically clear.
+- The producer-consumer framing is an original conceptual contribution over Koohestani et al.
+- The roadmap is well-structured.
+
+# Weaknesses
+
+- The narrow definition (lines 17-23) discards internal state, chain-of-thought, and planning intermediates. While acknowledged, this discard invalidates most of the standard agent verification problems the paper claims to solve.
+- The "Goal-Driven producer has no a priori knowledge of what the goal is" (line 63) contradicts standard usage: knowing the input domain and tool catalogue is already significant goal knowledge.
+- The binding claim (lines 76-79) "A single Goal-Driven Type-0 producer, tamed by a single Data-Driven Type-3 consumer, results in success" is vague. What constitutes "success" is never formally defined — it varies between "verification budget maintained" and "leaderboard placement" depending on context.
+- The derivation claim (lines 82-91) that Type-2 and Type-1 sub-agents "are not designed; they are 'derived'" is unsupported. The paper provides no algorithm that derives these sub-agents; it merely observes patterns in a CSV and retroactively classifies them.
+
+# Unsupported Claims
+
+- Lines 82-91: Type-2 and Type-1 sub-agents "appear as the canonical projections of the recursively enumerated trace" — no projection operation or algorithm is specified that produces these sub-agent definitions. The claim is post-hoc classification, not derivation.
+- Lines 108-122: "The start language L0 contains twelve sub-agents and their seed action alphabets — nothing else" — but L0's content cannot be verified as the CSV files are missing.
+- Lines 124-130: "This enumeration is the operational meaning of 'Type-0 recursive enumeration' in the agentic setting" — an LLM calling tools with an Aho-Corasick filter is not a Turing machine; conflating the two is an analogy, not an identity.
+
+# Mathematical Issues
+
+- Line 37: "recursively enumerable sets are exactly the Diophantine sets" (Robinson/MRDP theorem). While technically accurate for subsets of N^k, the paper applies this to trace languages over arbitrary finite alphabets without establishing the encoding of traces into Diophantine equations.
+- The claim that Type-0 undecidability "inherits" to an LLM-in-a-loop (lines 35-41) is a category error: the undecidability of the Halting Problem applies to Turing machines, not stochastic language models with finite context windows.
+
+# Experimental Issues
+
+- The central empirical CSV files (`trace_language_original.csv`, `trace_language_kaggle.csv`) are missing from the repository. This is a fatal reproducibility failure.
+- Line 69: The Kaggle URL points to a generic competitions page, not a specific submission with leaderboard evidence.
+- The claim of "2-5% absolute placement improvement over prior published agent baselines" (line 64) is not supported by the results section, which acknowledges baselines were run under different conditions.
+
+# References Missing
+
+- The paper should cite a broader range of agent architectures for comparison (e.g., AutoGPT, BabyAGI, LangChain, CrewAI).
+- No reference to the extensive literature on formal verification of neural networks or LLMs (e.g., Katz et al. 2017 on Reluplex).
+- Missing reference to the ARC-AGI benchmark literature (Chollet 2019).
+
+# Questions For Authors
+
+1. You claim Type-2/Type-1 sub-agents are "derived, not designed." Can you provide the algorithm that, given the verified trace language L(G||V), produces the sub-agent definitions for planner_agent, reviewer_agent, etc.?
+2. How does the "no a priori knowledge of the goal label" claim square with the fact that the start language L0 was hand-crafted from MLE-bench agent stubs that inherently encode knowledge about the competition structure?
+3. What would it mean for the claim of "Type-0 recursive enumeration" to be falsified in this setting?
+
+# Required Changes
+
+- Remove unverifiable claims about sub-agent derivation unless an actual derivation algorithm is provided.
+- Provide the CSV files or remove all references to them.
+- Replace the vague "results in success" with a formally definable success criterion.
+- Acknowledge that the Type-0 classification of an LLM loop is an analogy, not a proof.
+
+# Confidence
+
+5
+
+# Recommendation
+
+Reject

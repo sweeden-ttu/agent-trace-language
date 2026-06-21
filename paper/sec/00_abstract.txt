@@ -1,0 +1,62 @@
+# Summary
+
+The abstract claims to answer Koohestani et al.'s question "Are agents just automata?" affirmatively and extend it by asking whether one agent's Chomsky type can bound another's via a producer-consumer construction. It describes a formal theory where a Goal-Driven Type-0 producer (LLM in a tool-calling loop) is "tamed" by a Data-Driven Type-3 consumer (Aho-Corasick DFA verifier) such that Type-2 and Type-1 sub-agents emerge as projections. The empirical claim is instantiated on the Spaceship Titanic task with a leaderboard placement of 710/2330.
+
+# Strengths
+
+- The abstract is well-written and clearly communicates intent.
+- The framing around the producer-consumer problem transposed to Chomsky classes is conceptually appealing.
+- Cites foundational literature (Turing, Chomsky, Rabin-Scott, Aho-Corasick, Robinson).
+
+# Weaknesses
+
+- The central data artefacts (`trace_language_original.csv`, `trace_language_kaggle.csv`) referenced in lines 41-51 do not exist in the repository. The only trace CSV in the codebase (`experiment_6/trace_language.csv`) is about the NeuroGolf/ONNX competition, not Spaceship Titanic.
+- The abstract's empirical claim (leaderboard placement 710/2330) cannot be independently verified from the provided artefacts.
+- The Type-0 claim for the idealised agent is hedged ("on paper, recursively enumerable"; "physical execution is bounded...by a single laptop") in a way that makes the core formal claim unfalsifiable.
+- Abstract conflates "idealised Type-0" with "realised LBA" but uses the Type-0 label as the primary classification throughout the paper body.
+
+# Unsupported Claims
+
+- "The Goal-Driven agent's trace language is, on paper, recursively enumerable" — no proof is given that the LLM-in-a-loop actually produces a recursively enumerable set; the claim is asserted by analogy.
+- "We prove the idealisation sound: any trace the idealised Type-0 agent can emit is producible by the bounded machine up to the laptop's tape limit" — Lemma 1 only proves the converse direction (bounded implies idealised), not the direction stated here.
+- "Verified trace language is closed under intersection at the verifier's Chomsky level (Type-3) so verification cannot exceed the bounded machine's intrinsic complexity" — the closure theorem is standard and says the intersection's class is no greater than the producer's class, not the verifier's.
+
+# Mathematical Issues
+
+- Line 54-57: States the converse of Lemma 1. Lemma 1 says "if M accepts w then M[b,t] accepts w." The abstract claims "any trace the idealised Type-0 agent can emit is producible by the bounded machine." This is the opposite direction (idealised → bounded) and is not true in general (a Turing machine may use arbitrarily many tape cells).
+- Line 57-59: The closure property argument is misstated. Theorem 1 states the verified composition is in the producer's class (L_i), not bounded by the verifier's class.
+
+# Experimental Issues
+
+- Missing CSV files: `trace_language_original.csv` and `trace_language_kaggle.csv` are referenced as central empirical evidence but do not exist.
+- The only trace CSV available (`experiment_6/trace_language.csv`) describes a NeuroGolf ONNX construction pipeline, completely unrelated to Spaceship Titanic.
+- The leaderboard claim (710/2330) is provided as a single number without error bars, confidence intervals, or replication runs.
+
+# References Missing
+
+- Russell & Norvig's agent definitions (for comparison to the narrow definition used here).
+- Koza's genetic programming (for the "emergent" behaviour claim).
+- Karp's "Reducibility Among Combinatorial Problems" is cited but not used substantively.
+- Cicirello & Smith (or other work on agent bounding via formal languages) if it exists.
+
+# Questions For Authors
+
+1. Where are `trace_language_original.csv` and `trace_language_kaggle.csv`? They are referenced repeatedly as central empirical artefacts but do not appear in the repository.
+2. Why does the existing `experiment_6/trace_language.csv` describe a NeuroGolf ONNX solver pipeline when the paper claims to evaluate on Spaceship Titanic?
+3. The abstract states the converse of Lemma 1. Which direction did you intend, and can the idealised→bounded direction be proven?
+4. How was the 710/2330 leaderboard placement verified? Can you provide a public leaderboard screenshot or Kaggle API record?
+
+# Required Changes
+
+- Provide the referenced CSV files or remove references to them.
+- Fix the misstated direction in the idealisation soundness claim.
+- Correct the closure argument to state the verified composition's class correctly.
+- Provide evidence for the leaderboard claim.
+
+# Confidence
+
+5 (high, based on direct inspection of the codebase)
+
+# Recommendation
+
+Strong Reject

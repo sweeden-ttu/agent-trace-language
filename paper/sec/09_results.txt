@@ -1,0 +1,66 @@
+# Summary
+
+Reports outcomes of the four pre-registered probes (all "supported"), the leaderboard placement (710/2330), the empirical class signature table, the verifier closure result wall-clock confirmation, and a comparison with prior MLE-bench baselines indicating a 2-5% improvement.
+
+# Strengths
+
+- The result for each probe is clearly stated with its refutation condition.
+- The empirical class signature table (Table 2) is well-organized.
+- The acknowledgment that "baselines were run by different teams under different hardware budgets" (lines 141-143) is honest — but contradicted by the claim of "2-5% absolute placement improvement."
+
+# Weaknesses
+
+- **P1 is essentially unfalsifiable as stated.** "No super-linear timing was observed on the verifier side" (lines 16-17) is based on an unspecified measurement method. Was timing measured programmatically? With what precision? Over how many calls? The claim that the verifier wall-clock cost was "negligible compared to the LLM-side cost" is a relative statement, not evidence of O(n) performance.
+- **P2 is not evidence of Type-0 status.** The observation that the kaggle_trainer column has 36 entries while start columns have at most 14 entries demonstrates a length increase, but a 36-entry trace is still finite. A Type-0 language can produce traces of unbounded length; a 36-entry trace does not witness unboundedness — it witnesses a specific finite length.
+- **P3 (emergence of the thirteenth sub-agent) is a description, not a prediction.** Listing the operation symbols in the kaggle_trainer column (as the paper helpfully does) is a description of the data, not a verifiable prediction. For this to be a pre-registered probe, the authors would have needed to predict before the experiment that a thirteenth column would appear with specific properties.
+- **P4's leaderboard claim has several issues:**
+  - The paper reports a single placement (710/2330) with the acknowledgment that placement varies by ±10-20 ranks across re-runs (from the discussion section). A single point estimate is insufficient; the paper should report a mean and confidence interval.
+  - The Kaggle leaderboard URL is not provided; only the generic competition URL referenced.
+  - The leaderboard placement of 710/2330 is for the public leaderboard. Kaggle competitions typically have a separate private leaderboard that is revealed after the competition ends. If this is a "Getting Started" competition, the public leaderboard may be a small percentage of the data and the result may not generalise.
+- **The claim of "2-5% absolute placement improvement over prior published agent baselines"** (lines 83-85) is contradicted by the paper's own acknowledgement that "the baselines were run by different teams under different hardware budgets" and "the like-for-like comparison would require a controlled re-run on identical hardware, which is outside the scope of this paper" (lines 141-144). The paper should not make the improvement claim and then retract it in the same section.
+
+# Unsupported Claims
+
+- Lines 7-8: "No probe is refuted; the leaderboard placement falls into the predicted top tertile." The probes were designed to be easily supported (P1: is a DFA linear? P2: is 36 > 14? P3: does the CSV have 13 columns instead of 12? P4: is 710 < 777?). These are weak tests.
+- Lines 83-85: "2-5% absolute placement improvement over the prior published agent baselines reported on github.com/openai/mle-bench." The baselines are not cited with specific numbers, and the acknowledgement that they're not comparable undermines the claim.
+- Lines 133-154: "The trace-language account of agents is therefore not merely formal: it is also operationally competitive." This overstates the result. A single top-tertile placement on a single "Getting Started" competition does not demonstrate operational competitiveness.
+
+# Mathematical Issues
+
+- The claim that the verifier consumed "less than 1% of the run-time" (line 128) is plausible but the methodology for computing this is not provided.
+
+# Experimental Issues
+
+- **The probes are too weak to support the paper's central claims.** P1 tests whether a DFA runs in linear time (trivially true by definition). P2 tests whether 36 > 14 (a test of arithmetic, not of Type-0 status). P3 tests whether a CSV has a different number of columns than expected. P4 tests whether a number is less than 777.
+- **No comparison to strong baselines.** The paper compares to "prior published agent baselines" but does not compare to a simple baseline like "ask Gemini to solve Spaceship Titanic directly" or "run a standard scikit-learn pipeline on the raw features."
+- **No ablation experiments are reported in the results.** The ablation results exist in the data files (ablation_results_budget.csv, ablation_results_verifier.csv) but are not discussed in the results section.
+- **No statistical significance is reported.** The leaderboard placement is a single number. There is no confidence interval, no p-value, no comparison to a null distribution.
+- **The "prior published agent baselines" reference is vague.** Which specific agents? What were their scores? The paper does not cite the MLE-bench baseline paper (if one exists) with specific numbers.
+
+# References Missing
+
+- The MLE-bench paper (if one exists) should be cited with specific baseline numbers.
+- Chollet's "On the Measure of Intelligence" for discussion of what leaderboard rankings actually measure.
+
+# Questions For Authors
+
+1. P2: How does a trace of length 36 (or any finite length) witness Type-0 unboundedness? Wouldn't any finite length be consistent with any Chomsky class?
+2. P4: Can you provide the private leaderboard placement? Kaggle competitions have a distinction between public and private leaderboards. Which one is 710/2330?
+3. The paper claims both "2-5% absolute placement improvement" and that the baselines were run under "different teams under different hardware budgets." These statements are contradictory. Which one is the accurate statement?
+4. Why are no ablation experiments reported in the results text? The data files contain ablation results but they are not analysed.
+
+# Required Changes
+
+- Provide evidence for the leaderboard claim (screenshot, API output, or specific submission URL).
+- Report leaderboard placement with variance/confidence interval across multiple runs.
+- Report private leaderboard placement if available.
+- Remove or substantiate the "2-5% improvement" claim.
+- Add a proper baseline comparison (e.g., a simple prompt to Gemini, a random forest baseline, etc.).
+
+# Confidence
+
+5
+
+# Recommendation
+
+Reject

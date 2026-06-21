@@ -1,196 +1,111 @@
 % ===== sec/06_indexed_grammars.tex =====
-\section{Indexed Grammars and the Aho--Corasick Verifier}
+\section{The Pipeline DFA Verifier}
 \label{sec:indexed}
 
-This section deepens the role played by Aho's two great
-contributions to the theory of formal languages:
-indexed grammars~\cite{aho1968indexed}, which fix the language
-class strictly between context-free and context-sensitive, and
-the Aho--Corasick~\cite{aho1975corasick} multi-pattern matcher,
-which compiles a finite keyword set into a deterministic
-linear-time recogniser.  The two papers were written eight years
-apart, but in our framework they play complementary roles: the
-indexed grammar is the natural home of the iterative repair loop
-inside the Goal-Driven generator; the Aho--Corasick DFA is the
-realisation of the Data-Driven verifier.
+This section details the formal mechanism of the Data-Driven
+verifier. While early iterations of this work employed an
+Aho--Corasick keyword index over unit-test catalogues, the
+verifiable constraints of the \textsc{NeuroGolf ONNX} pipeline are
+better captured by a deterministic finite automaton (DFA) that
+tracks the global state of the task orchestration. This DFA ensures
+that the Type-0 Goal-Driven generator produces sequences of
+computational operations that are logically sound and structurally
+bounded.
 
-\subsection{Indexed grammars}
+\subsection{The Data-Driven verifier as a DFA}
 
-An \emph{indexed grammar}~\cite{aho1968indexed} is a 5-tuple
-\[
-G \;=\; (V,\;\Sigma,\;F,\;P,\;S)
-\]
-where $V$ is the set of nonterminals, $\Sigma$ is the alphabet
-of terminals, $F$ is a finite set of \emph{index symbols}, $S\in
-V$ is the start symbol, and $P$ is a finite set of productions
-each of one of three forms:
-\begin{align*}
-\textsf{(a)}\quad & A[\xi] \;\to\; \alpha[\xi] \\
-\textsf{(b)}\quad & A[\xi] \;\to\; \alpha[f\xi]
-                    \quad\text{(push } f\in F \text{)}\\
-\textsf{(c)}\quad & A[f\xi] \;\to\; \alpha[\xi]
-                    \quad\text{(pop } f\in F \text{)}
-\end{align*}
-where $\alpha\in (V\cup\Sigma)^*$ and $\xi$ is a string of
-indices attached to each nonterminal in $\alpha$.  The string
-attached to a nonterminal acts as a stack of indices that may be
-pushed at derivation steps of form (b), popped at form (c), and
-inherited unchanged at form (a).
+In our empirical setting, the verifier $\mathcal{V}$ is implemented
+as a state machine whose state set $Q_\mathcal{V}$ corresponds
+directly to the lifecycle phases of an ARC-AGI graph solver
+(e.g., \textsf{INIT}, \textsf{ANALYZED}, \textsf{BUILT},
+\textsf{OPTIMIZED}, \textsf{V\_TRAIN}, \textsf{V\_TEST},
+\textsf{PACKAGED}, \textsf{SUBMITTED}, \textsf{REJECTED},
+\textsf{ERROR}).
 
-\begin{lemma}[Aho 1968]
-$\mathcal{L}_2 \subsetneq \mathcal{L}_{\mathrm{indexed}}
-\subsetneq \mathcal{L}_1$.
-\end{lemma}
-
-The strict inclusion is witnessed by the language $\{a^n b^n c^n :
-n\ge 0\}$, which is in $\mathcal{L}_{\mathrm{indexed}}$ but not in
-$\mathcal{L}_2$.  Its mirror image in our framework is the
-\emph{paired iteration counter} pattern in
-\texttt{sop\_orchestrator}'s trace, where the
-\textsf{cap\_iterations\_at\_max(=3)} bound is enforced
-synchronously across the planner, developer, and reviewer
-sub-traces.
-
-\subsection{Why the iterative repair loop is indexed, not
-context-free}
-
-In \texttt{sop\_orchestrator}'s trace we observe the cycle
-\begin{verbatim}
-   invoke_planner
--> invoke_developer
--> invoke_reviewer
--> compare_score_to_advance_threshold(>=3)
--> [ if score < 3:
-        retry_phase_on_low_score (loop)
-        cap_iterations_at_max(=3) ]
--> invoke_summarizer_on_advance
--> emit_outcome(complete|fail).
-\end{verbatim}
-Three observations make this trace indexed rather than
-context-free:
-\begin{enumerate}
-\item The iteration counter is shared across three nested
-sub-traces (planner / developer / reviewer); the same counter
-appears synchronously in each.  This is a cross-serial
-dependency, which a PDA cannot recognise.
-\item The counter is bounded by a constant (3); this rules out
-arbitrary linear-bounded behaviour.  The counter is not a tape, it
-is an index.
-\item Each invocation of the loop pushes a fresh \emph{index
-configuration} (the EDA bundle, the failed-test list, the
-clamped score) that is consumed in inverse order during the
-\textsf{forward\_artifact\_to\_next\_phase} step.
-\end{enumerate}
-
-These three properties are exactly the ones Aho identified in
-1968 as motivating the indexed-grammar
-extension~\cite{aho1968indexed}.  We therefore place
-\texttt{sop\_orchestrator} in the indexed zone.  The placement
-sharpens, but does not contradict, the Type-1 placement of
-\texttt{task\_orchestrator} and \texttt{kernel\_pipeline}, whose
-workspace genuinely grows with input size.
-
-\subsection{Aho--Corasick as the Data-Driven verifier}
-
-The Aho--Corasick algorithm~\cite{aho1975corasick} takes a
-finite keyword set $K\subseteq \Sigma^*$ of total size $\|K\| =
-\sum_{w\in K}|w|$ and produces a deterministic finite automaton
-$M_K$ such that, for any input string $x\in\Sigma^*$, $M_K$
-identifies all occurrences of all $w\in K$ in $O(|x| + \|K\| +
-z)$ time, where $z$ is the number of matches.  The construction
-has three steps:
-\begin{enumerate}
-\item Build a trie of $K$ (the \emph{goto} function).
-\item Compute, for each trie node, a \emph{failure} link to the
-longest proper suffix that is also a prefix of some keyword.
-\item Compose the goto and failure into a single deterministic
-transition function $\delta_K$.
-\end{enumerate}
-
-In our setting $\Sigma$ is the operation alphabet of
-Section~\ref{sec:trace}, $K$ is the set of operation symbols
-that appear in the unit-test catalogue and tools-index manifest,
-and the verifier $\mathcal{V}$ is the agent whose configuration
-space is the state set of $M_K$.  Concretely $K$ is read off
-the columns \texttt{tools\_index} and \texttt{unit\_test\_runner}
-of \texttt{trace\_language\_kaggle.csv}; we list it in
-Appendix~A.
+Transitions between these states are triggered by the operation
+symbols ($\Sigma$) emitted by the Goal-Driven sub-agents. For
+example, the transition from \textsf{ANALYZED} to \textsf{BUILT}
+is triggered by graph-construction operations like
+\textsf{BUILD\_ONNX} or \textsf{CONVOLUTION}; the transition from
+\textsf{BUILT} to \textsf{OPTIMIZED} is triggered by
+transformations such as \textsf{FP16\_SURGERY} or
+\textsf{CAST\_COLLAPSE}.
 
 \begin{proposition}[Verifier as DFA]
 \label{prop:verifier-dfa}
 The Data-Driven verifier $\mathcal{V}$ is realisable as a
 deterministic finite automaton over $\Sigma$ with state set
-$Q_\mathcal{V}$ of size $O(\|K\|)$.  For any candidate trace
+$Q_\mathcal{V}$.  For any candidate trace
 $\tau\in\Sigma^*$, the verdict $h_\mathcal{V}(\tau)\in\{
 \mathsf{accept},\mathsf{reject}\}$ is computed in $O(|\tau|)$
 time.
 \end{proposition}
 
 \begin{proof}
-Construct the Aho--Corasick DFA $M_K$ over the keyword set $K$
-extracted from the two columns above; declare its accepting
-states to be those visited iff at least one keyword from each
-required category (e.g., \textsf{test\_submission\_validity},
-\textsf{test\_column\_names\_submission}) is matched.  The size
-bound $O(\|K\|)$ is the standard size of an Aho--Corasick DFA,
-and the linear-time membership decision is the standard property
-of a DFA~\cite{aho1975corasick,rabin1959finite}.\qed
+Construct the DFA over the pipeline states; declare its accepting
+states $F_\mathcal{V}$ to be those indicating successful completion
+(e.g., \textsf{SUBMITTED} or \textsf{PACKAGED}). The size of the
+state machine is $O(1)$ relative to the input, bounded by the fixed
+number of pipeline states and valid operation transitions. The
+linear-time membership decision $O(|\tau|)$ is a fundamental
+property of all deterministic finite
+automata~\cite{rabin1959finite}.\qed
 \end{proof}
 
-\subsection{Why Aho--Corasick rather than a generic LLM judge}
+\subsection{Why a DFA rather than a generic LLM judge}
 
 A generic LLM-as-judge could, in principle, also play the role of
-$\mathcal{V}$.  We deliberately chose Aho--Corasick for three
+$\mathcal{V}$.  We deliberately chose a rigid DFA for three
 reasons:
 \begin{enumerate}
 \item \emph{Class containment.}  An LLM-as-judge is itself a
 Type-0 agent.  Composing two Type-0 agents does not lower the
-class.  An Aho--Corasick DFA is Type-3 and lowers the
-verification budget to $O(n)$ by Theorem~\ref{thm:closure}.
-\item \emph{Auditability.}  The keyword set $K$ is finite, human
-readable, and version-controlled; the failure links and goto
-table are derivable mechanically.  An LLM-as-judge offers no
-such audit surface.
+class.  A DFA is Type-3 and lowers the
+verification budget to $O(|\tau|)$ by Theorem~\ref{thm:closure}.
+\item \emph{Auditability.}  The pipeline states and transition
+matrix are finite, human-readable, and version-controlled. An
+LLM-as-judge offers no such audit surface and suffers from inherent
+stochasticity.
 \item \emph{Soundness against the Type-0 generator.}  If the
 generator is permitted to enumerate arbitrary strings, the
 verifier must be unable to be ``talked into'' accepting a
-malformed trace.  A DFA cannot be talked into anything; it
-either matches or it does not.  This is the precise sense in
-which the Goal-Driven Type-0 agent is \emph{tamed} by the
+malformed trace (e.g., submitting an un-optimized or
+failing graph). A DFA cannot be talked into anything; it
+either transitions legally or it rejects.  This is the precise
+sense in which the Goal-Driven Type-0 agent is \emph{tamed} by the
 Type-3 verifier.
 \end{enumerate}
 
+A systematic comparison of the verification cost across all four
+Chomsky classes --- including the trade-off between expressiveness
+and decidability for Type-2, Type-1, and Type-0 verifiers --- is
+given in Section~\ref{sec:verifier-ladder}.  The conclusion of that
+analysis is that Type-3 is the principled floor: it is the only class
+that preserves both decidability and the $O(n)$ verification budget.
+
 \subsection{The recursive enumeration step, decoded}
 
-We can now describe the recursive enumeration step that takes
-the start language $L_0 =
-L(\texttt{trace\_language\_original.csv})$ to the enumerated
-language $L_1 = L(\texttt{trace\_language\_kaggle.csv})$ in
-explicit terms.
+We can now describe the recursive enumeration step that expands
+the basic \emph{start language} into the highly complex empirical
+language recorded in \texttt{experiment\_6/trace\_language.csv}.
 
 \begin{enumerate}
-\item Let $\Sigma_0$ be the operation alphabet of $L_0$ and
-$K_0$ be the corresponding keyword set extracted from its
-\texttt{tools\_index} and \texttt{unit\_test\_runner} columns.
-$\mathcal{V}_0 = \mathcal{V}(K_0)$ is the corresponding
-Aho--Corasick DFA.
+\item Let $\Sigma_0$ be the operation alphabet of the initial
+seed templates. $\mathcal{V}_0$ is initialized as the DFA governing
+the pipeline lifecycle.
 \item Run the Goal-Driven generator $\mathcal{G}_0$ over the
-\textsc{Spaceship Titanic} input, intersecting every emitted
+\textsc{NeuroGolf ONNX} input, intersecting every emitted
 prefix with $L(\mathcal{V}_0)$ and rejecting prefixes that
-exit the language of $\mathcal{V}_0$.
-\item During execution, $\mathcal{G}_0$ proposes new operation
-symbols not in $\Sigma_0$ (e.g., the
-\texttt{wire\_spaceship\_feature\_engineer(\dots)} symbol). Each
-new symbol is admitted to $\Sigma_1$ iff its emission satisfies
-$\mathcal{V}_0$ when treated as a keyword extension; the
-verifier's keyword set is correspondingly extended to $K_1$
-\emph{only} for the duration of this enumeration.
+drive the DFA into the \textsf{ERROR} or \textsf{REJECTED} states.
+\item During execution, $\mathcal{G}_0$ proposes dynamic graph
+constructions or repair sequences. The trace lengthens recursively
+until it either hits an iteration bound or produces a sequence
+that drives the DFA to an accepting state (\textsf{SUBMITTED}).
 \item The accumulated trace is written to disk as
-\texttt{trace\_language\_kaggle.csv}.  Its alphabet $\Sigma_1$
-properly extends $\Sigma_0$; its column count grows from twelve to
-thirteen by the addition of the \texttt{kaggle\_trainer} column,
-which is the column of operations that were never in
-$\Sigma_0$ but became necessary under the verifier's pressure.
+\texttt{trace\_language.csv}. Its alphabet $\Sigma_1$ properly
+extends $\Sigma_0$; its sub-agent count expands, manifesting
+new dynamically assembled operational flows (e.g., the
+\texttt{blender} and \texttt{optimizer} components).
 \end{enumerate}
 
 The procedure is, in the operational sense, a Type-0 recursive

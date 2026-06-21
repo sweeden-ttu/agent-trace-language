@@ -1,0 +1,59 @@
+# Summary
+
+This is the formal core: defines operation alphabet (Definition 1), agent as a 7-tuple (Definition 2), run, trace, and trace language (Definitions 3-5), trace equivalence, multi-agent systems, the empirical CSV correspondence, and Theorem 1 (Verifier closure): L(G||V) = L(G) ∩ L(V) ∈ L_i, with decidability in O(n) time via the verifier's DFA.
+
+# Strengths
+
+- The 7-tuple agent definition (Definition 2) is the most precisely specified agent definition in the paper. The allowance for Σ^*, not Σ, in the codomain of δ (line 92-93) is a genuine design insight for empirical trace recording.
+- Trace equivalence (Definition 6) is cleanly stated.
+- Theorem 1 (Verifier closure) and its proof are technically correct and follow from standard closure properties.
+- The multi-agent system definition (Definition 7) with orchestration relation is well-formulated.
+
+# Weaknesses
+
+- **The agent definition is a Turing machine with an output tape.** The 7-tuple (Σ, Q, q₀, X, δ, F, h) with δ: Q × X → Q × Σ^* is exactly a Turing machine that writes to an output-only tape. No new formalism has been introduced; the paper has renamed TM components as "agent" components. This is not a critique per se, but the paper should acknowledge this identity explicitly rather than claim novelty.
+- The operation alphabet definition (Definition 1) associates each σ with a function ⟦σ⟧: X ⇀ Y, but this function is defined as "fixed once and for all by the runtime environment and is not a property of the agent." This means the alphabet's semantics are external to the formalism. Two agents with the same trace language may exhibit different real-world effects because the same symbol may have a different denotation in different runtime environments.
+- **Critical issue with Theorem 1**: The theorem states L(G||V) ∈ L_i (the producer's class). This is technically correct, but the paper then claims (Corollary 1) that verification runs in O(n) time. The O(n) verification applies only to the verifier's decision of whether a candidate trace τ is in L(V). The membership problem for L(G||V) itself (determining whether τ is producible by G and accepted by V) is not O(n) — it requires running G, which has no time bound. The paper conflates "testing a candidate trace against the verifier" with "verifying the composition."
+- The claim that "The Type-2 sub-agents ... are not part of G or V as designed; they are the projections of G||V onto the orchestration graph" (from sec/05) contradicts Definition 7, where the sub-agents are explicit components of the multi-agent system M.
+
+# Unsupported Claims
+
+- Lines 256-277: "The empirical signature of a Type-0 trace language" — the claim is that the kaggle_trainer column's length (36 entries) vs. the start language's maximum (14 entries) "witnesses" Type-0 status. A length increase from 14 to 36 does not demonstrate recursive enumerability; it demonstrates that more steps were taken. A finite-state machine with a counter could produce 36 steps instead of 14.
+- "The undecidability that Robinson's theorem fixes on the Type-0 class is therefore a real property of A" (line 275) — this is a non sequitur. The undecidability is a property of the formal model (Turing machine), not of the empirical agent.
+
+# Mathematical Issues
+
+- Line 29-30: "The function ⟦·⟧ is fixed once and for all by the runtime environment and is not a property of the agent" — this means two agents with identical trace languages may produce different effects if their runtime environments assign different semantics to the same operation symbol. This undermines the trace-equivalence identity criterion.
+- Theorem 1 proof (lines 229-244): The closure argument is correct, but the linear-time claim is misleading as discussed above.
+- The closure of r.e. under intersection with regular is correctly noted, but the *practical* significance is that L(G||V) is still r.e. (semi-decidable), not that it becomes decidable. The decidability comes from the verifier's *asymmetric role* (rejecting non-members), which is a correctness-preserving filter, not a decision procedure.
+
+# Experimental Issues
+
+- The CSV file correspondence claimed in lines 179-201 cannot be verified because the CSV files are missing.
+- The "empirical signature" argument (lines 256-277) relies on the same missing CSVs.
+
+# References Missing
+
+- Definition 2 should be explicitly compared to the standard Turing machine definition to clarify what (if anything) is novel.
+- The use of Σ^* in the codomain of δ should cite work on Mealy machines or transducers, not just Hopcroft-Ullman.
+
+# Questions For Authors
+
+1. The 7-tuple agent definition appears to be a Turing machine with output tape. Can the authors clarify what formal object the agent is that is not already a Turing machine?
+2. Theorem 1's linear-time decidability claim is for the verifier's DFA on a candidate trace. But the actual verification problem requires determining whether the trace is in L(G||V), which requires running G. Which problem are you claiming is O(n)?
+3. If ⟦σ⟧ is external to the agent, how can two agents be "the same" based on trace equivalence if their operation symbols have different semantic effects?
+
+# Required Changes
+
+- Acknowledge explicitly that the agent definition is a Turing machine with output tape.
+- Clarify that Theorem 1's decidability applies to candidate trace checking, not to full system verification.
+- Remove or clearly qualify the "Type-0 empirical signature" argument.
+- Provide the CSV files.
+
+# Confidence
+
+5
+
+# Recommendation
+
+Reject

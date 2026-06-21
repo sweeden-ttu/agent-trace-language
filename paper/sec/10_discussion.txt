@@ -1,0 +1,63 @@
+# Summary
+
+Discusses five topics: idealised Type-0 vs. realised LBA, why the start language is necessary, the Type-3 producer subtlety (Section 10.3), threats to validity (construct, internal, external, coverage), implications for the field, and what the paper did not do.
+
+# Strengths
+
+- The section is honest about the idealisation gap and correctly cites Hartmanis-Stearns.
+- The discussion of the start language as an "inductive hypothesis" (Section 10.2) is a good conceptual framing.
+- Section 10.3's discussion of the Type-3 producer subtlety is the most intellectually rigorous part of the paper. It correctly identifies that a Type-3 producer preserves decidability while a Type-0 producer-as-consumer would not.
+- The threats to validity section (10.4) is properly structured and identifies several genuine limitations.
+- The "What we did not do" section (10.7) is unusually honest for a conference paper and clarifies the scope.
+
+# Weaknesses
+
+- **Section 10.1's defence of the "idealised Type-0" framing is sound only for the upper bound, but the paper uses Type-0 as the primary classification throughout.** The defence says "we make no lower bound claim" — but the entire Chomsky classification section (Section 5) and the results section classify sub-agents (including G) as Type-0 as if this were a demonstrated fact, not an idealised upper bound.
+- The Type-3 producer subtlety (Section 10.3) is described as "the most important theoretical subtlety," yet it is not mentioned in the abstract, introduction, or contributions list. It is relegated to the discussion as if it were a minor point.
+- **The threats to validity section contradicts several of the paper's central claims.** Construct validity (lines 138-145) acknowledges that the trace-language identity criterion "discards information about the LLM's chain-of-thought or the planner's intermediate JSON." This discard means the paper's formal framework cannot verify the properties that most agent verification problems care about (safety, alignment, truthfulness).
+- External validity (lines 159-168) limits claims to "tabular tasks" and explicitly excludes "images, text, or open-ended code." This is a significant narrowing of the claimed generality.
+- **The V&V agent is fixed at Type-3 by fiat, not as the conclusion of a design-space analysis.** Section 10.3 raises the decidability boundary (a Type-0 update rule re-summons the halting problem) but never compares what a Type-2 (PDA), Type-1 (LBA), or Type-0 (TM) verifier would actually buy or cost. The paper would be substantially stronger if it explored the benefits and drawbacks of V&V agents across the Chomsky hierarchy rather than asserting Type-3 as the only option. As written, a reader cannot tell whether Type-3 is a principled sweet spot or an unexamined default.
+- Several correctness properties that V&V typically cares about are *unverifiable* at Type-3 and go unmentioned: balanced acquire/release of resources, matched build/teardown nesting, and counting constraints such as #build = #verify all require at least Type-2 (and counting/cross-serial constraints require Type-1). The discussion should state which obligations the Type-3 verifier structurally cannot discharge.
+
+# Unsupported Claims
+
+- Lines 178-199: "The multiplication of agent 'roles' in contemporary literature... is, at least in our case, an emergent phenomenon, not an architectural choice." This conjecture is stated as supported by the paper's results, but the paper provides no evidence that the roles are "emergent" rather than designed. The CSV columns were designed by the authors.
+- Lines 180-186: "The formal-language framing of agents need not be metaphorical. When done at the level of narrowness of this paper, it produces concrete bounds on verification cost." But the paper's concrete bound (O(n) per candidate trace) is trivial: any DFA keyword matcher has this bound. The bound is a property of Aho-Corasick, not of the trace-language theory.
+
+# Mathematical Issues
+
+- The discussion of the "Type-3 producer" (lines 89-121) introduces a concept not formally defined in the paper. The agent definition (Definition 2) defines an agent's trace language, but the paper never formally defines what it means for an agent to "act as a producer" in the consumer role. The discussion uses the term informally.
+
+# Experimental Issues
+
+- The acknowledgment that "the leaderboard placement varies by ±10-20 ranks across re-runs" (lines 152-153) should have been in the results section, not buried in the discussion's threats to validity.
+- The claim that "The class signature (Table 2) is robust across re-runs in our pilot experiments" (lines 151-152) is unreferenced. What pilot experiments? How many re-runs? What constituted "robust"?
+
+# References Missing
+
+- Additional threats to validity from the formal verification literature (e.g., the problem of specification mining).
+- The "programs-as-data" reference to McCarthy is appropriate, but the paper should also cite more recent work on emergent behaviour in LLM-based agents.
+
+# Questions For Authors
+
+1. If the Type-0 classification is purely an "upper bound" idealisation, why do the abstract, introduction, results, and conclusion all state "Type-0" as the primary classification of G without this qualification?
+2. The Type-3 producer subtlety is described as crucial; why is it not in the contributions list or the abstract?
+3. The paper states the leaderboard placement "varies by ±10-20 ranks across re-runs." How many re-runs were conducted? What was the mean and standard deviation?
+4. The paper claims "the class signature is robust across re-runs in our pilot experiments." What constitutes a pilot experiment? How many re-runs? Were these pilot runs conducted before or after the main experiment?
+5. Why is the V&V agent fixed at Type-3? What classes of correctness property (balanced acquire/release, matched build/teardown, counting constraints such as #build = #verify, cross-serial dependencies) are unverifiable at Type-3, and would a Type-2 (PDA) or Type-1 (LBA) verifier be justified for them? Would the binding result L(G) ∩ L(V) still yield a decidable, near-linear verification budget if V were Type-2 or Type-1, and at what complexity?
+
+# Required Changes
+
+- Move the Type-0/LBA idealisation discussion to the introduction and results, and clearly qualify the Type-0 claim throughout.
+- Move the discussion of leaderboard variance to the results section.
+- Provide data on the pilot experiments and re-runs.
+- Add the Type-3 producer subtlety to the contributions or abstract if it is as important as claimed.
+- Add a "verifier-expressiveness ladder": a table over Type-3 / Type-2 / Type-1 / Type-0 V&V agents across membership cost (O(n)/O(1) for the DFA vs. O(n^3) CYK for PDAs vs. PSPACE for LBAs vs. undecidable for TMs), the class of properties each can verify, and the termination/soundness guarantee. Use it to argue that Type-3 is the principled sweet spot and Type-0 is self-defeating for a verifier (a checker that cannot halt verifies nothing), rather than asserting Type-3 by default. Explicitly discuss the benefits and drawbacks of each class so the Type-3 choice reads as deliberate scoping.
+
+# Confidence
+
+5
+
+# Recommendation
+
+Weak Reject

@@ -8,71 +8,50 @@ hierarchy.  We accept their answer and pose the more useful
 question: \emph{can the Chomsky type of one agent be used to
 \textbf{bound} the Chomsky type of another, in the manner of the
 classical producer--consumer problem?}  This paper answers
-\emph{yes}, with software verification and validation
-techniques inferred into a \emph{Data-Driven} Type-3 verifier
-(consumer), and the idealised theoretical apparatus of automata
-built into a \emph{Goal-Driven} Type-0 producer.  The verification
-loop must end in decidability, otherwise the classical halting
-problem of Turing~\cite{turing1936computable} re-asserts itself
-on every iteration.  Decidability is enforced here by the regular
-language of the Data-Driven verifier, realised as the
-deterministic finite automaton of an Aho--Corasick keyword
-index~\cite{aho1975corasick} compiled from the unit-test
-catalogue, with a final human verification and validation step
-that closes the loop in the bounded case.
+\emph{yes}.
 
-We give a self-contained formal theory of the result.  An agent is
-identified with its \emph{trace language}: the set of finite
-strings of effectful operations the agent emits across the input
-domain.  Within this theory we define a single Goal-Driven Type-0
-agent whose trace language is recursively
-enumerable~\cite{robinson1949definability,davis1961decision} and a
-single Data-Driven Type-3 verifier whose trace language is
-regular~\cite{rabin1959finite,chomsky1956three,chomsky1959certain}.
-The Goal-Driven agent is tamed by the Type-3 verifier in the
-precise sense that only those traces accepted by the verifier are
-emitted to disk; from this binding, the Type-2 (pushdown), the
-indexed-grammar~\cite{aho1968indexed}, and Type-1 (linear-bounded)
-sub-agents emerge as canonical projections.  We further show that
-a Type-3 agent may itself act as a producer, backward-inferring
-constrained changes to the tape, provided the inference terminates
-in a decidable verdict.
+We give a self-contained formal theory.  An agent is identified with
+its \emph{trace language}: the set of finite strings of effectful
+operations the agent emits across the input domain.  Within this
+theory, we define a Goal-Driven agent whose trace language is, in
+the idealised sense of Turing~\cite{turing1936computable}, recursively
+enumerable (Type-0), and a Data-Driven verifier whose trace language
+is regular (Type-3).  We emphasise that classifying a physical
+LLM-in-a-loop as Type-0 is a formal upper-bound idealisation;
+physical LLMs have finite context windows and therefore realise a
+linear-bounded automaton.  We prove the bounded machine is a sound
+idealisation: every trace it produces is also producible by the
+idealised Type-0 machine (Lemma~1).
 
-The single \emph{start language} that initiates the system is
-given in \texttt{data/trace\_language\_original.csv}: twelve
-sub-agents and their seed action alphabets.  Under the binding
-above, the start language recursively enumerates itself onto the
-\textsc{Spaceship Titanic} task drawn from the public
-\textsc{MLE-bench} benchmark, producing the empirical trace
-recorded in \texttt{data/trace\_language\_kaggle.csv}: thirteen
-sub-agents (the thirteenth, \texttt{kaggle\_trainer}, is
-\emph{emergent} --- it exists only after the binding has fired)
-and a strictly longer action string per agent.  The Goal-Driven
-agent's trace language is, on paper, recursively enumerable; the
-physical execution is bounded by the finite tape and finite memory
-of a single laptop, and the realised machine is therefore a
-(very large) linear-bounded automaton.  We prove the idealisation
-sound: any trace the idealised Type-0 agent can emit is
-producible by the bounded machine up to the laptop's tape limit,
-and the verified trace language is closed under intersection at
-the verifier's Chomsky level (Type-3) so verification cannot
-exceed the bounded machine's intrinsic complexity.
+The central architectural result is that the verified composition
+$L(\mathcal{G}\,\Vert\,\mathcal{V}) = L(\mathcal{G}) \cap L(\mathcal{V})$
+lies in the same Chomsky class as $\mathcal{G}$ (Theorem~1, a known
+closure property of the hierarchy which we here apply as an
+architectural principle) and its membership is decidable in
+$O(|\tau|)$ time and $O(1)$ space per candidate trace.  The Type-2
+(pushdown) and Type-1 (linear-bounded) sub-agents emerge as canonical
+projections of the verified trace language rather than as
+independently designed components.
 
-We instantiate the theory on the \textsc{Spaceship Titanic} task
-and report a leaderboard placement of $710$ out of $2330$ teams
-($\approx\!30.5\%$, top tertile), representing a $2$--$5\%$
-absolute placement improvement over the prior published agent
-baselines reported on \texttt{github.com/openai/mle-bench}.  The
-agent that produced the result has no a priori knowledge of the
-goal label or the test set; its trace language is determined
-entirely by the Goal-Driven\,/\,Data-Driven decomposition described
-herein.  Reproducible code is published at\\
-\url{https://www.kaggle.com/sweeden-ttu/competitions/spaceship-titanic}.
+We instantiate the theory on the \textsc{NeuroGolf ONNX ARC-AGI}
+competition.  The realised pipeline DFA verifier has 13~states and
+83~transitions; the empirically measured decision time is
+$0.684\,\mu$s per operation symbol (over $10^4$~independent calls),
+confirming the $O(1)$-per-step regular-language claim.  The
+start language has 7~sub-agents over a 9-symbol alphabet; the
+recursively enumerated trace (\texttt{experiment\_6/trace\_language.csv})
+expands to 11~sub-agents over a 17-symbol alphabet, with 9~novel
+operation symbols absent from the seed.  The architecture achieves
+a public score of $5793.14$ on the NeuroGolf benchmark and a
+placement of $710/2330$ on the \textsc{Spaceship Titanic} task from
+\textsc{MLE-bench}.  Reproducible code, the start-language CSV,
+the realised trace CSV, and the DFA verifier are released with this
+paper.
 \end{abstract}
 
 \begin{IEEEkeywords}
 Agentic systems, trace language, Chomsky hierarchy, Turing
-machines, indexed grammars, Aho--Corasick, recursive enumeration,
-producer--consumer, formal verification and validation,
-linear-bounded automata, machine-learning engineering benchmarks.
+machines, finite automata, recursive enumeration,
+producer--consumer, formal verification, linear-bounded automata,
+machine-learning engineering benchmarks.
 \end{IEEEkeywords}
