@@ -1,0 +1,261 @@
+% ===== sec/07_methodology.tex =====
+\section{Methodology: The Goal-Driven\,/\,Data-Driven Architecture}
+\label{sec:methodology}
+
+This section describes the architecture in operational terms.
+The architecture is austere by design: one Goal-Driven Type-0
+generator, one Data-Driven Type-3 verifier, and an explicit
+recursive enumeration procedure that maps the start language to
+the realised trace language.  The Type-2 and Type-1 sub-agents
+appear as derivations of the binding, not as independent design
+choices.
+
+\subsection{The two principal agents}
+
+\paragraph{Goal-Driven generator $\mathcal{G}$.}
+$\mathcal{G}$ is a Type-0 agent realised concretely as a
+large-language-model loop over the union of the operation
+alphabets in \texttt{trace\_language\_original.csv}.  Its
+configuration space is the LLM's context window plus a finite
+set of bookkeeping flags; its step relation
+$\delta_\mathcal{G}$ samples a continuation, parses the
+continuation's tool-call markup, and emits the corresponding
+operation string.  The model used at run time is
+\texttt{invoke\_gemini(gemini-2.5-pro)} for the Type-0 deliberation
+steps and \texttt{invoke\_gemini(gemini-2.5-flash-lite)} for the
+finite-state housekeeping steps.
+
+$\mathcal{G}$ is given exactly the following information at
+start-up:
+\begin{itemize}
+\item the start-language alphabet
+$\Sigma_0$ (the operations columns of
+\texttt{trace\_language\_original.csv});
+\item the empty workspace directory \texttt{/comp\_dir/};
+\item the boilerplate Kaggle CLI configuration.
+\end{itemize}
+$\mathcal{G}$ is \emph{not} given the goal label
+(\textsf{Transported}), the public/private leaderboard
+specification, or any prior solution.  Its trace language is, in
+principle, the entirety of $\Sigma_0^*$, restricted only by what
+$\mathcal{G}$'s LLM core happens to enumerate.
+
+\paragraph{Data-Driven verifier $\mathcal{V}$.}
+$\mathcal{V}$ is the Aho--Corasick DFA $M_K$ described in
+Section~\ref{sec:indexed} and Proposition~\ref{prop:verifier-dfa}.
+Its keyword set $K$ is the union of the operation symbols in the
+\texttt{unit\_test\_runner} and \texttt{tools\_index} columns of
+\texttt{trace\_language\_original.csv}, extended only by the
+mechanical inclusion of the column-name and dtype tests
+generated from the
+\textsc{Spaceship Titanic} \texttt{train.csv} schema.
+$\mathcal{V}$ has no LLM component; it is a deterministic linear-time
+checker.  Its decision function is
+\[
+h_\mathcal{V}(\tau) \;=\;
+\begin{cases}
+\mathsf{accept} & \text{if every required keyword class is
+matched in } \tau \\
+\mathsf{reject} & \text{otherwise.}
+\end{cases}
+\]
+
+\subsection{The binding}
+
+The architecture's single load-bearing claim is that
+\[
+L(\mathcal{G}\,\Vert\,\mathcal{V}) \;=\; L(\mathcal{G})\;\cap\;
+L(\mathcal{V}) \quad\in\quad \mathcal{L}_0
+\]
+with membership decidable in $O(n)$ on the verifier side
+(Theorem~\ref{thm:closure}, Corollary~\ref{cor:budget}).
+
+In implementation, the binding is realised by an outer loop:
+\begin{enumerate}
+\item $\mathcal{G}$ proposes a candidate trace prefix $\tau_t$.
+\item $\mathcal{V}$ runs its DFA on $\tau_t$, accepting or
+rejecting in linear time.
+\item If $\mathcal{V}$ rejects, the rejected suffix is discarded
+and $\mathcal{G}$ is advised (by feeding back the failed-test
+list as a percept) to enumerate further.
+\item If $\mathcal{V}$ accepts and the accepted trace contains
+a \textsf{write\_submission\_csv} step, the loop terminates and
+the submission is uploaded.
+\end{enumerate}
+The loop terminates because the laptop's tape is finite (see
+Section~\ref{sec:discussion}), or because the verifier accepts a
+trace ending in \textsf{yield\_final\_result}, whichever comes
+first.
+
+\subsection{Derivation of the Type-2 and Type-1 sub-agents}
+
+The Type-2 sub-agents \texttt{planner\_agent},
+\texttt{reviewer\_agent} and the Type-1 sub-agents
+\texttt{task\_orchestrator}, \texttt{kernel\_pipeline} were not
+designed.  They are projections of the verified trace language
+$L(\mathcal{G}\,\Vert\,\mathcal{V})$ onto the orchestration
+substrate.
+
+\begin{definition}[Projection of a trace language]
+\label{def:projection}
+Let $\mathcal{A}$ be an agent with operation alphabet
+$\Sigma_\mathcal{A}$ and trace language $L(\mathcal{A})\subseteq
+\Sigma_\mathcal{A}^*$.  Let $\Sigma' \subseteq
+\Sigma_\mathcal{A}$ be a sub-alphabet.  The \emph{projection}
+of $L(\mathcal{A})$ onto $\Sigma'$ is the set
+\[
+\pi_{\Sigma'}(L(\mathcal{A})) \;=\;
+\{\,\pi_{\Sigma'}(\tau) \,:\, \tau\in L(\mathcal{A})\,\}
+\]
+where $\pi_{\Sigma'}: \Sigma_\mathcal{A}^*\to{\Sigma'}^*$
+deletes every symbol not in $\Sigma'$.
+\end{definition}
+
+\begin{theorem}[Derived sub-agents]
+\label{thm:derived}
+Let $\Sigma_{\textsf{planner}}$ be the operation alphabet of the
+\texttt{planner\_agent} column of
+\texttt{trace\_language\_kaggle.csv}.  Then
+\[
+L(\texttt{planner\_agent}) \;=\;
+\pi_{\Sigma_{\textsf{planner}}}\bigl(\,L(\mathcal{G}\,\Vert\,\mathcal{V})\,
+\bigr).
+\]
+The class of $L(\texttt{planner\_agent})$ is no greater than
+$\mathcal{L}_0$ (because projection cannot raise class) and is
+shown by inspection in Section~\ref{sec:chomsky} to be
+$\mathcal{L}_2$.  Analogous statements hold for
+\texttt{reviewer\_agent} (Type-2),
+\texttt{sop\_orchestrator} (indexed),
+\texttt{task\_orchestrator} (Type-1), and
+\texttt{kernel\_pipeline} (Type-1).
+\end{theorem}
+
+\begin{proof}[Sketch]
+The verified trace language is the language of all interleaved
+multi-agent emissions admissible under the orchestration
+relation.  Projecting onto the planner's alphabet selects exactly
+the planner's emitted symbols.  The class bound is the standard
+projection lemma~\cite{hopcroft2006automata}; the empirical
+class assignment is by structural inspection of the column.\qed
+\end{proof}
+
+The minimality slogan of the paper is therefore literally true:
+the architect designs only $\mathcal{G}$ and $\mathcal{V}$.  The
+intermediate-class agents emerge from the binding.
+
+\subsection{The recursive-enumeration procedure}
+
+Algorithm~\ref{alg:enum} is the procedure that maps the start
+language to the realised trace language.
+
+\begin{figure}[ht]
+\noindent\rule{\columnwidth}{0.4pt}
+\textbf{Algorithm 1.} \textsc{RecursivelyEnumerate}$(\mathcal{G},
+\mathcal{V}, x)$
+\par\noindent\rule{\columnwidth}{0.4pt}
+\begin{algorithmic}[1]
+\REQUIRE Goal-Driven $\mathcal{G}$, Data-Driven verifier
+$\mathcal{V}$, input $x$.
+\ENSURE Verified trace $\tau\in L(\mathcal{G}\,\Vert\,\mathcal{V})$,
+or \textsf{halt-on-tape-bound}.
+\STATE $q\gets q_0^\mathcal{G}$;\quad $\tau\gets\varepsilon$;\quad
+$s\gets q_0^\mathcal{V}$.
+\LOOP
+  \STATE $(q', w) \gets \delta_\mathcal{G}(q, x)$.
+  \STATE $s' \gets \delta_\mathcal{V}^*(s, w)$ \,\,\,\,\,\#
+       advance the Aho--Corasick DFA on $w$.
+  \IF{$s'$ is a reject state}
+    \STATE feed the failed-keyword witness back to $\mathcal{G}$
+    as a percept.
+  \ELSE
+    \STATE $\tau \gets \tau\cdot w$;\quad $q\gets q'$;\quad $s\gets s'$.
+    \IF{$q\in F_\mathcal{G}$ and $s\in F_\mathcal{V}$}
+      \RETURN $\tau$.
+    \ENDIF
+  \ENDIF
+  \IF{laptop tape exhausted}
+    \RETURN \textsf{halt-on-tape-bound}.
+  \ENDIF
+\ENDLOOP
+\end{algorithmic}
+\rule{\columnwidth}{0.4pt}
+\caption{Recursive enumeration of the start language.}
+\label{alg:enum}
+\end{figure}
+
+The structure of Algorithm~\ref{alg:enum} is exactly the structure
+of a Type-0 step (line~3) intersected with a Type-3 advance
+(line~4).  By Theorem~\ref{thm:closure}, the loop's output
+language $L(\mathcal{G}\,\Vert\,\mathcal{V})$ is at most
+$\mathcal{L}_0$ and at least $\mathcal{L}_3$ (the verifier's
+class).  By the laptop's finite tape, the loop terminates in
+finite time.
+
+\subsection{What the algorithm produces}
+
+When Algorithm~\ref{alg:enum} is run on the
+\textsc{Spaceship Titanic} input, the operation alphabet
+$\Sigma_0$ extends to $\Sigma_1 = \Sigma_0\cup\{\text{symbols
+emitted along the verified path}\}$.  The thirteenth column of
+the resulting CSV is the \texttt{kaggle\_trainer} column: a
+strictly new sub-agent whose alphabet contains symbols absent
+from $\Sigma_0$ (e.g.,
+\texttt{train\_stacked\_ensemble(LGBM+XGB+HistGB+linear\_meta)},
+\texttt{tune\_lightgbm\_with\_optuna(n\_trials=30)},
+\texttt{bootstrap\_indices(85pct;\ per\_episode\_random\_state)}).
+Its emergence is forced by the verifier rejecting any trace that
+omits a training step, not by the architect having pre-designed
+it.
+
+The empirical CSV is therefore a fixed point of the binding:
+\[
+\Sigma_1 \;=\;
+\Sigma_0 \cup \mathrm{Range}\bigl(\delta_\mathcal{G}\bigr)
+\big|_{\mathcal{V}\text{-accepting}}
+\]
+and the verified trace $\tau^*\in L(\mathcal{G}\,\Vert\,\mathcal{V})$
+is exactly the column-wise concatenation of the recorded entries
+in \texttt{trace\_language\_kaggle.csv}.
+
+\subsection{Hoare-triple obligation per step}
+
+Each step of Algorithm~\ref{alg:enum} carries a Hoare-triple
+obligation in the sense of
+Hoare~\cite{hoare1969axiomatic} and
+Dijkstra~\cite{dijkstra1975guarded}:
+\[
+\{\,P_t\,\}\quad w_t\quad\{\,P_{t+1}\,\}
+\]
+where $P_t$ is the precondition holding on the state space
+before the $t$-th emitted operation $w_t$, and $P_{t+1}$ is the
+postcondition that the verifier checks via its
+$\delta_\mathcal{V}$ transition.  When the precondition fails,
+the verifier rejects; when the postcondition fails, the verifier
+also rejects; the trace is admitted iff every Hoare triple
+along the emitted path holds.
+
+This is the formal sense in which the architecture is
+\emph{verification-by-construction}: the verifier's DFA is the
+mechanical realisation of a finite Hoare-style proof obligation
+for the Goal-Driven generator's emitted trace.
+
+\subsection{Temporal-logic statement of correctness}
+
+The correctness property of the binding is captured in
+LTL~\cite{pnueli1977temporal} by the safety-and-liveness pair
+\begin{align*}
+\textsf{Safety:}\quad &
+G\bigl(\,\mathsf{emit}\,\to\,\mathsf{verifier-tracking}\bigr) \\
+\textsf{Liveness:}\quad &
+G\bigl(\,\mathsf{plan}\,\to\,F\,(\mathsf{verified}\,\vee\,
+\mathsf{halt-on-tape-bound})\bigr).
+\end{align*}
+Safety says that every emitted symbol advances the verifier's
+state; liveness says that every plan eventually either succeeds
+verification or hits the tape bound.  Both are decided by
+inspection of the model-checker on the orchestrator's CFG
+\cite{clarke1981ctl,clarke1999modelchecking}.
+
+This concludes the formal description of the architecture.  We
+turn next to the empirical instantiation.
