@@ -151,6 +151,17 @@ def scenario_5_blend_before_verify(task_ids: list[int]):
     return result
 
 
+def scenario_6_advanced_ml_pipeline(task_ids: list[int]):
+    """Scenario 6: Correct advanced ML pipeline that passes all checks."""
+    print("\n" + "█"*72)
+    print("  SCENARIO 6: Correct Advanced ML Pipeline")
+    print("█"*72)
+    trace = simulate_standard_pipeline(task_ids, optimizers_per_task=2, advanced_ml_pipeline=True)
+    result = verify_trace(trace, code_text="")
+    print_trace_result(result, "Advanced ML MAS Pipeline")
+    return result
+
+
 # =========================================================================
 #  KEYWORD ANALYSIS
 # =========================================================================
@@ -277,11 +288,11 @@ def generate_latex_experiment_section(
         r"\subsection{Scenarios and Results}",
         r"\label{sec:exp6-scenarios}",
         r"",
-        r"Table~\ref{tab:exp6-scenarios} summarizes five verification scenarios.",
+        r"Table~\ref{tab:exp6-scenarios} summarizes six verification scenarios.",
         r"",
         r"\begin{table}[htbp]",
         r"\centering",
-        r"\caption{Verification results for five NeuroGolf MAS scenarios.}",
+        r"\caption{Verification results for six NeuroGolf MAS scenarios.}",
         r"\label{tab:exp6-scenarios}",
         r"\small",
         r"\begin{tabular}{lcc}",
@@ -366,9 +377,11 @@ def main():
     r3 = scenario_3_rejected_task(task_ids)
     r4 = scenario_4_skip_verification(task_ids)
     r5 = scenario_5_blend_before_verify(task_ids)
+    r6 = scenario_6_advanced_ml_pipeline(task_ids)
 
     results = [
         ("Correct Pipeline (13 tasks)",     r1),
+        ("Correct Advanced ML Pipeline",    r6),
         ("Build w/o Analysis",              r2),
         ("Reject Unsolvable Task",          r3),
         ("Skip ARC-GEN Verification",       r4),

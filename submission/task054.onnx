@@ -1,5 +1,5 @@
 
-:ÿÍ
+:¸Ë
 :
 inputcounts"	ReduceSum*
 axes@@ *
@@ -110,10 +110,8 @@ not_marker"Sub
 M_mask
 
 not_markert_seed"Mul
-
-t_seedtm_0"Identity
-S
-tm_0tm_d_0"MaxPool*
+U
+t_seedtm_d_0"MaxPool*
 kernel_shape@@ *
 pads@@@@ *
 strides@@ 
@@ -160,14 +158,12 @@ S
  
 tm_d_5
 not_bg_masktm_6"Mul
-
-tm_6template_mask"Identity
-B
-template_maskrows_any"	ReduceMax*
+9
+tm_6rows_any"	ReduceMax*
 axes@ *
 keepdims 
-B
-template_maskcols_any"	ReduceMax*
+9
+tm_6cols_any"	ReduceMax*
 axes@ *
 keepdims 
 
@@ -926,17 +922,11 @@ kshift_4_4marker_sh_4_4"Conv*
 0
 stamp_acc_4_3
 stamp_c_4_4stamp_acc_4_4"Add
-,
-stamp_acc_4_4stamp_per_channel"Identity
-H
-stamp_per_channel
+D
+stamp_acc_4_4
 stamp_mask"	ReduceSum*
 axes@ *
 keepdims 
-%
-T_col_nb_1_2v_arm_color"Identity
-%
-T_col_nb_2_1h_arm_color"Identity
 -
 rows_cnt
 	four_halfextend_v_bool"Greater
@@ -953,10 +943,8 @@ stamp_mask"	ReduceSum*
 
 rfill_mask
 marker_maskinside_rect"Add
-
-marker_maskvf_0"Identity
-S
-vf_0vf_d_0"MaxPool*
+Z
+marker_maskvf_d_0"MaxPool*
 kernel_shape@@ *
 pads@@ @@  *
 strides@@ 
@@ -1195,19 +1183,15 @@ U
 "
 vf_d_29
 inside_rectvf_30"Mul
-
-vf_30vflood"Identity
-"
-vflood
+!
+vf_30
 
 rfill_maskv_paint"Mul
 '
 v_paint
 extend_vv_paint_final"Mul
-
-marker_maskhf_0"Identity
-S
-hf_0hf_d_0"MaxPool*
+Z
+marker_maskhf_d_0"MaxPool*
 kernel_shape@@ *
 pads@ @@ @ *
 strides@@ 
@@ -1446,30 +1430,28 @@ U
 "
 hf_d_29
 inside_recthf_30"Mul
-
-hf_30hflood"Identity
-"
-hflood
+!
+hf_30
 
 rfill_maskh_paint"Mul
 '
 h_paint
 extend_hh_paint_final"Mul
-,
+-
 v_paint_final
-v_arm_color	v_paint_c"Mul
-,
+T_col_nb_1_2	v_paint_c"Mul
+-
 h_paint_final
-h_arm_color	h_paint_c"Mul
-2
-stamp_per_channel
+T_col_nb_2_1	h_paint_c"Mul
+.
+stamp_acc_4_4
 inside_rectstamp_restr"Mul
 0
 
 stamp_mask
 inside_rectstamp_mask_restr"Mul
-,
-template_mask
+#
+tm_6
 stamp_mask_restrpa_1"Add
  
 pa_1
@@ -1490,8 +1472,8 @@ stamp_mask
 input
 	keep_orig
 kept_input"Mul
-,
-template_mask
+#
+tm_6
 
 is_bg_chan
 tmpl_to_bg"Mul

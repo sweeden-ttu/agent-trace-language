@@ -2,39 +2,46 @@ step,agent,op,task_id,detail,estimated_improvement
 1,scanner,DISCOVER_BUNDLE,,Scanning for public datasets,0.0
 2,floor_loader,LOAD_FLOOR,,Loading initial floor solvers,0.0
 3,analyzer,ANALYZE_TASK,1,Kronecker pattern candidate,0.0
-4,miner,DISCOVER_PATTERN,1,Input x Input tiling,0.0
-5,builder,BUILD_ONNX,1,Building symbolic Kronecker template,0.0
-6,optimizer,FP16_SURGERY,1,Full-graph FP16 surgery,+12.0
-7,optimizer,CAST_COLLAPSE,1,Collapse adjacent Cast nodes,0.0
-8,verifier,VERIFY_TRAIN,1,Passing all train examples,0.0
-9,verifier,VERIFY_TEST,1,Passing all test examples,0.0
-10,verifier,VERIFY_ARC_GEN,1,Passing ARC-GEN examples,0.0
-11,grader,COMPUTE_COST,1,Cost: 24.8 points,0.0
-12,analyzer,ANALYZE_TASK,112,Reflective symmetry candidate,0.0
-13,miner,DISCOVER_PATTERN,112,Quadrant reflection mining,0.0
-14,builder,BUILD_ONNX,112,Building reflective symmetry template,0.0
-15,optimizer,FP16_SURGERY,112,Full-graph FP16 surgery,+11.5
-16,optimizer,CAST_COLLAPSE,112,Collapse adjacent Cast nodes,0.0
-17,verifier,VERIFY_TRAIN,112,Passing all train examples,0.0
-18,verifier,VERIFY_TEST,112,Passing all test examples,0.0
-19,verifier,VERIFY_ARC_GEN,112,Passing ARC-GEN examples,0.0
-20,grader,COMPUTE_COST,112,Cost: 24.5 points,0.0
-21,analyzer,ANALYZE_TASK,31,CA-Convolution candidate,0.0
-22,miner,DISCOVER_PATTERN,31,Unrolled CA rule mining,0.0
-23,builder,CONVOLUTION,31,Building unrolled 3x3 CA solver,+5.0
-24,optimizer,FP16_SURGERY,31,Full-graph FP16 surgery,+10.0
-25,optimizer,PRUNE,31,Remove dead nodes,0.0
-26,verifier,VERIFY_TRAIN,31,Passing all train examples,0.0
-27,verifier,VERIFY_TEST,31,Passing all test examples,0.0
-28,grader,COMPUTE_COST,31,Cost: 23.2 points,0.0
-29,analyzer,ANALYZE_TASK,210,Gravity/Falling candidate,0.0
-30,miner,DISCOVER_PATTERN,210,Unrolled 1D MaxPool boundary attraction,0.0
-31,builder,LABEL_PROPAGATE,210,Building MaxPool gravity solver,+4.0
-32,optimizer,FP16_SURGERY,210,Full-graph FP16 surgery,+10.0
-33,verifier,VERIFY_TRAIN,210,Passing all train examples,0.0
-34,verifier,VERIFY_TEST,210,Passing all test examples,0.0
-35,grader,COMPUTE_COST,210,Cost: 22.1 points,0.0
-36,blender,BLEND_BUNDLE,,Correctness Priority Rule: Preferred correct over identity,+30.0
-37,grader,COMPUTE_COST,,Final pipeline cost graded,0.0
-38,packager,PACKAGE,,Zipping submission.zip,0.0
-39,orch,SUBMIT,,Kaggle API push,0.0
+4,data_scientist,DATA_AUGMENTATION,1,Generating grid rotation & permutation augmentations,0.0
+5,data_scientist,FEW_SHOT_LEARNING,1,Few-shot adaptation of solver parameters,0.0
+6,automl_expert,MCTS_SEARCH,1,MCTS search over ONNX graph architectures,0.0
+7,automl_expert,HYPERPARAM_OPT,1,Tuning kernel dimensions and learning rate,0.0
+8,automl_expert,AUTO_ML,1,AutoML selection of best architecture,0.0
+9,builder,BUILD_ONNX,1,Building symbolic Kronecker template,0.0
+10,builder,SELF_ATTENTION,1,Adding self-attention block to Kronecker solver,0.0
+11,builder,ENSEMBLE_LEARNING,1,Ensembling Kronecker and Identity solvers,0.0
+12,data_scientist,TRANSFER_LEARNING,1,Transfer learning from task 112 pre-trained weights,0.0
+13,optimizer,FP16_SURGERY,1,Full-graph FP16 surgery,+12.0
+14,optimizer,CAST_COLLAPSE,1,Collapse adjacent Cast nodes,0.0
+15,verifier,VERIFY_TRAIN,1,Passing all train examples,0.0
+16,verifier,VERIFY_TEST,1,Passing all test examples,0.0
+17,verifier,VERIFY_ARC_GEN,1,Passing ARC-GEN examples,0.0
+18,grader,COMPUTE_COST,1,Cost: 24.8 points,0.0
+19,analyzer,ANALYZE_TASK,112,Reflective symmetry candidate,0.0
+20,miner,DISCOVER_PATTERN,112,Quadrant reflection mining,0.0
+21,builder,BUILD_ONNX,112,Building reflective symmetry template,0.0
+22,optimizer,FP16_SURGERY,112,Full-graph FP16 surgery,+11.5
+23,optimizer,CAST_COLLAPSE,112,Collapse adjacent Cast nodes,0.0
+24,verifier,VERIFY_TRAIN,112,Passing all train examples,0.0
+25,verifier,VERIFY_TEST,112,Passing all test examples,0.0
+26,verifier,VERIFY_ARC_GEN,112,Passing ARC-GEN examples,0.0
+27,grader,COMPUTE_COST,112,Cost: 24.5 points,0.0
+28,analyzer,ANALYZE_TASK,31,CA-Convolution candidate,0.0
+29,miner,DISCOVER_PATTERN,31,Unrolled CA rule mining,0.0
+30,builder,CONVOLUTION,31,Building unrolled 3x3 CA solver,+5.0
+31,optimizer,FP16_SURGERY,31,Full-graph FP16 surgery,+10.0
+32,optimizer,PRUNE,31,Remove dead nodes,0.0
+33,verifier,VERIFY_TRAIN,31,Passing all train examples,0.0
+34,verifier,VERIFY_TEST,31,Passing all test examples,0.0
+35,grader,COMPUTE_COST,31,Cost: 23.2 points,0.0
+36,analyzer,ANALYZE_TASK,210,Gravity/Falling candidate,0.0
+37,miner,DISCOVER_PATTERN,210,Unrolled 1D MaxPool boundary attraction,0.0
+38,builder,LABEL_PROPAGATE,210,Building MaxPool gravity solver,+4.0
+39,optimizer,FP16_SURGERY,210,Full-graph FP16 surgery,+10.0
+40,verifier,VERIFY_TRAIN,210,Passing all train examples,0.0
+41,verifier,VERIFY_TEST,210,Passing all test examples,0.0
+42,grader,COMPUTE_COST,210,Cost: 22.1 points,0.0
+43,blender,BLEND_BUNDLE,,Correctness Priority Rule: Preferred correct over identity,+30.0
+44,grader,COMPUTE_COST,,Final pipeline cost graded,0.0
+45,packager,PACKAGE,,Zipping submission.zip,0.0
+46,orch,SUBMIT,,Kaggle API push,0.0

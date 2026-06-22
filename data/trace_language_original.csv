@@ -1,20 +1,15 @@
-"trace_id","operation","timestamp"
-1,"load_kaggle_csvs","2026-06-20T10:00:00Z"
-2,"compute_train_test_dtypes","2026-06-20T10:00:01Z"
-3,"compute_na_rate_by_column","2026-06-20T10:00:02Z"
-4,"compute_target_summary","2026-06-20T10:00:03Z"
-5,"summarize_train_dtypes","2026-06-20T10:00:04Z"
-6,"apply_cabin_decomposition","2026-06-20T10:00:05Z"
-7,"apply_passenger_group_extraction","2026-06-20T10:00:06Z"
-8,"apply_spaceship_feature_engineer","2026-06-20T10:00:07Z"
-9,"compute_total_spending_and_log1p","2026-06-20T10:00:08Z"
-10,"compute_cryosleep_anomaly","2026-06-20T10:00:09Z"
-11,"compute_group_modal_homeplanet","2026-06-20T10:00:10Z"
-12,"split_kaggle_data","2026-06-20T10:00:11Z"
-13,"fit_model_on_subset","2026-06-20T10:00:12Z"
-14,"score_train_and_val","2026-06-20T10:00:13Z"
-15,"accumulate_oof_predictions","2026-06-20T10:00:14Z"
-16,"track_best_episode_by_val_score","2026-06-20T10:00:15Z"
-17,"refit_on_full_train","2026-06-20T10:00:16Z"
-18,"train_stacked_ensemble","2026-06-20T10:00:17Z"
-19,"tune_lightgbm","2026-06-20T10:00:18Z"
+research_agent,reader_agent,planner_agent,developer_agent,reviewer_agent,summarizer_agent,tools_index,unit_test_runner,sop_orchestrator,mlebench_solver,kernel_pipeline,task_orchestrator
+load_vector_db(gemini_embeddings.json),read_overview_txt,lookup_phase_tools(config.phase_to_ml_tools),consume_plan_json,lookup_phase_unit_tests(config),consume_full_phase_memory,load_schema(tools_schema.json),dispatch_phase(data_cleaning|feature_engineering|model_predict),for_each_phase_in_config,start_computer_runtime,build_kernel_packages(competition_slug),enumerate_competitions
+get_competition_description(slug),compose_reader_prompt,enumerate_tool_descriptions,consume_phase_memory(last_2),run_phase_unit_tests(phase; comp_dir),compose_summarizer_prompt,compose_tool_text(name; phase; description; example),test_document_exist,construct_phase_state,mkdir_remote_workspace,emit_stage_01_explore_notebook,add_task(KernelTask)
+embed_query(text-embedding-004),invoke_gemini(gemini-2.5-flash-lite),compose_planner_prompt,compose_developer_prompt,collect_failed_tests,invoke_gemini(gemini-2.5-flash-lite),embed_tool_text(text-embedding-004),test_column_names_submission,invoke_planner,preflight_kaggle_cli_on_vm,emit_stage_02_baseline_notebook,compute_dependency_graph(prev_stage_to_next_stage)
+retrieve_relevant_context(top_k=8),extract_json_from_response,consume_phase_memory(last_3),invoke_gemini(gemini-2.5-pro),compose_reviewer_prompt,emit_markdown_report,cache_to_embeddings_json,test_submission_validity,invoke_developer,list_active_competitions(kaggle_cli),emit_stage_03_tune_notebook,acquire_semaphore(max_concurrent=3)
+retrieve_recommended_tools(top_k=5),emit_task_type,invoke_gemini(gemini-2.5-flash),extract_json_from_response,invoke_gemini(gemini-2.5-flash-lite),list_phase_accomplishments,embed_query(text-embedding-004),test_submission_no_missing_rows,invoke_reviewer,for_each_competition,emit_stage_04_submit_notebook,dispatch_independent_tasks_in_parallel
+score_chunks_by_cosine,emit_target_column,extract_json_from_response,emit_code_artifact,extract_json_from_response,list_tools_used,score_against_index(cosine),test_cleaned_train_no_missing_values,compare_score_to_advance_threshold(>=3),run_sop_per_competition_when_multi_agent_mode,write_kernel_metadata_json,wait_on_dependent_tasks_sequentially
+synthesize_report(gemini-2.5-flash),emit_id_column,emit_plan_json,import_ml_tools_namespace,parse_score_int,list_output_artifacts,filter_by_phase,test_cleaned_test_no_target_column,invoke_summarizer_on_advance,write_sop_outcome_json,write_notebook_ipynb,push_kernel_dir_cli(kaggle; kernel_dir)
+cite_sysmleng_sources,emit_evaluation_metric,emit_step(id; title; instructions; tools),read_competition_dir_inputs,clamp_score_to_2_on_unit_failure,list_caveats_for_next_phase,sort_by_score_desc,test_processed_train_feature_number,forward_artifact_to_next_phase,generate_kernel_packages(4_copies),write_packages_to_disk(destination_root),mark_task_completed
+cite_tool_calls_with_args,emit_key_challenges,emit_success_criteria,declare_expected_outputs,clamp_score_to_1_5_range,,return_top_k_tool_hits,short_circuit_on_missing_submission,retry_phase_on_low_score,write_packages_to_disk,embed_handoff_dataset_hint,notify_dependents
+write_research_md,emit_one_paragraph_summary,fallback_empty_plan_on_parse_error,write_to_output_dir,emit_review_result(score; rationale; blocking_issues; failed_tests),,drop_unknown_names_silently,write_unit_tests_json,cap_iterations_at_max(=3),upload_kernel_payload_to_vm,attach_competition_sources,report_orchestrator_done
+,fallback_to_defaults_on_parse_error,,write_submission_csv,,,,exit_zero_iff_all_passed,emit_outcome(complete|fail),sequential_push_on_vm(stage_order),,
+,,,,,,,,record_history_per_iteration,record_push_log,,
+,,,,,,,,,delegate_grade_to_swelancer_task,,
+,,,,,,,,,yield_final_result,,

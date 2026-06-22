@@ -1,0 +1,37 @@
+research_agent,reader_agent,planner_agent,developer_agent,reviewer_agent,summarizer_agent,tools_index,unit_test_runner,sop_orchestrator,mlebench_solver,kernel_pipeline,task_orchestrator,kaggle_trainer
+load_vector_db(gemini_embeddings.json),read_overview_txt,lookup_phase_tools(config.phase_to_ml_tools),consume_plan_json,lookup_phase_unit_tests(config),consume_full_phase_memory,load_schema(tools_schema.json),dispatch_phase(data_cleaning|feature_engineering|model_predict),for_each_phase_in_config,start_computer_runtime,build_kernel_packages(competition_slug),enumerate_competitions,load_kaggle_csvs(train; test; sample_submission)
+get_competition_description(slug),compose_reader_prompt,enumerate_tool_descriptions,consume_phase_memory(last_2),run_phase_unit_tests(phase; comp_dir),compose_summarizer_prompt,compose_tool_text(name; phase; description; example),test_document_exist,construct_phase_state,mkdir_remote_workspace,emit_stage_01_explore_notebook,add_task(KernelTask),build_or_load_eda_bundle(competition_slug)
+embed_query(text-embedding-004),invoke_gemini(gemini-2.5-flash-lite),compose_planner_prompt,consume_eda_bundle,collect_failed_tests,invoke_gemini(gemini-2.5-flash-lite),embed_tool_text(text-embedding-004),test_column_names_submission,invoke_planner,preflight_kaggle_cli_on_vm,compute_train_test_dtypes,compute_dependency_graph(prev_stage_to_next_stage),summarize_train_dtypes
+retrieve_relevant_context(top_k=8),extract_json_from_response,consume_phase_memory(last_3),select_imputer_from_na_rate,compose_reviewer_prompt,emit_markdown_report,cache_to_embeddings_json,test_submission_validity,invoke_developer,list_active_competitions(kaggle_cli),compute_na_rate_by_column,acquire_semaphore(max_concurrent=3),compute_na_rate_by_column
+retrieve_recommended_tools(top_k=5),emit_task_type,consume_eda_bundle(dtypes; na_rates),select_encoder_from_cardinality,invoke_gemini(gemini-2.5-flash-lite),list_phase_accomplishments,embed_query(text-embedding-004),test_submission_no_missing_rows,invoke_reviewer,for_each_competition,compute_target_balance,dispatch_independent_tasks_in_parallel,compute_target_summary(categorical|numeric)
+score_chunks_by_cosine,emit_target_column,invoke_gemini(gemini-2.5-flash),wire_cabin_decomposer_in_pipeline(BaseEstimator+TransformerMixin),extract_json_from_response,list_tools_used,score_against_index(cosine),test_cleaned_train_no_missing_values,compare_score_to_advance_threshold(>=3),run_sop_per_competition_when_multi_agent_mode,write_eda_bundle_json,wait_on_dependent_tasks_sequentially,ask_gemini_for_model(eda_bundle_in_prompt)
+consume_eda_bundle_for_priors,emit_id_column,extract_json_from_response,wire_passenger_group_extractor_in_pipeline(BaseEstimator+TransformerMixin),parse_score_int,list_output_artifacts,filter_by_phase,test_cleaned_test_no_target_column,invoke_summarizer_on_advance,write_sop_outcome_json,emit_cabin_passenger_id_decomposers_in_stage_04,push_kernel_dir_cli(kaggle; kernel_dir),exec_model_source(register_in_sys_modules)
+synthesize_report(gemini-2.5-flash),emit_evaluation_metric,emit_plan_json,wire_group_kfold_in_validation(group_column=PassengerGroup),clamp_score_to_2_on_unit_failure,list_caveats_for_next_phase,sort_by_score_desc,test_processed_train_feature_number,forward_artifact_to_next_phase,generate_kernel_packages(4_copies),emit_group_kfold_validation_in_stage_04,mark_task_completed,import_decomposers_from_ml_tools
+cite_sysmleng_sources,emit_key_challenges,emit_step(id; title; instructions; tools),wire_stacked_ensemble_pipeline(StackedEnsemble),clamp_score_to_1_5_range,,return_top_k_tool_hits,short_circuit_on_missing_submission,forward_eda_bundle_to_developer,write_packages_to_disk,emit_stacked_ensemble_in_stage_04,notify_dependents,apply_cabin_decomposition_in_pipeline
+cite_tool_calls_with_args,emit_one_paragraph_summary,emit_success_criteria,wire_optuna_lightgbm_tuning(n_trials=30; timeout=60s),emit_review_result(score; rationale; blocking_issues; failed_tests),,drop_unknown_names_silently,write_unit_tests_json,retry_phase_on_low_score,upload_kernel_payload_to_vm,emit_spaceship_feature_engineer_in_stage_04,report_orchestrator_done,apply_passenger_group_extraction_in_pipeline
+write_research_md,fallback_to_defaults_on_parse_error,fallback_empty_plan_on_parse_error,wire_spaceship_feature_engineer(BaseEstimator+TransformerMixin),,,,exit_zero_iff_all_passed,cap_iterations_at_max(=3),sequential_push_on_vm(stage_order),emit_stage_02_baseline_notebook,,apply_stratified_group_kfold(passenger_group)
+,,,engineer_spending_log1p_total_per_age,,,,,emit_outcome(complete|fail),record_push_log,emit_stage_03_tune_notebook,,build_oof_with_cross_val_predict(per_base_learner)
+,,,engineer_cryosleep_anomaly_flag,,,,,record_history_per_iteration,delegate_grade_to_swelancer_task,emit_stage_04_submit_notebook,,train_stacked_ensemble(LGBM+XGB+HistGB+linear_meta)
+,,,engineer_group_aggregates(mean_age; n_kids; n_adults; modal_homeplanet),,,,,,yield_final_result,write_kernel_metadata_json,,tune_lightgbm_with_optuna(n_trials=30)
+,,,engineer_missingness_indicators(*_isnull),,,,,,,write_notebook_ipynb,,compute_base_oof_correlations
+,,,engineer_spending_pairwise_interactions,,,,,,,write_packages_to_disk(destination_root),,apply_spaceship_feature_engineer_in_pipeline
+,,,compose_developer_prompt,,,,,,,embed_handoff_dataset_hint,,compute_total_spending_and_log1p
+,,,invoke_gemini(gemini-2.5-pro),,,,,,,attach_competition_sources,,compute_cryosleep_anomaly
+,,,extract_json_from_response,,,,,,,,,compute_group_mean_age_n_kids_n_adults
+,,,emit_code_artifact,,,,,,,,,compute_group_modal_homeplanet
+,,,import_ml_tools_namespace,,,,,,,,,emit_spend_pairwise_interactions
+,,,read_competition_dir_inputs,,,,,,,,,emit_missingness_indicators
+,,,declare_expected_outputs,,,,,,,,,extract_meta_coefficients_for_explainability
+,,,write_to_output_dir,,,,,,,,,split_kaggle_data(stratified_kfold)
+,,,write_submission_csv,,,,,,,,,for_each_fold_for_each_episode
+,,,,,,,,,,,,bootstrap_indices(85pct; per_episode_random_state)
+,,,,,,,,,,,,fit_model_on_subset
+,,,,,,,,,,,,score_train_and_val
+,,,,,,,,,,,,accumulate_oof_predictions
+,,,,,,,,,,,,track_best_episode_by_val_score
+,,,,,,,,,,,,refit_on_full_train
+,,,,,,,,,,,,write_submission_csv
+,,,,,,,,,,,,save_checkpoint(final.pkl)
+,,,,,,,,,,,,save_checkpoint(best_fold.pkl)
+,,,,,,,,,,,,write_training_run_json
+,,,,,,,,,,,,load_checkpoint_round_trip

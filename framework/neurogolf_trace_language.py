@@ -23,6 +23,11 @@ class OpSymbol(Enum):
     VERIFY_TRAIN = auto()
     VERIFY_TEST = auto()
     VERIFY_ARC_GEN = auto()
+    K_FOLD_CV = auto()
+    HYPOTHESIS_TEST = auto()
+    DATA_VALIDATION = auto()
+    EARLY_STOPPING = auto()
+    MODEL_GOVERNANCE = auto()
     COMPUTE_COST = auto()
     COST_GRADER_MATCH = auto()
     DISCOVER_BUNDLE = auto()
@@ -34,6 +39,14 @@ class OpSymbol(Enum):
     SUBMIT = auto()
     REJECT = auto()
     HALT = auto()
+    AUTO_ML = auto()
+    MCTS_SEARCH = auto()
+    SELF_ATTENTION = auto()
+    FEW_SHOT_LEARNING = auto()
+    DATA_AUGMENTATION = auto()
+    HYPERPARAM_OPT = auto()
+    ENSEMBLE_LEARNING = auto()
+    TRANSFER_LEARNING = auto()
 
 
 @dataclass

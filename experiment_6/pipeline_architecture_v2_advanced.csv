@@ -2,14 +2,21 @@ phase,step,agent,op,description,artifact_produced
 Ingestion,1,scanner,DISCOVER_BUNDLE,Scan public repositories,None
 Ingestion,2,floor_loader,LOAD_FLOOR,Load baseline public solvers,floor_solvers.zip
 Processing,3,analyzer,ANALYZE_TASK,Analyze task constraints,task_analysis.json
-Processing,4,miner,DISCOVER_PATTERN,Mine transformation patterns,pattern.json
-Processing,5,builder,BUILD_ONNX,Build ONNX graph from pattern,task.onnx
-Optimization,6,optimizer,FP16_SURGERY,Convert Float to Float16,task_fp16.onnx
-Optimization,7,optimizer,CAST_COLLAPSE,Collapse adjacent Cast nodes,task_opt.onnx
-Optimization,8,grader,COMPUTE_COST,Evaluate model size/params,cost_report.json
-Verification,9,verifier,VERIFY_TRAIN,Check against train pairs,train_report.json
-Verification,10,verifier,VERIFY_TEST,Check against test pairs,test_report.json
-Checkpoint,11,orch,SAVE_MODEL,Save optimized model,checkpoint_v2.onnx
-Submission,12,blender,BLEND_BUNDLE,Cost-greedy correct-priority blend,submission.zip
-Submission,13,packager,PACKAGE,Create compressed bundle,submission.tar.gz
-Submission,14,orch,SUBMIT,Submit to Kaggle API,score.json
+Processing,4,data_scientist,DATA_AUGMENTATION,Generate augmented grids,augmented_data.json
+Processing,5,data_scientist,FEW_SHOT_LEARNING,Adapt solver to demonstrations,adapted_solver.json
+Processing,6,automl_expert,MCTS_SEARCH,Search graph architecture space,search_tree.json
+Processing,7,automl_expert,HYPERPARAM_OPT,Tune hyperparameters,best_params.json
+Processing,8,automl_expert,AUTO_ML,Automated neural architecture search,automl_model.json
+Processing,9,builder,BUILD_ONNX,Build ONNX graph,task.onnx
+Processing,10,builder,SELF_ATTENTION,Construct self-attention neural block,task_attention.onnx
+Processing,11,builder,ENSEMBLE_LEARNING,Ensemble multiple ONNX solvers,ensembled.onnx
+Processing,12,data_scientist,TRANSFER_LEARNING,Re-use pre-trained weights,task_final.onnx
+Optimization,13,optimizer,FP16_SURGERY,Convert Float to Float16,task_fp16.onnx
+Optimization,14,optimizer,CAST_COLLAPSE,Collapse adjacent Cast nodes,task_opt.onnx
+Optimization,15,grader,COMPUTE_COST,Evaluate model size/params,cost_report.json
+Verification,16,verifier,VERIFY_TRAIN,Check against train pairs,train_report.json
+Verification,17,verifier,VERIFY_TEST,Check against test pairs,test_report.json
+Verification,18,verifier,VERIFY_ARC_GEN,Check against ARC-GEN pairs,arc_gen_report.json
+Submission,19,blender,BLEND_BUNDLE,Cost-greedy correct-priority blend,submission.zip
+Submission,20,packager,PACKAGE,Create compressed bundle,submission.tar.gz
+Submission,21,orch,SUBMIT,Submit to Kaggle API,score.json

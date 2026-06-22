@@ -1,7 +1,7 @@
 % ===== sec/05_chomsky_classification.tex =====
 \section{Chomsky Classification of Agents}
 \label{sec:chomsky}
-
+\sloppy
 We now classify trace languages by Chomsky type and exhibit, for
 each type, the canonical agent shape from the empirical
 \textsc{NeuroGolf ONNX ARC-AGI} system
@@ -19,9 +19,11 @@ lemmas; the Type-0 classification of the principal generator is an
 idealised upper bound (Lemma~\ref{lem:bounded-soundness}).
 
 \subsection{Type-3: regular trace languages}
+\sloppy
 
 \begin{definition}[Type-3 agent]
 \label{def:type3agent}
+\sloppy
 An agent $\mathcal{A}$ is \emph{Type-3} if $L(\mathcal{A}) \in
 \mathcal{L}_3$, equivalently, if there exists a finite
 automaton $M$ with $L(M) = L(\mathcal{A})$.
@@ -47,6 +49,8 @@ Membership in $L(\mathcal{V})$ is decided in $O(n)$ time and $O(1)$
 space per candidate trace.
 
 \subsection{Type-2: context-free trace languages}
+\sloppy
+
 
 \begin{definition}[Type-2 agent]
 \label{def:type2agent}
@@ -76,6 +80,7 @@ counter, which is simply a larger DFA. Thus, constant-bounded
 orchestration loops structurally belong to the Type-3 (regular) class.
 
 \subsection{Type-1: context-sensitive trace languages}
+\sloppy
 
 \begin{definition}[Type-1 agent]
 \label{def:type1agent}
@@ -125,20 +130,29 @@ shadow of the Halting Problem in our setting.
 \caption{Structural Chomsky classification of the empirical sub-agents in
 \texttt{experiment\_6/trace\_language.csv}.}
 \label{tab:chomsky-empirical}
-\begin{tabular}{l|l|l}
-\hline
-\textbf{Sub-agent} & \textbf{Class} & \textbf{Recogniser} \\ \hline
-\texttt{scanner}         & Type-3 & FA / DFA \\
-\texttt{floor\_loader}   & Type-3 & FA \\
-\texttt{verifier}        & Type-3 & DFA \\
-\texttt{grader}          & Type-3 & FA \\
-\texttt{packager}        & Type-3 & FA \\ \hline
-\texttt{analyzer}        & Type-2 & PDA \\
-\texttt{miner}           & Type-2 & PDA \\ \hline
-\texttt{optimizer}       & Type-1 & LBA \\ \hline
-\texttt{builder}         & Type-0 & TM \\
-\texttt{blender}         & Type-0 & TM (emergent) \\ \hline
-\end{tabular}
+\begin{center}
+  \resizebox{\linewidth}{!}{
+    \begin{tabular}{l|l|l}
+      \hline
+      \textbf{Sub-agent} & \textbf{Class} & \textbf{Recogniser} \\
+      \hline
+      \texttt{scanner}         & Type-3 & FA / DFA \\
+      \texttt{floor\_loader}   & Type-3 & FA \\
+      \texttt{verifier}        & Type-3 & DFA \\
+      \texttt{grader}          & Type-3 & FA \\
+      \texttt{packager}        & Type-3 & FA \\
+      \hline
+      \texttt{analyzer}        & Type-2 & PDA \\
+      \texttt{miner}           & Type-2 & PDA \\
+      \hline
+      \texttt{optimizer}       & Type-1 & LBA \\
+      \hline
+      \texttt{builder}         & Type-0 & TM \\
+      \texttt{blender}         & Type-0 & TM (emergent) \\
+      \hline
+    \end{tabular}
+  }
+\end{center}
 \end{table}
 
 \subsection{The Goal-Driven / Data-Driven binding, formally}

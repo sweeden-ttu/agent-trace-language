@@ -23,3 +23,13 @@ venv/
 
 # Debug
 screenshot.png
+
+# Ignore root-level task files
+/task*.onnx
+
+# Ignore temporary build and submission task folders
+/tmp_build/
+/submission_tasks/
+
+# Ignore duplicate submission.zip in experiment_6
+/experiment_6/submission.zip

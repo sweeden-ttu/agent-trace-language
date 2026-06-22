@@ -1,5 +1,5 @@
 
-:äº
+:ô¹
 S
 input
 kpos_0sp_0"Conv*
@@ -546,9 +546,6 @@ p_0_28_max
 p_0_28_max
 	p_0_29_sh
 p_0_29_max"Max
-
-
-p_0_29_maxprop_0"Identity
 [
 	starter_1
 kpos_1p_1_0_sh"Conv*
@@ -907,9 +904,6 @@ p_1_28_max
 p_1_28_max
 	p_1_29_sh
 p_1_29_max"Max
-
-
-p_1_29_maxprop_1"Identity
 [
 	starter_2
 kpos_2p_2_0_sh"Conv*
@@ -1268,9 +1262,6 @@ p_2_28_max
 p_2_28_max
 	p_2_29_sh
 p_2_29_max"Max
-
-
-p_2_29_maxprop_2"Identity
 [
 	starter_3
 kpos_3p_3_0_sh"Conv*
@@ -1629,15 +1620,16 @@ p_3_28_max
 p_3_28_max
 	p_3_29_sh
 p_3_29_max"Max
-
+"
 
-p_3_29_maxprop_3"Identity
-
-prop_0
-prop_1m01"Max
-
-prop_2
-prop_3m23"Max
+p_0_29_max
+
+p_1_29_maxm01"Max
+"
+
+p_2_29_max
+
+p_3_29_maxm23"Max
 
 m01
 m23prop_all_raw"Max
