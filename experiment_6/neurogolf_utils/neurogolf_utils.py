@@ -89,7 +89,7 @@ display = IPython.display.display
 FileLink = IPython.display.FileLink
 
 _BATCH_SIZE, _CHANNELS, _HEIGHT, _WIDTH = 1, 10, 30, 30
-_NEUROGOLF_DIR = "/kaggle/input/competitions/neurogolf-2026/"
+_NEUROGOLF_DIR = "~/kaggle/input/competitions/neurogolf-2026/"
 _COLORS = [
     (0, 0, 0),
     (30, 147, 255),
