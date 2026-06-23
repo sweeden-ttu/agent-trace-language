@@ -1,41 +1,12 @@
-{
+import json
+
+nb_content = {
  "cells": [
   {
    "cell_type": "code",
-   "execution_count": 1,
-   "id": "a14ec976",
-   "metadata": {
-    "execution": {
-     "iopub.execute_input": "2026-06-23T06:36:06.230691Z",
-     "iopub.status.busy": "2026-06-23T06:36:06.230456Z",
-     "iopub.status.idle": "2026-06-23T06:36:06.976190Z",
-     "shell.execute_reply": "2026-06-23T06:36:06.975664Z"
-    }
-   },
-   "outputs": [
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "Found 400 ONNX files to optimize.\n"
-     ]
-    },
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "Optimization complete. Saved 400 files to /Users/sweeden/kaggle/input/neurogolf-2026-agent-trace-framework-v2/optimized\n"
-     ]
-    },
-    {
-     "name": "stderr",
-     "output_type": "stream",
-     "text": [
-      "/var/folders/dt/hwntsksn383f5_5_yt898yrm0000gq/T/ipykernel_21828/3389600419.py:67: RuntimeWarning: overflow encountered in cast\n",
-      "  arr_f16 = arr.astype(np.float16)\n"
-     ]
-    }
-   ],
+   "execution_count": None,
+   "metadata": {},
+   "outputs": [],
    "source": [
     "import os\n",
     "import glob\n",
@@ -181,18 +152,18 @@
    "name": "python3"
   },
   "language_info": {
-   "codemirror_mode": {
-    "name": "ipython",
-    "version": 3
-   },
+   "codemirror_mode": {"name": "ipython", "version": 3},
    "file_extension": ".py",
    "mimetype": "text/x-python",
    "name": "python",
    "nbconvert_exporter": "python",
    "pygments_lexer": "ipython3",
-   "version": "3.12.13"
+   "version": "3.10.12"
   }
  },
  "nbformat": 4,
  "nbformat_minor": 5
 }
+
+with open('/Users/sweeden/agent-trace-language/agent-trace-language/experiment_6/top_notebooks/03_optimization_passes/03_optimization_passes.ipynb', 'w') as f:
+    json.dump(nb_content, f, indent=1)
