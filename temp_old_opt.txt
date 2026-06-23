@@ -1,0 +1,151 @@
+import numpy as np
+import onnx
+from onnx import helper, shape_inference, TensorProto
+import copy
+
+# onnx.optimizer may be a separate package in newer ONNX versions
+try:
+    from onnx import optimizer
+    OPTIMIZER_AVAIL = True
+except ImportError:
+    optimizer = None
+    OPTIMIZER_AVAIL = False
+
+def count_params(model: onnx.ModelProto) -> int:
+    """Count total float/int elements across all initializers."""
+    total = 0
+    for t in model.graph.initializer:
+        total += int(np.prod(list(t.dims))) if t.dims else 1
+    return total
+
+# Build a small model with redundant Cast + large float32 weights to optimize
+x = helper.make_tensor_value_info("input", TensorProto.FLOAT, [1, 3, 30, 30])
+y = helper.make_tensor_value_info("output", TensorProto.FLOAT, [1, 3, 30, 30])
+
+# Two redundant casts
+c1 = helper.make_node("Cast", ["input"], ["c1"], to=int(TensorProto.FLOAT))
+c2 = helper.make_node("Cast", ["c1"], ["c2"], to=int(TensorProto.FLOAT))
+
+# Large float32 weight (3x3x1x1 conv kernel)
+w_val = np.random.randn(3, 3, 3, 3).astype(np.float32)
+W = helper.make_tensor("W", TensorProto.FLOAT, [3, 3, 3, 3], w_val.flatten())
+B = helper.make_tensor("B", TensorProto.FLOAT, [3], np.zeros(3, dtype=np.float32))
+conv = helper.make_node("Conv", ["c2", "W", "B"], ["output"],
+                        kernel_shape=[3, 3], pads=[1, 1, 1, 1])
+
+graph = helper.make_graph([c1, c2, conv], "demo_opt", [x], [y], [W, B])
+model_unopt = helper.make_model(graph, ir_version=12,
+                                opset_imports=[helper.make_opsetid("", 12)])
+model_unopt = shape_inference.infer_shapes(model_unopt)
+
+print(f"Unoptimized: {len(model_unopt.graph.node)} nodes, "
+      f"{count_params(model_unopt)} params ({w_val.nbytes*1e-6:.2f} MB float32)")
+
+
+def cast_elimination(model: onnx.ModelProto):
+    """Remove identity Cast nodes (same source and target type)."""
+    keep_nodes = []
+    removed = 0
+    for node in model.graph.node:
+        if node.op_type == "Cast":
+            attr = {a.name: a.i for a in node.attribute}
+            to_type = attr.get("to", -1)
+            inp_name = node.input[0]
+            inp_type = None
+            for vi in model.graph.value_info:
+                if vi.name == inp_name and vi.type.HasField("tensor_type"):
+                    inp_type = vi.type.tensor_type.elem_type
+                    break
+            if inp_type is not None and inp_type == to_type:
+                removed += 1
+                continue
+        keep_nodes.append(node)
+    new_graph = helper.make_graph(
+        keep_nodes, model.graph.name + "_opt",
+        model.graph.input, model.graph.output, model.graph.initializer,
+    )
+    new_model = helper.make_model(new_graph, ir_version=model.ir_version,
+                                  opset_imports=model.opset_import)
+    return new_model, removed
+
+opt_model, n_removed = cast_elimination(model_unopt)
+print(f"Cast elimination: removed {n_removed} redundant Cast node(s)")
+
+
+def fp16_surgery(model: onnx.ModelProto):
+    """Convert every FLOAT initializer and value_info to FLOAT16."""
+    model = copy.deepcopy(model)
+    conv_count = 0
+    for t in model.graph.initializer:
+        if t.data_type == TensorProto.FLOAT:
+            arr = np.frombuffer(t.raw_data, dtype=np.float32).copy()
+            arr_f16 = arr.astype(np.float16)
+            t.data_type = TensorProto.FLOAT16
+            t.raw_data = arr_f16.tobytes()
+            conv_count += 1
+    for vi in list(model.graph.value_info) + list(model.graph.input) + list(model.graph.output):
+        if vi.type.HasField("tensor_type"):
+            vi.type.tensor_type.elem_type = TensorProto.FLOAT16
+    return model, conv_count
+
+fp16_model, n_converted = fp16_surgery(model_unopt)
+print(f"FP16 surgery: converted {n_converted} initializer(s) to float16")
+
+
+def dim_scrub(model: onnx.ModelProto):
+    """Insert Squeeze nodes to eliminate size-1 dims from all value_info."""
+    model = copy.deepcopy(model)
+    squeeze_nodes = []
+    idx = 0
+    for vi in model.graph.value_info:
+        shape = vi.type.tensor_type.shape
+        dims = [d.dim_value for d in shape.dim]
+        new_dims = [d for d in dims if d != 1]
+        if len(new_dims) < len(dims):
+            axes = helper.make_tensor(
+                f"squeeze_axes_{idx}", TensorProto.INT64, [1],
+                np.array([0], dtype=np.int64),
+            )
+            sq = helper.make_node("Squeeze", [vi.name, f"squeeze_axes_{idx}"],
+                                  [f"{vi.name}_sq"], name=f"squeeze_{idx}")
+            squeeze_nodes.append(sq)
+            idx += 1
+    if squeeze_nodes:
+        new_nodes = list(model.graph.node) + squeeze_nodes
+        new_graph = helper.make_graph(
+            new_nodes, model.graph.name + "_scrubbed",
+            model.graph.input, model.graph.output, model.graph.initializer,
+        )
+        model = helper.make_model(new_graph, ir_version=model.ir_version,
+                                  opset_imports=model.opset_import)
+    return model, idx
+
+scrubbed_model, n_squeezed = dim_scrub(model_unopt)
+print(f"Dim scrub: identified {n_squeezed} value_info with squeeze opportunities")
+
+
+# Apply all three optimizations in sequence
+m = copy.deepcopy(model_unopt)
+
+# 1) Cast elimination
+m, _ = cast_elimination(m)
+
+# 2) FP16 surgery halves memory
+m, n_cvt = fp16_surgery(m)
+
+# 3) onnx built-in optimizer passes (if available)
+if OPTIMIZER_AVAIL:
+    m = optimizer.optimize(m, ["eliminate_deadend", "fuse_consecutive_transposes"])
+else:
+    print("Note: onnx.optimizer not available, skipping built-in passes")
+
+# 4) Measure
+final_params = count_params(m)
+initial_bytes = w_val.nbytes + 3 * 4  # W + B + shape tensors
+final_bytes = w_val.nbytes // 2 + 3 * 4  # W in fp16, shape tensors same
+print(f"--- Optimization summary ---")
+print(f"Nodes:      {len(model_unopt.graph.node)} -> {len(m.graph.node)}")
+print(f"Params:     {count_params(model_unopt)} -> {final_params}")
+print(f"Memory:     {initial_bytes*1e-6:.2f} MB -> {final_bytes*1e-6:.2f} MB")
+print(f"Reduction:  {(1 - final_bytes / initial_bytes)*100:.1f}%")
+

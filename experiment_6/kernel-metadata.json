@@ -12,7 +12,8 @@
     "octaviograu/neurogolf-manual-rewrites-v205",
     "afr1ste/neurogolf-6335-19-controlled-public-artifact",
     "jsrdcht/neurogolf-6029-submission-bundle",
-    "konbu17/neurogolf-2026-blended-401-v117"
+    "konbu17/neurogolf-2026-blended-401-v117",
+    "scottweeden/neurogolf-2026-agent-trace-framework-v2"
   ],
   "competition_sources": ["neurogolf-2026"],
   "kernel_sources": [],

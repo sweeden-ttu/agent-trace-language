@@ -1,0 +1,2232 @@
+{
+  "files": [
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task001.onnx",
+      "sha256": "ebb36ea9b0192061",
+      "params": 0,
+      "size_kb": 3.2509765625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task001_int8.onnx",
+      "sha256": "7d1fdb9c19d659ff",
+      "params": 0,
+      "size_kb": 5.482421875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task002.onnx",
+      "sha256": "7c85ff5c4157c94b",
+      "params": 0,
+      "size_kb": 59.015625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task002_int8.onnx",
+      "sha256": "f1e5bb8e1425232c",
+      "params": 0,
+      "size_kb": 89.8642578125
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task003.onnx",
+      "sha256": "dedb52fe2c700d62",
+      "params": 0,
+      "size_kb": 8.9755859375
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task003_int8.onnx",
+      "sha256": "ab7e1f2f44298305",
+      "params": 0,
+      "size_kb": 12.96875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task004.onnx",
+      "sha256": "fc9ef5d39847fe67",
+      "params": 1020,
+      "size_kb": 2.462890625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task004_int8.onnx",
+      "sha256": "2a2e4417abed659f",
+      "params": 1028,
+      "size_kb": 2.9638671875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task005.onnx",
+      "sha256": "1664ae34f70c9fb8",
+      "params": 1259,
+      "size_kb": 38.0927734375
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task005_int8.onnx",
+      "sha256": "52cb0f75d909206b",
+      "params": 1259,
+      "size_kb": 56.96875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task006.onnx",
+      "sha256": "3948602e9a60a84b",
+      "params": 0,
+      "size_kb": 1.8818359375
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task006_int8.onnx",
+      "sha256": "54c0e4f136eef2c8",
+      "params": 0,
+      "size_kb": 2.7373046875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task007.onnx",
+      "sha256": "dba0489ea14d0dec",
+      "params": 0,
+      "size_kb": 12.5400390625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task007_int8.onnx",
+      "sha256": "e46e24c621f9da42",
+      "params": 0,
+      "size_kb": 13.7421875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task008.onnx",
+      "sha256": "b72eb45f971f33a9",
+      "params": 0,
+      "size_kb": 8.4814453125
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task008_int8.onnx",
+      "sha256": "24b5554b1a65f016",
+      "params": 0,
+      "size_kb": 13.4755859375
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task009.onnx",
+      "sha256": "2043f559e1ee947e",
+      "params": 3841,
+      "size_kb": 30.23046875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task009_int8.onnx",
+      "sha256": "4b9c7f00145abb1a",
+      "params": 3841,
+      "size_kb": 31.375
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task010.onnx",
+      "sha256": "0cff1c4e52d322f7",
+      "params": 9144,
+      "size_kb": 36.9248046875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task010_int8.onnx",
+      "sha256": "cd1148b352dc341a",
+      "params": 9144,
+      "size_kb": 38.5595703125
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task011.onnx",
+      "sha256": "fcedb80c94ccfc7f",
+      "params": 2318,
+      "size_kb": 13.8271484375
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task011_int8.onnx",
+      "sha256": "d18d0d25a26a3838",
+      "params": 2318,
+      "size_kb": 28.7314453125
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task012.onnx",
+      "sha256": "a6427c06db89b734",
+      "params": 79,
+      "size_kb": 3.71875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task012_int8.onnx",
+      "sha256": "e4c93cecd2de9b7a",
+      "params": 79,
+      "size_kb": 5.708984375
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task013.onnx",
+      "sha256": "98f0942c7dbfaf54",
+      "params": 2256,
+      "size_kb": 17.953125
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task013_int8.onnx",
+      "sha256": "66b360c9ce220118",
+      "params": 2256,
+      "size_kb": 28.96484375
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task014.onnx",
+      "sha256": "0ae3324a538b0f9b",
+      "params": 349,
+      "size_kb": 25.013671875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task014_int8.onnx",
+      "sha256": "fabcf47d9aae87cc",
+      "params": 349,
+      "size_kb": 34.7041015625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task015.onnx",
+      "sha256": "c59b881122470f84",
+      "params": 910,
+      "size_kb": 3.8564453125
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task015_int8.onnx",
+      "sha256": "96a0011bdfdeea36",
+      "params": 914,
+      "size_kb": 2.7646484375
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task016.onnx",
+      "sha256": "012701e91cafd2c6",
+      "params": 100,
+      "size_kb": 0.55859375
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task016_int8.onnx",
+      "sha256": "ce314cc00d9f8b13",
+      "params": 100,
+      "size_kb": 1.50390625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task017.onnx",
+      "sha256": "d64abdda284c9a24",
+      "params": 8983,
+      "size_kb": 40.46484375
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task017_int8.onnx",
+      "sha256": "579d3d71024f7d25",
+      "params": 8983,
+      "size_kb": 27.2001953125
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task018.onnx",
+      "sha256": "c2e8e82b394406b4",
+      "params": 989,
+      "size_kb": 31.4033203125
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task018_int8.onnx",
+      "sha256": "afe8387e049b6c0f",
+      "params": 989,
+      "size_kb": 33.5478515625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task019.onnx",
+      "sha256": "eecf7625da383cb8",
+      "params": 1828,
+      "size_kb": 17.4677734375
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task019_int8.onnx",
+      "sha256": "e22666dd9a9faa24",
+      "params": 1828,
+      "size_kb": 20.40625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task020.onnx",
+      "sha256": "fd5dc8a4974eff84",
+      "params": 538,
+      "size_kb": 44.140625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task020_int8.onnx",
+      "sha256": "bc0bac594138ffaa",
+      "params": 538,
+      "size_kb": 64.9423828125
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task021.onnx",
+      "sha256": "ad3a9c687f160646",
+      "params": 1847,
+      "size_kb": 37.3056640625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task021_int8.onnx",
+      "sha256": "3e4cb80dfe119770",
+      "params": 1847,
+      "size_kb": 37.8935546875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task022.onnx",
+      "sha256": "85bbd919b7d59213",
+      "params": 5940,
+      "size_kb": 51.4208984375
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task022_int8.onnx",
+      "sha256": "6ab038cf65d40969",
+      "params": 5940,
+      "size_kb": 67.837890625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task023.onnx",
+      "sha256": "ed2cfeaf88716ce3",
+      "params": 6234,
+      "size_kb": 25.16015625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task023_int8.onnx",
+      "sha256": "eced29901651c663",
+      "params": 6246,
+      "size_kb": 15.4638671875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task024.onnx",
+      "sha256": "f8a1d671c3118abe",
+      "params": 260,
+      "size_kb": 3.1572265625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task024_int8.onnx",
+      "sha256": "70dd537b6c376b50",
+      "params": 260,
+      "size_kb": 3.2109375
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task025.onnx",
+      "sha256": "2df08159930e5360",
+      "params": 0,
+      "size_kb": 6.7724609375
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task025_int8.onnx",
+      "sha256": "f7c82adce7af10ea",
+      "params": 0,
+      "size_kb": 19.0302734375
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task026.onnx",
+      "sha256": "55fef566fec33039",
+      "params": 48,
+      "size_kb": 1.583984375
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task026_int8.onnx",
+      "sha256": "05ffccd891b2b986",
+      "params": 48,
+      "size_kb": 1.6376953125
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task027.onnx",
+      "sha256": "cd99565e3aecbf39",
+      "params": 7217,
+      "size_kb": 30.4052734375
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task027_int8.onnx",
+      "sha256": "c2e81e59db7ff984",
+      "params": 7217,
+      "size_kb": 30.462890625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task028.onnx",
+      "sha256": "54411158e7a23099",
+      "params": 318,
+      "size_kb": 2.39453125
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task028_int8.onnx",
+      "sha256": "2504ad551229e36b",
+      "params": 318,
+      "size_kb": 2.775390625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task029.onnx",
+      "sha256": "25fd930dd65d6c39",
+      "params": 169,
+      "size_kb": 13.2705078125
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task029_int8.onnx",
+      "sha256": "86858408a3327147",
+      "params": 169,
+      "size_kb": 14.7763671875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task030.onnx",
+      "sha256": "76e48b2967fe619c",
+      "params": 972,
+      "size_kb": 9.2197265625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task030_int8.onnx",
+      "sha256": "15be0a914b5ba189",
+      "params": 972,
+      "size_kb": 9.2412109375
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task031.onnx",
+      "sha256": "b3d2f78bb87c39a5",
+      "params": 973,
+      "size_kb": 5.99609375
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task031_int8.onnx",
+      "sha256": "e30283cd8e3abe24",
+      "params": 973,
+      "size_kb": 7.5009765625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task032.onnx",
+      "sha256": "64d66eeaba955883",
+      "params": 68,
+      "size_kb": 2.2919921875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task032_int8.onnx",
+      "sha256": "d87489816625ad64",
+      "params": 68,
+      "size_kb": 2.96484375
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task033.onnx",
+      "sha256": "f1cb438b2dd173ef",
+      "params": 0,
+      "size_kb": 4.8212890625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task033_int8.onnx",
+      "sha256": "227adaad438e4d32",
+      "params": 0,
+      "size_kb": 8.345703125
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task034.onnx",
+      "sha256": "51897e28cf648a56",
+      "params": 392,
+      "size_kb": 27.84765625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task034_int8.onnx",
+      "sha256": "29a5b418d19cdc13",
+      "params": 392,
+      "size_kb": 39.7705078125
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task035.onnx",
+      "sha256": "642759a6cd0998d9",
+      "params": 222,
+      "size_kb": 12.5673828125
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task035_int8.onnx",
+      "sha256": "14e7e913c87f74e6",
+      "params": 222,
+      "size_kb": 33.6201171875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task036.onnx",
+      "sha256": "76facc8f1d2b1b66",
+      "params": 155,
+      "size_kb": 5.728515625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task036_int8.onnx",
+      "sha256": "6596b4b291a9c713",
+      "params": 155,
+      "size_kb": 5.7822265625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task037.onnx",
+      "sha256": "e19669c0dec2c6b7",
+      "params": 8326,
+      "size_kb": 19.9453125
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task037_int8.onnx",
+      "sha256": "e35b998da7c5d262",
+      "params": 8350,
+      "size_kb": 17.466796875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task038.onnx",
+      "sha256": "a83d43302a9ef7e5",
+      "params": 77,
+      "size_kb": 2.3017578125
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task038_int8.onnx",
+      "sha256": "77f7e97d9dbe8823",
+      "params": 77,
+      "size_kb": 2.35546875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task039.onnx",
+      "sha256": "b671d6bad0ad3b03",
+      "params": 2773,
+      "size_kb": 17.1962890625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task039_int8.onnx",
+      "sha256": "b155918dfb4fddeb",
+      "params": 2773,
+      "size_kb": 18.63671875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task040.onnx",
+      "sha256": "b2981947dbae7b22",
+      "params": 62,
+      "size_kb": 4.0078125
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task040_int8.onnx",
+      "sha256": "54cf4d51ff86b447",
+      "params": 62,
+      "size_kb": 4.0615234375
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task041.onnx",
+      "sha256": "bd7a876093830c1b",
+      "params": 1809,
+      "size_kb": 19.2373046875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task041_int8.onnx",
+      "sha256": "0b3367a219cef6ce",
+      "params": 1809,
+      "size_kb": 25.791015625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task042.onnx",
+      "sha256": "4bac54316e5efc00",
+      "params": 2399,
+      "size_kb": 13.693359375
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task042_int8.onnx",
+      "sha256": "2c94ac3057769465",
+      "params": 2399,
+      "size_kb": 19.9306640625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task043.onnx",
+      "sha256": "16b05e98645b4d8d",
+      "params": 139,
+      "size_kb": 1.919921875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task043_int8.onnx",
+      "sha256": "012e4818360a0934",
+      "params": 139,
+      "size_kb": 1.9697265625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task044.onnx",
+      "sha256": "e615daf70f6af77e",
+      "params": 131246,
+      "size_kb": 518.853515625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task044_int8.onnx",
+      "sha256": "a83d39c9adcab69d",
+      "params": 131246,
+      "size_kb": 142.28515625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task045.onnx",
+      "sha256": "526742a9535ec4b5",
+      "params": 1832,
+      "size_kb": 13.4892578125
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task045_int8.onnx",
+      "sha256": "9333f9d96386508c",
+      "params": 1832,
+      "size_kb": 15.8515625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task046.onnx",
+      "sha256": "b86614c0f74850b3",
+      "params": 2060,
+      "size_kb": 14.083984375
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task046_int8.onnx",
+      "sha256": "52c2e2902e2b7c68",
+      "params": 2060,
+      "size_kb": 21.1298828125
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task047.onnx",
+      "sha256": "b39555b503080f90",
+      "params": 1809,
+      "size_kb": 21.49609375
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task047_int8.onnx",
+      "sha256": "c42b238949addfd8",
+      "params": 1809,
+      "size_kb": 26.4130859375
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task048.onnx",
+      "sha256": "457aefee44bdc80d",
+      "params": 27182,
+      "size_kb": 106.556640625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task048_int8.onnx",
+      "sha256": "7b7bc375a86c211c",
+      "params": 27190,
+      "size_kb": 32.4541015625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task049.onnx",
+      "sha256": "a37e8cb1f6134fde",
+      "params": 148,
+      "size_kb": 3.43359375
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task049_int8.onnx",
+      "sha256": "fb6705b48e7c22e7",
+      "params": 148,
+      "size_kb": 3.392578125
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task050.onnx",
+      "sha256": "817ceed6eed8f863",
+      "params": 248,
+      "size_kb": 2.48046875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task050_int8.onnx",
+      "sha256": "e2c0ab3abe6847e5",
+      "params": 248,
+      "size_kb": 2.5341796875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task051.onnx",
+      "sha256": "115110ed689261c7",
+      "params": 75,
+      "size_kb": 4.705078125
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task051_int8.onnx",
+      "sha256": "3239a785be35cc22",
+      "params": 75,
+      "size_kb": 8.0732421875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task052.onnx",
+      "sha256": "a00a34dcd247ebc9",
+      "params": 630,
+      "size_kb": 2.9306640625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task052_int8.onnx",
+      "sha256": "abf48105b795dad0",
+      "params": 630,
+      "size_kb": 3.2236328125
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task053.onnx",
+      "sha256": "620856053771075b",
+      "params": 1807,
+      "size_kb": 10.9384765625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task053_int8.onnx",
+      "sha256": "7268209602e4dceb",
+      "params": 1807,
+      "size_kb": 11.0888671875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task054.onnx",
+      "sha256": "e031505ebcbe5ecb",
+      "params": 694,
+      "size_kb": 25.44140625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task054_int8.onnx",
+      "sha256": "7f04821a438cd6ec",
+      "params": 694,
+      "size_kb": 64.87890625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task055.onnx",
+      "sha256": "194c76a7c1f255cb",
+      "params": 993,
+      "size_kb": 20.955078125
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task055_int8.onnx",
+      "sha256": "2034d3d01b7c95e4",
+      "params": 993,
+      "size_kb": 21.8193359375
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task056.onnx",
+      "sha256": "8dc891b11cc61ac8",
+      "params": 1805,
+      "size_kb": 8.2958984375
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task056_int8.onnx",
+      "sha256": "d73ada9cea5a590e",
+      "params": 1805,
+      "size_kb": 9.029296875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task057.onnx",
+      "sha256": "fe71c735896585cb",
+      "params": 11,
+      "size_kb": 1.8359375
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task057_int8.onnx",
+      "sha256": "8fee79b788a3247e",
+      "params": 11,
+      "size_kb": 1.8896484375
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task058.onnx",
+      "sha256": "fb1ffa08dd169a1d",
+      "params": 261000,
+      "size_kb": 1033.291015625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task058_int8.onnx",
+      "sha256": "1e98bf9bfcfb66fe",
+      "params": 261000,
+      "size_kb": 1044.6083984375
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task059.onnx",
+      "sha256": "823ab9974633cdce",
+      "params": 18233,
+      "size_kb": 72.642578125
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task059_int8.onnx",
+      "sha256": "40d22a6d0f64b336",
+      "params": 18233,
+      "size_kb": 76.5390625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task060.onnx",
+      "sha256": "bcccfdb2a48310c2",
+      "params": 4522,
+      "size_kb": 24.1806640625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task060_int8.onnx",
+      "sha256": "7cf374813e795639",
+      "params": 4522,
+      "size_kb": 26.625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task061.onnx",
+      "sha256": "090bd42cc5d0dd01",
+      "params": 9031,
+      "size_kb": 39.693359375
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task061_int8.onnx",
+      "sha256": "9b977d927c2b01a7",
+      "params": 9031,
+      "size_kb": 43.0439453125
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task062.onnx",
+      "sha256": "d57d9a3dc711a3fa",
+      "params": 929,
+      "size_kb": 21.60546875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task062_int8.onnx",
+      "sha256": "6e878e4494030bd2",
+      "params": 929,
+      "size_kb": 28.8125
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task063.onnx",
+      "sha256": "5c8811b2da847375",
+      "params": 30,
+      "size_kb": 3.6220703125
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task063_int8.onnx",
+      "sha256": "0dbe3f9af2da4733",
+      "params": 30,
+      "size_kb": 3.67578125
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task064.onnx",
+      "sha256": "c7b515fc343a97a8",
+      "params": 0,
+      "size_kb": 6.7158203125
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task064_int8.onnx",
+      "sha256": "9819f3f744f6841e",
+      "params": 0,
+      "size_kb": 11.3427734375
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task065.onnx",
+      "sha256": "0775f9940254e9d7",
+      "params": 963,
+      "size_kb": 6.521484375
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task065_int8.onnx",
+      "sha256": "1691a03bf2b5a801",
+      "params": 963,
+      "size_kb": 8.7119140625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task066.onnx",
+      "sha256": "b61c747510a72648",
+      "params": 92,
+      "size_kb": 175.9501953125
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task066_int8.onnx",
+      "sha256": "d4b5ed6d4e70308e",
+      "params": 92,
+      "size_kb": 175.98828125
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task067.onnx",
+      "sha256": "f32a70ae632e66f5",
+      "params": 1803,
+      "size_kb": 14.9306640625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task067_int8.onnx",
+      "sha256": "e55cc0d0606811a3",
+      "params": 1803,
+      "size_kb": 15.384765625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task068.onnx",
+      "sha256": "fda283a479d2067e",
+      "params": 27,
+      "size_kb": 2.2802734375
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task068_int8.onnx",
+      "sha256": "ef56703874d1973f",
+      "params": 27,
+      "size_kb": 3.78515625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task069.onnx",
+      "sha256": "fb91d90981c4b216",
+      "params": 2310,
+      "size_kb": 31.572265625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task069_int8.onnx",
+      "sha256": "b144776a08925c74",
+      "params": 2310,
+      "size_kb": 32.7216796875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task070.onnx",
+      "sha256": "c09e95105072fd97",
+      "params": 77,
+      "size_kb": 11.56640625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task070_int8.onnx",
+      "sha256": "4a92aeaf4e057cc8",
+      "params": 77,
+      "size_kb": 45.97265625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task071.onnx",
+      "sha256": "2d696d39af281a3a",
+      "params": 930,
+      "size_kb": 11.798828125
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task071_dbg.onnx",
+      "sha256": "3970a5b5bb52348c",
+      "params": 53,
+      "size_kb": 2.8974609375
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task071_dbg_int8.onnx",
+      "sha256": "0ec6a14b277d9987",
+      "params": 53,
+      "size_kb": 4.5048828125
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task071_int8.onnx",
+      "sha256": "f80a918000aa026f",
+      "params": 930,
+      "size_kb": 11.8544921875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task072.onnx",
+      "sha256": "188545c2133e8f31",
+      "params": 78,
+      "size_kb": 1.5869140625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task072_int8.onnx",
+      "sha256": "6a77b8f483ce99e1",
+      "params": 78,
+      "size_kb": 1.640625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task073.onnx",
+      "sha256": "574e04cee12d6b1f",
+      "params": 910,
+      "size_kb": 3.8564453125
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task073_int8.onnx",
+      "sha256": "4693a22c9cbd2e6a",
+      "params": 914,
+      "size_kb": 2.7646484375
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task074.onnx",
+      "sha256": "7104c23f6fe8675f",
+      "params": 1268,
+      "size_kb": 6.7890625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task074_int8.onnx",
+      "sha256": "5372aca2fc18abfc",
+      "params": 1268,
+      "size_kb": 7.8876953125
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task075.onnx",
+      "sha256": "1056e7eaad4b2271",
+      "params": 0,
+      "size_kb": 9.203125
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task075_int8.onnx",
+      "sha256": "81c2c7a2880aeebb",
+      "params": 0,
+      "size_kb": 13.890625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task076.onnx",
+      "sha256": "b4407303acf9c1e5",
+      "params": 229491,
+      "size_kb": 926.6328125
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task076_int8.onnx",
+      "sha256": "6c8a9780f90285b4",
+      "params": 229491,
+      "size_kb": 926.6748046875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task077.onnx",
+      "sha256": "f097cbd09e4604a8",
+      "params": 1894,
+      "size_kb": 24.80078125
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task077_int8.onnx",
+      "sha256": "d53a59b8b4aa5819",
+      "params": 1894,
+      "size_kb": 36.4111328125
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task078.onnx",
+      "sha256": "1f42d518b8bed067",
+      "params": 36,
+      "size_kb": 2.52734375
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task078_int8.onnx",
+      "sha256": "0c7497cd018cc257",
+      "params": 36,
+      "size_kb": 2.5810546875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task079.onnx",
+      "sha256": "c616f84e225c7025",
+      "params": 1930,
+      "size_kb": 15.216796875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task079_int8.onnx",
+      "sha256": "a416f2c76170be13",
+      "params": 1930,
+      "size_kb": 17.234375
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task080.onnx",
+      "sha256": "da97f63843845f68",
+      "params": 1492,
+      "size_kb": 18.05078125
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task080_int8.onnx",
+      "sha256": "30e83b47a2ad16bf",
+      "params": 1492,
+      "size_kb": 21.357421875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task081.onnx",
+      "sha256": "118dc8373587509f",
+      "params": 107,
+      "size_kb": 3.6611328125
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task081_int8.onnx",
+      "sha256": "f4130369b0d5df84",
+      "params": 107,
+      "size_kb": 3.6796875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task082.onnx",
+      "sha256": "f5185afcc7d53962",
+      "params": 79,
+      "size_kb": 2.228515625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task082_int8.onnx",
+      "sha256": "a22540c5cbd4dfb2",
+      "params": 79,
+      "size_kb": 3.244140625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task083.onnx",
+      "sha256": "3526144719574eaf",
+      "params": 1800,
+      "size_kb": 7.279296875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task083_int8.onnx",
+      "sha256": "007326ff0b68ddc2",
+      "params": 1800,
+      "size_kb": 7.3037109375
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task084.onnx",
+      "sha256": "889793e461fddc43",
+      "params": 1810,
+      "size_kb": 17.3203125
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task084_int8.onnx",
+      "sha256": "243c4fd7d7de4e45",
+      "params": 1810,
+      "size_kb": 19.1533203125
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task085.onnx",
+      "sha256": "0cf2b40dcd4fe9bb",
+      "params": 137,
+      "size_kb": 2.4873046875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task085_int8.onnx",
+      "sha256": "3b4ee2ce19d8cf5b",
+      "params": 137,
+      "size_kb": 3.951171875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task086.onnx",
+      "sha256": "31b831444a5fced4",
+      "params": 1893,
+      "size_kb": 10.1845703125
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task086_int8.onnx",
+      "sha256": "c7e4b17901af347e",
+      "params": 1893,
+      "size_kb": 19.96875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task087.onnx",
+      "sha256": "080ff3d09a886f44",
+      "params": 0,
+      "size_kb": 42.6982421875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task087_int8.onnx",
+      "sha256": "b4eaa0e38cdfefe6",
+      "params": 0,
+      "size_kb": 42.951171875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task088.onnx",
+      "sha256": "3d5e5840dfdc9ebf",
+      "params": 1251,
+      "size_kb": 14.62890625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task088_int8.onnx",
+      "sha256": "6a1cd841d52afeea",
+      "params": 1251,
+      "size_kb": 14.6865234375
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task089.onnx",
+      "sha256": "7368695bd057c103",
+      "params": 188,
+      "size_kb": 18.6455078125
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task089_int8.onnx",
+      "sha256": "b12dd20fdab80ed5",
+      "params": 188,
+      "size_kb": 30.703125
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task090.onnx",
+      "sha256": "c42dde8779e13f25",
+      "params": 1264,
+      "size_kb": 152.2666015625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task090_int8.onnx",
+      "sha256": "6c95f18d574d4a97",
+      "params": 1264,
+      "size_kb": 222.748046875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task091.onnx",
+      "sha256": "0f1b369eed318594",
+      "params": 6351,
+      "size_kb": 27.8046875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task091_int8.onnx",
+      "sha256": "cba97d4b2a5ab606",
+      "params": 6351,
+      "size_kb": 29.880859375
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task092.onnx",
+      "sha256": "31e6aa2df4e75b23",
+      "params": 25,
+      "size_kb": 4.1982421875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task092_int8.onnx",
+      "sha256": "168b5b663c1ab773",
+      "params": 25,
+      "size_kb": 4.84765625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task093.onnx",
+      "sha256": "d53709d4227a80fe",
+      "params": 842,
+      "size_kb": 6.2138671875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task093_int8.onnx",
+      "sha256": "0b307d11aa011d5e",
+      "params": 842,
+      "size_kb": 8.5576171875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task094.onnx",
+      "sha256": "1183a85e05f31b32",
+      "params": 89,
+      "size_kb": 3.6787109375
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task094_int8.onnx",
+      "sha256": "1c9804ca805b1ecc",
+      "params": 89,
+      "size_kb": 5.4560546875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task095.onnx",
+      "sha256": "eca4d38cd8606a93",
+      "params": 910,
+      "size_kb": 3.857421875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task095_int8.onnx",
+      "sha256": "d55e4e7762201697",
+      "params": 914,
+      "size_kb": 2.74609375
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task096.onnx",
+      "sha256": "0b30ddbae55f403e",
+      "params": 2461959,
+      "size_kb": 13153.822265625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task096_int8.onnx",
+      "sha256": "ea8bb797bb0ccd14",
+      "params": 2461959,
+      "size_kb": 14889.296875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task097.onnx",
+      "sha256": "74cb6fafd82a2348",
+      "params": 444,
+      "size_kb": 22.81640625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task097_int8.onnx",
+      "sha256": "c029724b95f0b10d",
+      "params": 444,
+      "size_kb": 31.5419921875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task098.onnx",
+      "sha256": "8fff41bf99869a80",
+      "params": 910,
+      "size_kb": 3.74609375
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task098_int8.onnx",
+      "sha256": "8a0dc7101c1aec00",
+      "params": 914,
+      "size_kb": 1.88671875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task099.onnx",
+      "sha256": "73b0f37d91f73cdc",
+      "params": 1144,
+      "size_kb": 50.2666015625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task099_int8.onnx",
+      "sha256": "bc09a95975b7661c",
+      "params": 1144,
+      "size_kb": 76.4775390625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task100.onnx",
+      "sha256": "9bec075817fc8875",
+      "params": 0,
+      "size_kb": 5.5634765625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task100_int8.onnx",
+      "sha256": "1be012936aba047b",
+      "params": 0,
+      "size_kb": 6.55859375
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task101.onnx",
+      "sha256": "5add58b8bc1d0b54",
+      "params": 4653,
+      "size_kb": 38.3798828125
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task101_int8.onnx",
+      "sha256": "afb16837e41a488b",
+      "params": 4653,
+      "size_kb": 46.6318359375
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task102.onnx",
+      "sha256": "dd69f7cd8bc2d432",
+      "params": 339,
+      "size_kb": 21.6474609375
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task102_int8.onnx",
+      "sha256": "a7d49460d87097bb",
+      "params": 339,
+      "size_kb": 48.353515625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task103.onnx",
+      "sha256": "a435ed4772dd2031",
+      "params": 56,
+      "size_kb": 1.6298828125
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task103_int8.onnx",
+      "sha256": "9861086d6da59c71",
+      "params": 56,
+      "size_kb": 1.798828125
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task104.onnx",
+      "sha256": "33a343ec43a261d2",
+      "params": 1070,
+      "size_kb": 6.201171875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task104_int8.onnx",
+      "sha256": "7c5e194a79385c8e",
+      "params": 1070,
+      "size_kb": 6.2568359375
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task105.onnx",
+      "sha256": "87b8eaf3ff5a294e",
+      "params": 7266,
+      "size_kb": 34.4638671875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task105_int8.onnx",
+      "sha256": "c37717c35292f8e1",
+      "params": 7266,
+      "size_kb": 34.521484375
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task106.onnx",
+      "sha256": "9f90f5f818b55667",
+      "params": 3643,
+      "size_kb": 17.69140625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task106_int8.onnx",
+      "sha256": "018b2738973bc4a1",
+      "params": 3643,
+      "size_kb": 19.0439453125
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task107.onnx",
+      "sha256": "800c97ccdc94efaa",
+      "params": 15427,
+      "size_kb": 65.5107421875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task107_int8.onnx",
+      "sha256": "eb907337bf97a2a6",
+      "params": 15427,
+      "size_kb": 69.759765625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task108.onnx",
+      "sha256": "9a64b95689911597",
+      "params": 1807,
+      "size_kb": 10.9384765625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task108_int8.onnx",
+      "sha256": "e9884fc81257046a",
+      "params": 1807,
+      "size_kb": 11.0888671875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task109.onnx",
+      "sha256": "b743a1e192a39c2d",
+      "params": 979,
+      "size_kb": 5.3623046875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task109_int8.onnx",
+      "sha256": "6f64dc2091b156b1",
+      "params": 979,
+      "size_kb": 5.416015625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task110.onnx",
+      "sha256": "7e646fed10d511fb",
+      "params": 3773,
+      "size_kb": 29.3701171875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task110_int8.onnx",
+      "sha256": "7906ccab4278591d",
+      "params": 3773,
+      "size_kb": 42.06640625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task111.onnx",
+      "sha256": "dd6533e11f1f6596",
+      "params": 1814,
+      "size_kb": 17.326171875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task111_int8.onnx",
+      "sha256": "96446a6cbb84e5b0",
+      "params": 1814,
+      "size_kb": 19.8935546875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task112.onnx",
+      "sha256": "1d441249f879b3f5",
+      "params": 105,
+      "size_kb": 3.8935546875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task112_int8.onnx",
+      "sha256": "22aaa35276a3da14",
+      "params": 105,
+      "size_kb": 3.947265625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task113.onnx",
+      "sha256": "2a61243f52cf1f61",
+      "params": 1807,
+      "size_kb": 10.9384765625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task113_int8.onnx",
+      "sha256": "33219a701e8d56f3",
+      "params": 1807,
+      "size_kb": 11.0888671875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task114.onnx",
+      "sha256": "7d1973d605273db2",
+      "params": 163,
+      "size_kb": 4.6083984375
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task114_int8.onnx",
+      "sha256": "8bfcedcb7374e01d",
+      "params": 163,
+      "size_kb": 4.65625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task115.onnx",
+      "sha256": "fef642f35c49927e",
+      "params": 80,
+      "size_kb": 4.9501953125
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task115_int8.onnx",
+      "sha256": "d049faf62dd303b3",
+      "params": 80,
+      "size_kb": 4.998046875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task116.onnx",
+      "sha256": "681b6bb8dd99638c",
+      "params": 0,
+      "size_kb": 42.6982421875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task116_int8.onnx",
+      "sha256": "6f2b52e4becfcb57",
+      "params": 0,
+      "size_kb": 42.951171875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task117.onnx",
+      "sha256": "77228d7af5a5f6a3",
+      "params": 92,
+      "size_kb": 27.0888671875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task117_int8.onnx",
+      "sha256": "77d32dfbc197c973",
+      "params": 92,
+      "size_kb": 43.6220703125
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task118.onnx",
+      "sha256": "87749c190fecd4e9",
+      "params": 44540,
+      "size_kb": 356.591796875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task118_int8.onnx",
+      "sha256": "eb71268d836df72f",
+      "params": 44540,
+      "size_kb": 362.80859375
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task119.onnx",
+      "sha256": "55b1723009f49fc4",
+      "params": 967,
+      "size_kb": 78.4345703125
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task119_int8.onnx",
+      "sha256": "3efc3f267bad59de",
+      "params": 967,
+      "size_kb": 650.0166015625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task120.onnx",
+      "sha256": "23957e5230c5b7fd",
+      "params": 2510,
+      "size_kb": 10.1064453125
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task120_int8.onnx",
+      "sha256": "727c256b70c90f2d",
+      "params": 2514,
+      "size_kb": 4.3271484375
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task121.onnx",
+      "sha256": "04d0faffc96fb461",
+      "params": 9034,
+      "size_kb": 36.330078125
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task121_int8.onnx",
+      "sha256": "e1769c7a3faa429d",
+      "params": 9034,
+      "size_kb": 14.7568359375
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task122.onnx",
+      "sha256": "d932a3ac54fb54cc",
+      "params": 2510,
+      "size_kb": 9.99609375
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task122_int8.onnx",
+      "sha256": "93355e394d28e5c9",
+      "params": 2514,
+      "size_kb": 3.44921875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task123.onnx",
+      "sha256": "7a75e42172279efb",
+      "params": 949,
+      "size_kb": 8.7861328125
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task123_int8.onnx",
+      "sha256": "335bffde80e64130",
+      "params": 949,
+      "size_kb": 8.841796875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task124.onnx",
+      "sha256": "9c6fe7c63aa70328",
+      "params": 1819,
+      "size_kb": 16.494140625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task124_int8.onnx",
+      "sha256": "f8cf5f75427f7e84",
+      "params": 1819,
+      "size_kb": 22.400390625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task125.onnx",
+      "sha256": "63df2eb00132f42a",
+      "params": 739,
+      "size_kb": 4.6328125
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task125_int8.onnx",
+      "sha256": "5ac3896083e9c209",
+      "params": 739,
+      "size_kb": 9.1669921875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task126.onnx",
+      "sha256": "b8b60b6750d8134c",
+      "params": 843,
+      "size_kb": 4.4599609375
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task126_int8.onnx",
+      "sha256": "12d83e10f6fdff5b",
+      "params": 843,
+      "size_kb": 4.345703125
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task127.onnx",
+      "sha256": "96f28bf0eb9083f2",
+      "params": 0,
+      "size_kb": 3.744140625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task127_int8.onnx",
+      "sha256": "4fd65779d0ed6b35",
+      "params": 0,
+      "size_kb": 4.4541015625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task128.onnx",
+      "sha256": "3e618939ba200843",
+      "params": 65,
+      "size_kb": 7.419921875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task128_int8.onnx",
+      "sha256": "413a9453713c6136",
+      "params": 65,
+      "size_kb": 11.7666015625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task129.onnx",
+      "sha256": "7f83d33a4fe17fa6",
+      "params": 0,
+      "size_kb": 4.4091796875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task129_int8.onnx",
+      "sha256": "37843ae50e11e1c4",
+      "params": 0,
+      "size_kb": 4.7900390625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task130.onnx",
+      "sha256": "2bf0467b0752c908",
+      "params": 1813,
+      "size_kb": 10.5927734375
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task130_int8.onnx",
+      "sha256": "a0b8067bc618d645",
+      "params": 1813,
+      "size_kb": 12.8310546875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task131.onnx",
+      "sha256": "d0d26239641dc4c3",
+      "params": 945,
+      "size_kb": 11.748046875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task131_int8.onnx",
+      "sha256": "8dd05a9498438cb6",
+      "params": 945,
+      "size_kb": 11.8037109375
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task132.onnx",
+      "sha256": "8e5ad5fe50f8836d",
+      "params": 63,
+      "size_kb": 3.673828125
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task132_int8.onnx",
+      "sha256": "6fd92a52e3cf803a",
+      "params": 63,
+      "size_kb": 3.7275390625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task133.onnx",
+      "sha256": "68e935d47ff7110c",
+      "params": 228889,
+      "size_kb": 765.072265625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task133_int8.onnx",
+      "sha256": "5a98f580fcc82484",
+      "params": 228889,
+      "size_kb": 308.2978515625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task134.onnx",
+      "sha256": "d2d0cfea388f5f59",
+      "params": 79,
+      "size_kb": 7.05078125
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task134_debug.onnx",
+      "sha256": "efbd384a5d73b3a0",
+      "params": 159,
+      "size_kb": 4.8310546875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task134_debug_int8.onnx",
+      "sha256": "1014a4ec6f3784e9",
+      "params": 159,
+      "size_kb": 8.0478515625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task134_int8.onnx",
+      "sha256": "7a5b17166a036b81",
+      "params": 79,
+      "size_kb": 7.1005859375
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task135.onnx",
+      "sha256": "547cb1ef66a8558e",
+      "params": 0,
+      "size_kb": 0.4462890625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task135_int8.onnx",
+      "sha256": "17c3e58a086a656e",
+      "params": 0,
+      "size_kb": 0.60546875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task136.onnx",
+      "sha256": "7a09af07a3df5f38",
+      "params": 2554,
+      "size_kb": 10.76171875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task136_int8.onnx",
+      "sha256": "df9f6feb21411275",
+      "params": 2554,
+      "size_kb": 10.2314453125
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task137.onnx",
+      "sha256": "ef031cef24d9c3cb",
+      "params": 966,
+      "size_kb": 3.7734375
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task137_int8.onnx",
+      "sha256": "d9d78879a3255c5b",
+      "params": 966,
+      "size_kb": 3.8271484375
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task138.onnx",
+      "sha256": "955dbb96bc55cace",
+      "params": 134,
+      "size_kb": 11.291015625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task138_int8.onnx",
+      "sha256": "d946e625302e4009",
+      "params": 134,
+      "size_kb": 11.8720703125
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task139.onnx",
+      "sha256": "84309fd9bfdefcee",
+      "params": 4186,
+      "size_kb": 16.751953125
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task139_int8.onnx",
+      "sha256": "65657218f4ad33a4",
+      "params": 4194,
+      "size_kb": 7.3671875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task140.onnx",
+      "sha256": "080ff3d09a886f44",
+      "params": 0,
+      "size_kb": 42.6982421875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task140_int8.onnx",
+      "sha256": "b4eaa0e38cdfefe6",
+      "params": 0,
+      "size_kb": 42.951171875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task141.onnx",
+      "sha256": "e37c9a2cc3039635",
+      "params": 34820,
+      "size_kb": 136.6650390625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task141_int8.onnx",
+      "sha256": "fa665a254f5cf86a",
+      "params": 34820,
+      "size_kb": 36.314453125
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task142.onnx",
+      "sha256": "b525fbe662a950cc",
+      "params": 1800,
+      "size_kb": 7.279296875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task142_int8.onnx",
+      "sha256": "4bd58c3b3e1417cd",
+      "params": 1800,
+      "size_kb": 7.3037109375
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task143.onnx",
+      "sha256": "a7806b205f75c1a1",
+      "params": 56,
+      "size_kb": 2.626953125
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task143_int8.onnx",
+      "sha256": "34d5d186cad52530",
+      "params": 56,
+      "size_kb": 3.224609375
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task144.onnx",
+      "sha256": "e615d869e7b75b73",
+      "params": 50,
+      "size_kb": 1.6005859375
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task144_int8.onnx",
+      "sha256": "80e25f3e176420e2",
+      "params": 50,
+      "size_kb": 1.654296875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task145.onnx",
+      "sha256": "22681d1e38fd9b4a",
+      "params": 932,
+      "size_kb": 30.697265625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task145_int8.onnx",
+      "sha256": "9952bf57c254ba38",
+      "params": 932,
+      "size_kb": 30.7529296875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task146.onnx",
+      "sha256": "0c49990b4baff7f9",
+      "params": 1836,
+      "size_kb": 12.6875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task146_int8.onnx",
+      "sha256": "5c35cc7cb25eecb8",
+      "params": 1836,
+      "size_kb": 13.7890625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task147.onnx",
+      "sha256": "e65dc2d49c2dd327",
+      "params": 910,
+      "size_kb": 3.7353515625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task147_int8.onnx",
+      "sha256": "a426452e6e6914f9",
+      "params": 914,
+      "size_kb": 2.5703125
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task148.onnx",
+      "sha256": "4ca54a569000cb58",
+      "params": 462,
+      "size_kb": 72.865234375
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task148_int8.onnx",
+      "sha256": "3d2677ec7856b41b",
+      "params": 462,
+      "size_kb": 124.228515625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task149.onnx",
+      "sha256": "8e87e4ca06e241fb",
+      "params": 9094,
+      "size_kb": 40.822265625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task149_int8.onnx",
+      "sha256": "0a2a55a1e38e8f84",
+      "params": 9094,
+      "size_kb": 44.392578125
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task150.onnx",
+      "sha256": "2b07c52ba0a43add",
+      "params": 1803,
+      "size_kb": 15.2236328125
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task150_int8.onnx",
+      "sha256": "fa5630dca1d4a9c1",
+      "params": 1803,
+      "size_kb": 15.8212890625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task151.onnx",
+      "sha256": "a675c6da7f233a16",
+      "params": 101,
+      "size_kb": 6.2451171875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task151_int8.onnx",
+      "sha256": "e491ff5c54968f85",
+      "params": 101,
+      "size_kb": 9.9326171875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task152.onnx",
+      "sha256": "b525fbe662a950cc",
+      "params": 1800,
+      "size_kb": 7.279296875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task152_int8.onnx",
+      "sha256": "4bd58c3b3e1417cd",
+      "params": 1800,
+      "size_kb": 7.3037109375
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task153.onnx",
+      "sha256": "b2307be1bc7eb9a0",
+      "params": 5347,
+      "size_kb": 842.1396484375
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task153_int8.onnx",
+      "sha256": "40872ddf7427b4ec",
+      "params": 5347,
+      "size_kb": 1546.7646484375
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task154.onnx",
+      "sha256": "66ed2e989741cacc",
+      "params": 962,
+      "size_kb": 7.470703125
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task154_int8.onnx",
+      "sha256": "20358621b0ca2d49",
+      "params": 962,
+      "size_kb": 8.7158203125
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task155.onnx",
+      "sha256": "bd9e4d2ef6b3c501",
+      "params": 1803,
+      "size_kb": 15.2255859375
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task155_int8.onnx",
+      "sha256": "dfc7b2d8bb17723b",
+      "params": 1803,
+      "size_kb": 15.8232421875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task156.onnx",
+      "sha256": "8c08fac91ad49f27",
+      "params": 966,
+      "size_kb": 5.9150390625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task156_int8.onnx",
+      "sha256": "20d50fbc87ecefd5",
+      "params": 966,
+      "size_kb": 8.9130859375
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task157.onnx",
+      "sha256": "3bc1c470fcf83af4",
+      "params": 200414,
+      "size_kb": 809.546875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task157_int8.onnx",
+      "sha256": "d0948324ac601397",
+      "params": 200414,
+      "size_kb": 823.068359375
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task158.onnx",
+      "sha256": "b92c95057fb98f92",
+      "params": 765,
+      "size_kb": 60.75
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task158_int8.onnx",
+      "sha256": "03bcc68bbe5f782c",
+      "params": 765,
+      "size_kb": 95.2783203125
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task159.onnx",
+      "sha256": "93239bd39db8bb07",
+      "params": 4104,
+      "size_kb": 12.662109375
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task159_int8.onnx",
+      "sha256": "14051bc11eb21307",
+      "params": 4104,
+      "size_kb": 12.7216796875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task160.onnx",
+      "sha256": "5395ca933d401640",
+      "params": 94,
+      "size_kb": 1.716796875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task160_int8.onnx",
+      "sha256": "9d29e8cf3499f4a6",
+      "params": 94,
+      "size_kb": 5.0224609375
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task161.onnx",
+      "sha256": "bc60184c9e320b95",
+      "params": 75,
+      "size_kb": 3.7509765625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task161_int8.onnx",
+      "sha256": "9f839bc1776aa3c2",
+      "params": 75,
+      "size_kb": 5.8203125
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task162.onnx",
+      "sha256": "29467827e023a09d",
+      "params": 39,
+      "size_kb": 2.21484375
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task162_int8.onnx",
+      "sha256": "987957948065b2e1",
+      "params": 39,
+      "size_kb": 7.513671875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task163.onnx",
+      "sha256": "261af5c25f75b8f6",
+      "params": 1654,
+      "size_kb": 8.8720703125
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task163_int8.onnx",
+      "sha256": "9b753843f1cdd61d",
+      "params": 1654,
+      "size_kb": 11.1279296875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task164.onnx",
+      "sha256": "22250c47560c92e5",
+      "params": 0,
+      "size_kb": 0.794921875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task164_int8.onnx",
+      "sha256": "910ad6db97a8294f",
+      "params": 0,
+      "size_kb": 1.1123046875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task165.onnx",
+      "sha256": "c7b5c3cdd9e128be",
+      "params": 996,
+      "size_kb": 5.6123046875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task165_int8.onnx",
+      "sha256": "68f50bb1b21d09d7",
+      "params": 996,
+      "size_kb": 10.2373046875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task166.onnx",
+      "sha256": "2033b7f912e03200",
+      "params": 310,
+      "size_kb": 1.8369140625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task166_int8.onnx",
+      "sha256": "78fd31926e6cf0b3",
+      "params": 314,
+      "size_kb": 4.9208984375
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task167.onnx",
+      "sha256": "1ed25b88477b71db",
+      "params": 3603,
+      "size_kb": 17.1728515625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task167_int8.onnx",
+      "sha256": "a4132179a9d15024",
+      "params": 3603,
+      "size_kb": 19.24609375
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task168.onnx",
+      "sha256": "b9c4d67f9878b882",
+      "params": 59,
+      "size_kb": 18.57421875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task168_int8.onnx",
+      "sha256": "eaebb3290f386ef6",
+      "params": 59,
+      "size_kb": 196.5712890625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task169.onnx",
+      "sha256": "d34446738a954a6f",
+      "params": 627,
+      "size_kb": 15.841796875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task169_int8.onnx",
+      "sha256": "a143e2c75d1d889d",
+      "params": 627,
+      "size_kb": 37.0869140625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task170.onnx",
+      "sha256": "9f919ea1d3fae6c4",
+      "params": 3814,
+      "size_kb": 63.3291015625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task170_int8.onnx",
+      "sha256": "0e471319c10a1c3e",
+      "params": 3814,
+      "size_kb": 64.482421875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task171.onnx",
+      "sha256": "c0dccfce69e87e53",
+      "params": 910,
+      "size_kb": 3.7353515625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task171_int8.onnx",
+      "sha256": "14a2b6b290af6a7b",
+      "params": 914,
+      "size_kb": 2.5703125
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task172.onnx",
+      "sha256": "69d5eaca683b6238",
+      "params": 0,
+      "size_kb": 0.619140625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task172_int8.onnx",
+      "sha256": "4efdd5de60c11e49",
+      "params": 0,
+      "size_kb": 0.87109375
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task173.onnx",
+      "sha256": "a0299600440d0a79",
+      "params": 214,
+      "size_kb": 9.87109375
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task173_int8.onnx",
+      "sha256": "47a24eb10f8d9046",
+      "params": 214,
+      "size_kb": 14.1904296875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task174.onnx",
+      "sha256": "a6f543067be12837",
+      "params": 73,
+      "size_kb": 60.3896484375
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task174_int8.onnx",
+      "sha256": "b5896e1237440161",
+      "params": 73,
+      "size_kb": 60.443359375
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task175.onnx",
+      "sha256": "f64edba1034b5114",
+      "params": 2747,
+      "size_kb": 12.0283203125
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task175_int8.onnx",
+      "sha256": "dfefb58cc26b7c75",
+      "params": 2747,
+      "size_kb": 13.3173828125
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task176.onnx",
+      "sha256": "9156cc9ec4ebe19d",
+      "params": 930,
+      "size_kb": 3.9775390625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task176_int8.onnx",
+      "sha256": "a38812dc83a6986d",
+      "params": 930,
+      "size_kb": 5.3447265625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task177.onnx",
+      "sha256": "cdcbf832519bece9",
+      "params": 101,
+      "size_kb": 4.08203125
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task177_int8.onnx",
+      "sha256": "fc802bccfdd2c9c6",
+      "params": 101,
+      "size_kb": 4.1357421875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task178.onnx",
+      "sha256": "4da8ed1ed0676bf7",
+      "params": 568,
+      "size_kb": 6.58984375
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task178_int8.onnx",
+      "sha256": "f3e74ea38675b4e2",
+      "params": 568,
+      "size_kb": 13.8916015625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task179.onnx",
+      "sha256": "7dac4b2036d405a8",
+      "params": 0,
+      "size_kb": 0.4853515625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task179_int8.onnx",
+      "sha256": "27ed3028ddc47242",
+      "params": 0,
+      "size_kb": 0.6796875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task180.onnx",
+      "sha256": "785c655a8071880b",
+      "params": 910,
+      "size_kb": 3.8388671875
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task180_int8.onnx",
+      "sha256": "bfd1f06aa3e10994",
+      "params": 914,
+      "size_kb": 2.7470703125
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task181.onnx",
+      "sha256": "df0fa299c418bf21",
+      "params": 942,
+      "size_kb": 5.0556640625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task181_int8.onnx",
+      "sha256": "01d6a889038e4b25",
+      "params": 942,
+      "size_kb": 5.7236328125
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task182.onnx",
+      "sha256": "60cb00d6415f1155",
+      "params": 946,
+      "size_kb": 69.7197265625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task182_int8.onnx",
+      "sha256": "e65207bbba37e8c1",
+      "params": 946,
+      "size_kb": 97.515625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task183.onnx",
+      "sha256": "70928631b9ba4ad9",
+      "params": 187,
+      "size_kb": 6.08984375
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task183_int8.onnx",
+      "sha256": "34219407ae41ed4f",
+      "params": 187,
+      "size_kb": 12.0322265625
+    },
+    {
+      "path": "/Users/sweeden/agent-trace-language/agent-trace-language/submission/optimized/task184.onnx",
+      "sha256": "13b15a1ef518df2e",
+      "params": 36,
+      "size_kb": 4.7578125
+    }
+  ],
+  "total_params": 7795172,
+  "total_memory_kb": 46302.408203125
+}
